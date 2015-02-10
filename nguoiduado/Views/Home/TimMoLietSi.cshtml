@@ -1,0 +1,22 @@
+﻿
+<html lang="vi">
+@{ Layout = "~/Views/Shared/_rootHomeTimKiem.cshtml"; }
+@using nguoiduado.Models
+@model nguoiduado.Models.TBL_NoiDung
+
+
+<head>
+    <title>Nguoiduado.vn</title>
+</head>
+<body>
+ <div class="col-sm-8">
+    <div class="category">
+        <h3>Tìm mộ liệt sĩ</h3>
+        <div class="guide">
+            @Html.Action("GridView2Partial")
+        </div>
+    </div>
+ </div>
+  
+</body>
+</html>

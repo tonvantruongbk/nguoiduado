@@ -1,0 +1,356 @@
+﻿@{
+    nguoiduado.Models.TBL_NoiDung TinNoiBat = (nguoiduado.Models.TBL_NoiDung)ViewData["BaiVietNoiBat"];
+    nguoiduado.Models.PictureModel PicModel = new nguoiduado.Models.PictureModel();
+    string LinkAnh = PicModel.GetPictureUrl(TinNoiBat.PictureId);
+   List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu1= new List<nguoiduado.Models.TBL_NoiDung>();
+   List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu2= new List<nguoiduado.Models.TBL_NoiDung>();
+   List<nguoiduado.Models.TBL_MenuDanhMuc> LstAllMenu = new List<nguoiduado.Models.TBL_MenuDanhMuc>();
+   LstNDTop5Menu1 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu1"];
+   LstNDTop5Menu2 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu2"];
+   LstAllMenu = (List<nguoiduado.Models.TBL_MenuDanhMuc>)ViewData["LstAllDanhMuc"];
+}
+<div class="col-md-12">
+    <div class="col-md-8 hotnews">
+        <div class="featured">
+            <a href=""><img src="@Url.Content(LinkAnh)"></a>
+            <h3><a href="../Home/Detail?MaNoiDung=@TinNoiBat.MaNoiDung">@TinNoiBat.TieuDe</a></h3>
+            <p>@TinNoiBat.TrichDan</p>
+        </div>
+        <div class="list_hotnews">
+            <div class="nonemax768 nonemin992">
+                <!--Begin search-->
+                <div class="search">
+                    <input name="" type="text" onfocus="if(this.value=='Nhập nội dung cần tìm') this.value=''" onblur="if(this.value=='') this.value='Nhập nội dung cần tìm'" value="Nhập nội dung cần tìm">
+                    <input name="" type="submit">
+                </div>
+                <!--End search-->
+            </div>
+            <ul class="list_hotnews">
+                @foreach (var itemTin10 in (List<nguoiduado.Models.TBL_NoiDung>)ViewData["10BaiVietMoiNhat"])
+                {
+                    <li class="nonemax480"><a href="../Home/Detail?MaNoiDung=@itemTin10.MaNoiDung">@itemTin10.TieuDe</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4 col_video nonemax992">
+        <!--Begin search-->
+        <div class="search">
+            <input name="" type="text" onfocus="if(this.value=='Nhập nội dung cần tìm') this.value=''" onblur="if(this.value=='') this.value='Nhập nội dung cần tìm'" value="Nhập nội dung cần tìm">
+            <input name="" type="submit">
+        </div>
+        <!--End search-->
+        <!--Begin video-->
+        <div class="video">
+            <h3><a href=""><img src="Content/images/video.png"></a></h3>
+            <ul>
+                <li>
+                    <a href="">
+                        <span><img src="Content/images/img_video1.png"></span>
+                        <span>Video tìm thấy các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng đội năm ấy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><img src="Content/images/img_video2.png"></span>
+                        <span>Thủ tục tâm linh trước khi tìm kiếm các hài cốt Liệt sĩ </span>
+                    </a>
+                </li>
+                <li class="nonemax992">
+                    <a href="">
+                        <span><img src="Content/images/img_video3.png"></span>
+                        <span>Các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--End video-->
+    </div>
+</div>
+<div class="col-sm-12 nonemin992">
+    <!--Begin tự giới thiệu-->
+    <div class="introduce_oneself">
+        <h3>Tự giới thiệu</h3>
+        <div class="border">
+            <h4>Nguyễn Sỹ Hồ</h4>
+            <div class="img"><span><img src="Content/images/tugioithieu.png"></span></div>
+            <ul>
+                <li>
+                    <strong>Quê quán:</strong>
+                    <p>Hương Trạch - Hương Khê - Hà Tĩnh </p>
+                </li>
+                <li>
+                    <strong>Cư ngụ tại:</strong>
+                    <p>Số nhà 12 - Tổ 2 - Ấp Cổng Xanh - Tân Bình - Tân Uyên - Bình Dương </p>
+                </li>
+                <li>
+                    <strong><span>Các câu nói ưa thích:</span></strong>
+                    <p><span>Thời gian khôngđược tính bằng năm tháng mà được tính bằng những gì anh đã làm</span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--End tự giới thiệu-->
+</div>
+<div class="col-md-12 cmandvideo nonemin992">
+    <div class="col-xs-4">
+        <!--Begin chuyên mục-->
+        <div class="menuleft">
+            <h3>Chuyên mục</h3>
+            <ul>
+                <li><span></span><a href="">Danh sách nghĩa trang</a></li>
+                <li><span></span><a href="">Danh sách mộ liệt sĩ</a></li>
+                <li><span></span><a href="">Ảnh mộ liệt sĩ</a></li>
+                <li><span></span><a href="">Hồ sơ liệt sĩ theo đơn vị</a></li>
+                <li><span></span><a href="">Danh sách mộ liệt sĩ</a></li>
+                <li><span></span><a href="">Ảnh mộ liệt sĩ</a></li>
+                <li><span></span><a href="">Danh sách liệt sĩ đã đăng tin</a></li>
+                <li><span></span><a href="">Tin tức chung – Thông báo</a></li>
+                <li><span></span><a href="">Nhật ký tìm mộ</a></li>
+                <li><span></span><a href="">Những điều trông thấy</a></li>
+                <li><span></span><a href="">Sự thật về “nhà ngoại cảm”</a></li>
+                <li><span></span><a href="">Báo chí – Tập san</a></li>
+                <li><span></span><a href="">Bài viết của các thành viên</a></li>
+                <li><span></span><a href="">Góc riêng tư</a></li>
+                <li><span></span><a href="">Thư giãn</a></li>
+            </ul>
+        </div>
+        <!--End chuyên mục-->
+    </div>
+    <div class="col-xs-8">
+        <!--Begin video-->
+        <div class="video">
+            <h3><a href=""><img src="Content/images/video.png"></a></h3>
+            <ul>
+                <li>
+                    <a href="">
+                        <span><img src="Content/images/img_video1.png"></span>
+                        <span>Video tìm thấy các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng đội năm ấy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span><img src="Content/images/img_video2.png"></span>
+                        <span>Thủ tục tâm linh trước khi tìm kiếm các hài cốt Liệt sĩ </span>
+                    </a>
+                </li>
+                <li class="nonemax992">
+                    <a href="">
+                        <span><img src="Content/images/img_video3.png"></span>
+                        <span>Các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--End video-->
+        <!--Begin col hỗ trợ, tìm mộ-->
+        <ul class="list_sp">
+            <li class="red"><a href="">Hỗ trợ trực tuyến</a><span></span></li>
+            <li class="blue"><a href="">Đăng tin tìm mộ</a><span></span></li>
+            <li class="red red1"><a href="">Tìm mộ liệt sỹ</a><span></span></li>
+        </ul>
+        <!--End col hỗ trợ, tìm mộ-->
+    </div>
+</div>
+<!--Begin danh sách nghĩa trang-->
+<div class="col-md-12 list_cemetery">
+    <h3>Danh sách nghĩa trang<a href="">Xem tất cả</a></h3>
+    <ul>
+        <li>
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+        <li class="nonemin768">
+            <a href="">
+                <img src="Content/images/img_dsnt1.png">
+                <p>Nghĩa Trang Liệt Sỹ Thành Phố Bảo Lộc</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--End danh sách nghĩa trang-->
+<div class="col-md-12">
+    <div class="col-md-8">
+        <!--Begin nhật ký tìm mộ-->
+      @if(LstNDTop5Menu1.Count!=0)
+      { 
+        <div class="col-md-12 cate">
+            <h3><a href="">Nhật ký tìm mộ</a><a href="" class="rss"></a></h3>
+            <div class="feature_cate">
+                <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">@LstNDTop5Menu1[0].TieuDe</a>
+                <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu1[0].PictureId)"></span>
+                <span class="txt">
+                    <p>@LstNDTop5Menu1[0].TrichDan</p>
+                    <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">Xem chi tiết..</a></p>
+                </span>
+            </div>
+            <ul class="list_cate">
+                @foreach (var itemin5 in LstNDTop5Menu1)
+                { 
+                <li>
+                    <a href="">
+                        <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
+                        <strong>@itemin5.TieuDe</strong>
+                    </a>
+                </li>
+                }
+              
+            </ul>
+        </div>
+      }
+        <!--End nhật ký tìm mộ-->
+        <!--Begin những điều trông thấy-->
+        @if (LstNDTop5Menu2.Count != 0)
+        { 
+        <div class="col-md-12 cate">
+            <h3><a href="">Những điều trông thấy</a><a href="" class="rss"></a></h3>
+            <div class="feature_cate">
+                <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">@LstNDTop5Menu2[0].TieuDe</a>
+                <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu2[0].PictureId)"></span>
+                <span class="txt">
+                    <p>@LstNDTop5Menu2[0].TrichDan</p>
+                    <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">Xem chi tiết..</a></p>
+                </span>
+            </div>
+            <ul class="list_cate">
+                @foreach (var itemin5 in LstNDTop5Menu2)
+                {
+                    <li>
+                        <a href="../Home/Detail?MaNoiDung=@itemin5.MaNoiDung">
+                            <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
+                            <strong>@itemin5.TieuDe</strong>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        }
+        <!--End những điều trông thấy-->
+    </div>
+    <div class="col-md-4 pl20 nonemax992">
+        <div class="col-md-12">
+            <!--Begin col hỗ trợ, tìm mộ-->
+            <ul class="list_sp">
+                <li class="red"><a href="">Hỗ trợ trực tuyến</a><span></span></li>
+                <li class="blue"><a href="../Home/DangTinTimMo">Đăng tin tìm mộ</a><span></span></li>
+                <li class="red red1"><a href="../Home/TimMoLietSi">Tìm mộ liệt sỹ</a><span></span></li>
+            </ul>
+            <!--End col hỗ trợ, tìm mộ-->
+        </div>
+        <!--Begin phóng sự ảnh-->
+        <div class="col-md-12 photo_report">
+            <h3>Phóng sự ảnh</h3>
+            <img src="Content/images/img_psa.png">
+            <p><a href="">Thủ tục tâm linh trước khi tìm kiếm các hài cốt Liệt sĩ </a></p>
+        </div>
+        <!--End phóng sự ảnh-->
+    </div>
+</div>
+<!--Begin ảnh mộ liệt sỹ-->
+<div class="col-md-12 photo_tombs">
+    <h3>Ảnh mộ liệt sỹ <a href="">Xem tất cả</a></h3>
+    <ul>
+        <li>
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+        <li class="nonemax480">
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+        <li class="nonemax480">
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+        <li class="nonemax480">
+            <a href="">
+                <img src="Content/images/img_amls.png">
+                <p>Nguyễn Văn Diễm</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--End ảnh mộ liệt sỹ-->
+<div class="col-md-12">
+    <div class="col-md-8">
+        @for (int j = 0; j < LstAllMenu.Count; j++)
+        {
+            if (j >= 2)
+            {
+                <div class="col-sm-12 information">
+                    <h3><span>@LstAllMenu[j].TenMenu</span></h3>
+                    <ul>
+                      @foreach (var itemm in (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j])
+                       {
+                        <li><a href="../Home/Detail?MaNoiDung=@itemm.MaNoiDung">@itemm.TieuDe</a></li>
+                       }
+                        
+                    </ul>
+                </div>
+            }
+            j++;
+        }
+
+    </div>
+    <div class="col-md-4 pl20 nonemax992">
+        <div class="search_tomb">
+            <h3><a href="">Nhắn tin tìm mộ</a></h3>
+            <ul>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+                <li><a href="">Tìm cậu LS Nguyễn Văn Lạn ( Lạng)</a></li>
+            </ul>
+        </div>
+        <div class="qc">
+            <a href=""><img src="Content/images/qc.png"></a>
+        </div>
+    </div>
+</div>

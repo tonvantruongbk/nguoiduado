@@ -1,0 +1,41 @@
+﻿@using System.Web.UI.WebControls
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvVaiTro";
+        settings.KeyFieldName = "MaVaiTro";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "ListVaiTro" };
+        settings.Width = Unit.Percentage(100);
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenVaiTro";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Width = Unit.Percentage(30);
+            column.Caption = "Tên vai trò";
+        });
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "GhiChu";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Width = Unit.Percentage(70);
+            column.Caption = "Ghi chú";
+        });
+
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsPager.Position = PagerPosition.Bottom;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "20", "30", "40" };
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 40;
+        settings.Settings.VerticalScrollableHeight = 298;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "gridRowDoubleClick";
+    }).Bind(Model).GetHtml()

@@ -1,0 +1,57 @@
+﻿@model RS.nguoiduadoTW.NET.Models.QuanLyNguoiDungViewModel
+<style type="text/css">
+    .detail_ttc table tr td
+    {
+        height: 20px;
+    }
+</style>
+<div>
+    <div style="float: left;width: 130px;">abc</div>
+    <div class="detail_ttc" style="float: left">
+        <table width="100%" border="0">
+            <tr>
+                <td width="140px">Họ và tên</td>
+                <td width="350px">@Model.NguoiDungDetail.HoVaTen</td>
+               @* <td width="130px">Cấp</td>
+                <td width="350px">&nbsp;</td>*@
+            </tr>
+            <tr>
+                <td>Chức danh</td>
+                <td>@Model.NguoiDungDetail.ChucDanh</td>
+               @* <td>Bậc</td>
+                <td>@Model.NguoiDungDetail.BacCongViec</td>*@
+            </tr>
+            <tr>
+                <td>Đơn vị công tác</td>
+                <td>@Model.NguoiDungDetail.DonViCongTac</td>
+             @*   <td>Số CMND</td>
+                <td>@Model.NguoiDungDetail.CMND_So</td>*@
+            </tr>
+            <tr>
+                <td>ĐT di động</td>
+                <td>@Model.NguoiDungDetail.DienThoaiDiDong</td>
+                @*<td>Ngày cấp CMND</td>
+                <td>@String.Format("{0:d/M/yyyy}", Model.NguoiDungDetail.CMND_NgayCap)</td>*@
+            </tr>
+            <tr>
+                <td>ĐT cơ quan</td>
+                <td>@Model.NguoiDungDetail.DienThoaiCoQuan</td>
+                @*<td>Nơi cấp CMND</td>
+                <td>@Model.NguoiDungDetail.CMND_NoiCap</td>*@
+            </tr>
+            <tr>
+                <td>Email cơ quan</td>
+                <td>@Model.NguoiDungDetail.Email</td>
+                @*<td>Số hộ chiếu</td>
+                <td>@Model.NguoiDungDetail.HoChieu_So</td>*@
+            </tr>
+            <tr>
+                <td>Mô tả</td>
+                <td>@Model.NguoiDungDetail.GhiChu</td>
+                @*<td>Ngày cấp hộ chiếu</td>
+                <td>@String.Format("{0:d/M/yyyy}", Model.NguoiDungDetail.HoChieu_NgayCap)</td>*@
+            </tr>
+        </table>
+    </div>
+
+</div>

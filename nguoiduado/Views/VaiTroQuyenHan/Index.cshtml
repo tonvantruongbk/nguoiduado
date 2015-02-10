@@ -1,0 +1,227 @@
+﻿@using System.Web.UI.WebControls
+@model nguoiduado.Models.VaiTroQuyenHanModel
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Tên ID của bảng
+        var id = 'MaVaiTro';
+        // Tên button
+        var btnAddNew = 'btnAddNew';
+        var btnEdit = 'btnEdit';
+        var btnDelete = 'btnDelete';
+        var btnCancel = 'btnCancel';
+        // Đường dẫn Action
+        var acctionAddNew = '/VaiTroQuyenHan/AddNewVaiTro/';
+        var actionEdit = '/VaiTroQuyenHan/EditVaiTro/?MaVaiTro=';
+        var actionDelete = '/VaiTroQuyenHan/DeleteVaiTro/?MaVaiTro=';
+        // Popup
+        var puAddNew = popupAddNew; // Tên popup addnew
+        var puEdit = popupEdit; // Tên popup edit
+        var grPaging = gvVaiTro; // Tên gridview
+        Init(id, btnAddNew, btnEdit, btnDelete, btnCancel, acctionAddNew, actionEdit, actionDelete, puAddNew, puEdit, grPaging);
+
+        $('#btnPhanQuyen').click(function () {
+            //popupPQ.SetContentUrl('/VaiTroQuyenHan/PhanQuyen_/?mavaitro' + _ID);
+            popupPQ.SetContentUrl('/VaiTroQuyenHan/PhanQuyen_/?mavaitro=' + _ID);
+            popupPQ.SetHeaderText('Phân quyền');
+            popupPQ.Show();
+            //nếu là administrator
+            //if (_ID == "1") {
+            //    popupPQ.Hide();
+            //}
+
+        });
+
+    });
+    function DetailPanelOnBeginCallback(s, e) {
+        e.customArgs["MaVaiTro"] = _ID;
+    }
+
+    function OnSplitterPaneNVResized(s, e) {
+        var name = e.pane.name;
+        if (name == 'gridviewDetailContainer')
+            ResizeControl(pcNguoiDungDeltail, e.pane);
+        else if (name == 'gridviewContainer')
+            ResizeControl(gvVaiTro, e.pane);
+
+    }
+
+    function ResizeControl(control, splNguoiDung) {
+        //control.SetWidth(splNguoiDung.GetClientWidth());
+        control.SetHeight(splNguoiDung.GetClientHeight());
+    }
+
+</script>
+<script src="@Url.Content("~/Content/Script/CommonCategories.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Script/Script.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/ChildSite.css")" rel="stylesheet" type="text/css" />
+<style>
+	.popupVaiTro iframe {
+		height: 250px !important;
+		overflow: hidden !important;
+		margin-left: 10px;
+	}
+
+	.popup-PQ iframe {
+		height: 500px !important;
+	}
+</style>
+
+<div class="childMainContent">
+	<table width="100%">
+		<tr>
+			<td>
+				<div class="divHeader">
+					<h1>Vai trò quyền hạn</h1>
+				</div>
+			</td>
+			<td>
+				<div class="page">
+					<ul>
+						<li>
+							@Html.DevExpress().Button(
+					settings =>
+					{
+						settings.Name = "btnPhanQuyen";
+						settings.Text = "Phân quyền";
+					}
+					 ).GetHtml()
+						</li>
+						<li>
+							@Html.DevExpress().Button(
+					settings =>
+					{
+						settings.Name = "btnAddNew";
+						settings.Text = "Thêm mới";
+					}
+					 ).GetHtml()
+						</li>
+						<li>
+							@Html.DevExpress().Button(
+					settings =>
+					{
+						settings.Name = "btnEdit";
+						settings.Text = "Sửa";
+					}
+					 ).GetHtml()
+						</li>
+						<li>
+							@Html.DevExpress().Button(
+					settings =>
+					{
+						settings.Name = "btnDelete";
+						settings.Text = "Xóa";
+					}
+					 ).GetHtml()
+						</li>
+					</ul>
+
+
+
+				</div>
+			</td>
+		</tr>
+	</table>
+	@*Load dữ liệu từ form khác vào đây*@
+	@*@Html.Partial("ListVaiTro", Model)*@
+
+	<div style="clear: both">
+
+		@Html.DevExpress().Splitter(settings =>
+									{
+										settings.Name = "splResizingIndex";
+										settings.Height = 600;
+										settings.Width = Unit.Percentage(100);
+										settings.Styles.Pane.Paddings.Padding = 0;
+										settings.Orientation = Orientation.Vertical;
+										settings.Panes.Add(treviewPane =>
+															   {
+																   treviewPane.Name = "gridviewContainer";
+																   treviewPane.Size = Unit.Percentage(26);
+																   treviewPane.ScrollBars = ScrollBars.Auto;
+																   treviewPane.ShowCollapseBackwardButton = DefaultBoolean.True;
+																   treviewPane.SetContent(() => @Html.RenderPartial("ListVaiTro", Model.GetTBLAdVaiTros));
+															   });
+
+										//settings.Panes.Add(grid =>
+										//                       {
+										//                           grid.Name = "gridviewDetailContainer";
+										//                           grid.Size = Unit.Percentage(25);
+										//                           grid.MinSize = 100;
+										//                           grid.SetContent(() => @Html.RenderPartial("DetailPanelVaiTroQuyenHan", Model));
+										//                       });
+										//settings.ClientSideEvents.PaneResized = "OnSplitterPaneNVResized";
+									}).GetHtml()
+	</div>
+
+
+	@*------------------------------------------------------------------- Popup thêm mới ----------------------------------------------------------------------*@
+	<div id="divPuAddNew" class="popupVaiTro">
+		@Html.DevExpress().PopupControl(
+		settings =>
+		{
+			settings.Name = "popupAddNew";
+			settings.PopupElementID = "btnAddNew";
+			settings.Width = 420;
+			// settings.MinHeight = System.Web.UI.WebControls.Unit.Pixel(200);
+			settings.Height = System.Web.UI.WebControls.Unit.Pixel(280);
+			settings.ShowFooter = true;
+			settings.CloseAction = CloseAction.CloseButton;
+			settings.FooterText = "Footer text";
+			settings.ShowFooter = false;
+			settings.HeaderText = "Thêm mới vai trò quyền hạn";
+			settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+			settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+			//settings.PopupAnimationType=PopupAnimationType.Fade;
+			settings.EnableAnimation = false;
+			settings.AppearAfter = 0;
+			settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGrid(); }";
+			settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+		}).GetHtml()
+	</div>
+	@*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+	@*------------------------------------------------------------------- Popup sửa ---------------------------------------------------------------------------*@
+	<div id="divPuEdit" class="popupVaiTro">
+		@Html.DevExpress().PopupControl(
+		settings =>
+		{
+			settings.Name = "popupEdit";
+			settings.PopupElementID = "btnEdit";
+			settings.Width = 420;
+			settings.Height = System.Web.UI.WebControls.Unit.Pixel(280);
+			settings.ShowFooter = true;
+			settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+			settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+			//settings.PopupAnimationType=PopupAnimationType.Fade;
+			settings.EnableAnimation = false;
+			settings.AppearAfter = 0;
+			settings.CloseAction = CloseAction.CloseButton;
+			settings.FooterText = "Footer text";
+			settings.ShowFooter = false;
+			settings.HeaderText = "Sửa vai trò quyền hạn";
+			settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGrid(); }";
+			settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+		}).GetHtml()
+		@*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+	</div>
+	<div id="divPuAddNew__" class="popup-PQ">
+		@Html.DevExpress().PopupControl(
+		settings =>
+		{
+			settings.Name = "popupPQ";
+			settings.Width = 1000;
+			settings.Height = 300;// System.Web.UI.WebControls.Unit.Pixel(350);
+			settings.ShowFooter = true;
+			settings.AllowResize = true;
+			settings.CloseAction = CloseAction.CloseButton;
+			settings.FooterText = "Footer text";
+			settings.ShowFooter = false;
+			//settings.HeaderText = "Danh sách" + " " + tenPopup;
+			settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+			settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+			//settings.PopupAnimationType=PopupAnimationType.Fade;
+			settings.EnableAnimation = false;
+			settings.AppearAfter = 0;
+			//settings.ClientSideEvents.CloseUp = "function(s, e) { CloseUpNV(); }";
+		}).GetHtml()
+	</div>
+</div>

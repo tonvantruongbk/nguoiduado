@@ -1,0 +1,102 @@
+﻿@using System.Drawing
+@using System.Web.UI.WebControls
+@Html.DevExpress().TreeList(
+    settings => {
+        settings.Name = "treeList";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "ListMenu" };
+        settings.Width = Unit.Percentage(100);
+
+        settings.AutoGenerateColumns = false;
+        settings.KeyFieldName = "ID";
+        settings.ParentFieldName = "ParentID";
+        settings.RootValue = 0;
+
+        settings.Columns.Add("Name", "Department");
+        settings.Columns.Add(
+            column => {
+                column.FieldName = "Budget";
+                column.PropertiesEdit.DisplayFormatString = "{0:C}";
+            }
+        );
+        settings.Columns.Add("Location");
+        settings.Columns.Add("Phone1", "Phone");
+        settings.Columns.Add(
+            column => {
+                column.FieldName = "ID";
+                          column.Visible = true;
+                column.CellStyle.BackColor = Color.FromArgb(0xffebb1);
+            }
+        );
+        settings.Columns.Add(
+            column => {
+                column.FieldName = "ParentID";
+                          column.Visible = true;
+                column.CellStyle.BackColor = Color.FromArgb(0xffebb1);
+            }
+        );
+
+        settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+        settings.SettingsCookies.StoreExpandedNodes = true;
+
+        settings.ClientLayout = (s, e) => {
+            if(e.LayoutMode == ClientLayoutMode.Loading) {
+                if(Session["TreeListState"] != null)
+                    e.LayoutData = (string)Session["TreeListState"];
+            }
+            else
+                Session["TreeListState"] = e.LayoutData;
+        };
+
+        settings.PreRender = (sender, e) => {
+            if(Session["TreeListState"] == null)
+                ((MVCxTreeList)sender).ExpandToLevel(2);
+        };
+    }
+).Bind(Model).GetHtml()
+@*@using System.Drawing
+@using System.Web.UI.WebControls
+@Html.DevExpress().TreeList(
+    settings => {
+        settings.Name = "treeList";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "ListMenu" };
+        settings.Width = Unit.Percentage(100);
+
+        settings.AutoGenerateColumns = false;
+        settings.KeyFieldName = "MaMenu";
+        settings.ParentFieldName = "MaMenuCha";
+        settings.RootValue = 0;
+
+        settings.Columns.Add("TenMenu");
+        settings.Columns.Add("ControllerName");
+        settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+        settings.SettingsCookies.StoreExpandedNodes = true;
+
+        settings.Columns.Add(
+            column =>
+            {
+                column.FieldName = "MaMenu";
+                column.CellStyle.BackColor = Color.FromArgb(0xffebb1);
+            }
+        );
+        settings.Columns.Add(
+            column =>
+            {
+                column.FieldName = "MaMenuCha";
+                column.CellStyle.BackColor = Color.FromArgb(0xffebb1);
+            }
+        );
+        //settings.ClientLayout = (s, e) => {
+        //    if(e.LayoutMode == ClientLayoutMode.Loading) {
+        //        if(Session["TreeListState"] != null)
+        //            e.LayoutData = (string)Session["TreeListState"];
+        //    }
+        //    else
+        //        Session["TreeListState"] = e.LayoutData;
+        //};
+
+        //settings.PreRender = (sender, e) => {
+        //    if(Session["TreeListState"] == null)
+        //        ((MVCxTreeList)sender).ExpandToLevel(2);
+        //};
+    }
+).Bind(Model).GetHtml()*@

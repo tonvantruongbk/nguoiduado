@@ -1,0 +1,16 @@
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxMenu";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.Properties.ValidationSettings.RequiredField.IsRequired = true;   
+    settings.CallbackRouteValues = new { Controller = "DanhMucBaiViet", Action = "ComboBoxPartial" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MenuID";
+    settings.Properties.TextField = "TenMenu";
+    if (ViewBag.MenuSelect != null)
+    {
+        settings.SelectedIndex = (int)ViewBag.MenuSelect;
+    }
+    settings.Width = Unit.Percentage(100);
+}).BindList(Model).GetHtml()

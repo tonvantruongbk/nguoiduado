@@ -1,0 +1,96 @@
+﻿@using System.Web.UI.WebControls
+@model List<RS.nguoiduadoTW.NET.Models.PhanQuyenViewModel>
+@{ Layout = "~/Views/Shared/ViewLayout.cshtml"; }
+
+<script type="text/javascript">
+    var index = -1;
+
+    function grid_RowClick(s, e) {
+        if (gvEditing.IsEditing() == true) {
+            index = e.visibleIndex;         
+            s.SetFocusedRowIndex(index);
+            s.StartEditRow(index);
+        }
+        else {
+            s.SetFocusedRowIndex(e.visibleIndex); // for better visual appearence                                
+            s.StartEditRow(e.visibleIndex);
+        }
+    }
+
+    function grid_EndCallback(s, e) {
+        if (index != -1) {
+            var _index = index;
+            index = -1;
+
+            s.SetFocusedRowIndex(_index); // for better visual appearence
+
+            s.StartEditRow(_index);
+        }
+    }
+ 
+</script>
+
+
+@using (Html.BeginForm())
+{
+    
+    
+        @Html.Partial("EditPhanQuyen", Model) 
+   
+
+    <div class="popup-btn" style="position: absolute; bottom: 0; right: 30px;">
+        <table>
+            <tr>
+                <td>
+                    @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnSubmitAdd";
+                            settings.Text = "Cập nhật";
+                            settings.UseSubmitBehavior = true;
+                        }
+                         ).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnLoad";
+                            settings.Text = "Nạp lại";
+                            settings.ClientVisible = false;
+                            //settings.UseSubmitBehavior = true;
+                        }
+                         ).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnCancel";
+                            settings.Text = "Thoát";
+                        }
+                         ).GetHtml()
+                </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+    <input type="hidden" id="idthongbao" name="idthongbao" value='@ViewBag.success' />
+}
+<script type="text/javascript">
+    //Đóng form
+
+    $('#btnCancel').click(function () {
+        window.parent.eventClosePhanQuyenFromIframe();
+        //window.parent.eventCloseEditFromIframe();
+    });
+    $(document).ready(function () {
+
+        if ($('#idthongbao').val() != '') {
+            alert($('#idthongbao').val());
+            $('#mydiv').find('input, textarea, button, select').attr('disabled', 'disabled');
+        }
+    });
+</script>

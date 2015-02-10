@@ -1,0 +1,19 @@
+﻿@model System.Data.DataTable
+@Html.DevExpress().TreeView(settings =>
+                                {
+                                    settings.Name = "treeCoCau";
+                                    settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "TreeViewCoCauToChuc" };
+                                    //settings.ClientSideEvents.NodeClick = "function(s, e) { OnTreeViewCCNodeClick(s, e); }";
+                                    settings.ClientSideEvents.CheckedChanged = "function(s, e) { OnTreeViewCCNodeClick(s, e); }";
+                                    settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['NodeID'] = key; e.customArgs['NodeName'] = _node;  }";
+                                    RS.nguoiduadoTW.NET.Controllers.HoSo.VaiTroQuyenHanController.CreateTreeViewNodesRecursive(Model, settings.Nodes, 0);
+                                    settings.AllowSelectNode = true;
+                                    settings.AllowCheckNodes = true;
+                                    settings.CheckNodesRecursive = true;
+                                    settings.ShowExpandButtons = true;
+                                    settings.PreRender = (source, e) =>
+                                    {
+                                        ASPxTreeView treeView = (ASPxTreeView)source;
+                                        treeView.ExpandAll();
+                                    };
+                                }).GetHtml()

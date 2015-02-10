@@ -1,0 +1,21 @@
+﻿@using System.Web.UI.WebControls
+@model RS.nguoiduadoTW.NET.Models.VaiTroQuyenHanModel
+@Html.DevExpress().CallbackPanel(
+    settings =>
+    {
+        settings.Name = "cbpDetail";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "DetailPanelVaiTroQuyenHan" };
+        settings.Width =Unit.Percentage(100);
+        settings.Height = 300;
+
+        settings.SetContent(() =>
+                                {
+                                    ViewContext.Writer.Write(
+                                        Html.Action("DetailPageControlVaiTroQuyenHan", Model));
+                                    
+                                });
+
+        settings.ClientSideEvents.BeginCallback = "DetailPanelOnBeginCallback";
+        //settings.ClientSideEvents.EndCallback = "DetailPanelOnEndCallback";
+    }
+).GetHtml()

@@ -1,0 +1,74 @@
+﻿@using System.Web.UI.WebControls
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvPaging";
+        settings.KeyFieldName = "UserID";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "ListAD_NguoiDung" };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenDangNhap";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(10);
+            column.Caption = "Tên đăng nhập";
+            column.HeaderStyle.HorizontalAlign=HorizontalAlign.Center;
+        });
+      
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HoVaTen";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Họ và tên";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+      
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ViTriCongViec";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Chức danh";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DonViCongTac";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Cơ cấu tổ chức";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DaKichHoat";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(7);
+            column.Caption = "Đã kích hoạt";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign=HorizontalAlign.Center;
+            column.SetDataItemTemplateContent(c => Html.DevExpress().CheckBox(txtSettings =>
+                                                                                  {
+                                                                                      txtSettings.Name = "chk" + c.KeyValue;
+                                                                                      //txtSettings.Height = 10;
+                                                                                      txtSettings.ControlStyle.CssClass = "chkcss";                                                                                      
+                                                                                      txtSettings.ReadOnly = true;
+                                                                                  }).Bind(DataBinder.Eval(c.DataItem, c.Column.FieldName)).Render());
+        });
+       
+        
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Bottom;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "20", "30", "40" };
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 40;
+        settings.Settings.VerticalScrollableHeight = 200;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "gridRowDoubleClick";
+    }).Bind(Model.List).GetHtml()

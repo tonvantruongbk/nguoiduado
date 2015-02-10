@@ -1,0 +1,173 @@
+﻿@using System.Web.UI.WebControls
+@model System.Collections.IEnumerable
+<style>
+    .popupAddNewVTDt div.dxpc-content
+    {
+        height: 400px;
+    }
+</style>
+<script type="text/javascript">
+    function ShowAddnewVaiTro() {
+        puAddNewVTDt.Show();
+        puAddNewVTDt.SetContentUrl('/VaiTroQuyenHan/PopUpVaiTro?manhanvien=' + _ID + '&ListVaiTros=' + $(gvVaiTro.GetKeyValuesInput()).val());
+    }
+    //function ShowEditVaiTro() {
+    //    if (_IDVTDt != null) {
+    //        puEditVTDt.SetContentUrl(ActionEditVTDt + '' + _IDVTDt);
+    //    }
+    //    else {
+    //        puEditVTDt.Hide();
+    //    }
+    //}
+
+    window.eventClosePopupAddRole = function () {
+        popupAddNewVTDt.Hide();
+    };
+
+    function DeleteVaiTro() {
+        if (gvVaiTro.GetFocusedRowIndex() == 0) {
+            alert("Bạn chưa chọn bản ghi nào");
+            return false;
+        }
+        if (!confirm("Bạn có muốn xóa bản ghi này không?")) return true;
+        var RowIndex = grPagingVTDt.pageRowSize * grPagingVTDt.pageIndex + grPagingVTDt.pageRowCount - 1;
+        if ((grPagingVTDt.GetFocusedRowIndex() == RowIndex) && (grPagingVTDt.pageIndex == grPagingVTDt.pageCount - 1)) {
+            $.post(ActionDeleteVTDt + '' + _IDVTDt, function (data) {
+                // khi update thành công thì refresh lại trang      
+                alert(data);
+                grPagingVTDt.GetRowValues(RowIndex - 1, IDVTDt, OnGetRowValues);
+                grPagingVTDt.SetFocusedRowIndex(RowIndex - 1);
+                grPagingVTDt.Refresh();
+            }).fail(function () { alert("Có lỗi xảy ra"); });
+            return false;
+
+        }
+        else {
+            $.post(ActionDeleteVTDt + '' + _IDVTDt, function (data) {
+                // khi update thành công thì refresh lại trang      
+                alert(data);
+                grPagingVTDt.GetRowValues(grPagingVTDt.GetFocusedRowIndex(), IDVTDt, OnGetRowValues);
+                grPagingVTDt.Refresh();
+            }).fail(function () { alert("Có lỗi xảy ra"); });
+            return false;
+        }
+    }
+
+    //function gridRowDoubleClickVTDt(parameters) {
+    //    puEditVTDt.SetContentUrl(ActionEditVTDt + '' + _IDVTDt);
+    //    puEditVTDt.Show();
+    //}
+
+    function OnGridFocusedRowChangedVTDt(s, e) {
+        // Lấy IDDt
+        // Lấy nhiều trường thì liệt kê như bên dưới
+        s.GetRowValues(s.GetFocusedRowIndex(), IDVTDt, OnGetRowValuesVTDt);
+    }
+
+    function OnGetRowValuesVTDt(values) {
+        // Gán IDDt cho biến, để sử dụng cho sửa và thêm mới
+        _IDVTDt = values;
+    }
+
+    function RefreshGridVT() {
+        // Refresh Gridview
+        //puEditVTDt.SetContentUrl('');
+        gvVaiTro.Refresh();
+        $('#openPopup').removeClass('puMainContent');
+    }
+</script>
+
+<div style="clear: both;padding: 0;margin: 0">
+    @Html.Partial("DetailVaiTroList", Model)
+</div>
+
+ <div class="page" style="float: none;clear: both;padding: 0;margin: 0">
+                <ul>
+                    <li>
+                        @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnAddNewVTDt";
+                            settings.Text = "Chọn";
+                            settings.ClientSideEvents.Click = "ShowAddnewVaiTro";
+                        }
+                        ).GetHtml()
+                    </li>
+                   @* <li>
+                        @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnEditVTDt";
+                            settings.Text = "Sửa";
+                            //settings.ClientSideEvents.Click = "ShowEditKinhNghiem";
+                        }
+                        ).GetHtml()
+                    </li>*@
+                    <li>
+                        @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnDeleteVTDt";
+                    settings.Text = "Xóa";
+                    settings.ClientSideEvents.Click = "DeleteVaiTro";
+                }
+                 ).GetHtml()
+                    </li>
+                </ul>
+            </div>
+
+
+@*Load dữ liệu từ form khác vào đây*@
+
+@*------------------------------------------------------------------- Popup thêm mới ----------------------------------------------------------------------*@
+<div id="divPuAddNew" class="popupAddNewVTDt">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupAddNewVTDt";
+        //settings.PopupElementID = "btnAddNew";
+        settings.Width = 600;
+        // settings.MinHeight = System.Web.UI.WebControls.Unit.Pixel(200);
+        settings.Height = Unit.Pixel(310);
+        settings.ShowFooter = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        settings.HeaderText = "Danh sách vai trò";
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.PopupAnimationType=PopupAnimationType.Fade;
+        settings.EnableAnimation = false;
+        settings.AppearAfter = 0;
+        settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGridVT(); }";
+        settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+    }).GetHtml()
+</div>
+@*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+@*------------------------------------------------------------------- Popup sửa ---------------------------------------------------------------------------*@
+<div id="divPuEdit" class="popup-addnew">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupEditVTDt";
+
+        settings.PopupElementID = "btnEditVTDt";
+        settings.Width = 600;
+        settings.Height = System.Web.UI.WebControls.Unit.Pixel(310);
+        settings.ShowFooter = true;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.PopupAnimationType=PopupAnimationType.Fade;
+        settings.EnableAnimation = false;
+        settings.AppearAfter = 0;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        settings.HeaderText = "Sửa" + " " + @RS.nguoiduadoTW.NET.Resources.Resource.TBL_KinhNghiem_Ten;
+        //settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGridKN(); }";
+        //settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+    }).GetHtml()
+    @*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+</div>
+
+

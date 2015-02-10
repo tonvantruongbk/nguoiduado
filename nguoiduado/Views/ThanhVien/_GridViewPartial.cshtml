@@ -1,0 +1,81 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "ThanhVien", Action = "GridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ThanhVien", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ThanhVien", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ThanhVien", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Width = Unit.Percentage(100);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "MaThanhVien";
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsText.CommandCancel = "Cancel";
+        settings.SettingsText.CommandDelete = "Xóa";
+        settings.SettingsText.CommandUpdate = "Cập nhật";
+        settings.SettingsText.CommandNew = "Thêm mới";
+        settings.SettingsText.CommandEdit = "Sửa";
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MaThanhVien";
+            column.Width = Unit.Percentage(0);
+            column.Caption = "Mã thành viên";
+            column.Visible = false;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HOVATEN";
+            column.Width = Unit.Percentage(20);
+            column.Caption = "Họ và tên";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MATKHAU";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Mật khẩu";
+
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+             {
+                 column.FieldName = "SDT";
+                 column.Width = Unit.Percentage(10);
+                 column.Caption = "Số điện thoại";
+                 column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+             });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DIACHI";
+            column.Width = Unit.Percentage(25);
+            column.Caption = "Địa chỉ";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "EMAIL";
+            column.Width = Unit.Percentage(25);
+            column.Caption = "Email";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+
+
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

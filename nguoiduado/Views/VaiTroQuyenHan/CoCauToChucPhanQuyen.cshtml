@@ -1,0 +1,94 @@
+﻿<script type="text/javascript">
+    var key;
+    var _node;
+    $(document).ready(function () {
+        $("#CheckOnly").change(function () {
+            if ($("#CheckOnly").is(':checked')) {
+                SetVisibleTreeViewByCheck(treeCoCau.GetRootNode());
+            }
+            else {
+                SetVisibleTreeViewAll(treeCoCau.GetRootNode());
+            }
+        });
+    });
+
+    function OnTreeViewCCNodeClick(s, e) {
+        //if (e.node.GetChecked()) {
+        //alert(e.node.name);
+        //}
+        if (e.node.GetChecked()) {
+            key = e.node.name;
+            _node = e.node.name;
+        }
+        else {
+            key = "0";
+            _node = e.node.name;
+        }
+        //FillNodesComboByNode(treeCoCau.GetRootNode());
+        //treeCoCau.PerformDataCallback();
+    }
+
+
+    function FillNodesComboByNode(node) {
+        for (var i = 0; i < node.GetNodeCount() ; i++) {
+            var childNode = node.GetNode(i);
+            //childNode.SetChecked('true');childNode.name
+            //var values = $("#MaToChucNguoiDung>option").map(function () { return $(this).val(); });
+            //var values = $("#MaToChucNguoiDung option").map(function () { alert($(this).val()); });
+            $('#MaToChucNguoiDung option').each(function () {
+                //$(this).val();
+                if (childNode.name == $(this).text()) {
+                    childNode.SetChecked('true');
+                }
+            });
+            FillNodesComboByNode(childNode);
+        }
+    }
+
+    function SetVisibleTreeViewByCheck(node) {
+        for (var i = 0; i < node.GetNodeCount() ; i++) {
+            var childNode = node.GetNode(i);
+            if (childNode.GetChecked() == true) {
+                childNode.SetVisible(true);
+
+            } else if (childNode.nodes.length == 0) {
+                childNode.SetVisible(false);
+            }
+
+            SetVisibleTreeViewByCheck(childNode);
+        }
+    }
+
+    function SetVisibleTreeViewAll(node) {
+        for (var i = 0; i < node.GetNodeCount() ; i++) {
+            var childNode = node.GetNode(i);
+            childNode.SetVisible(true);
+            SetVisibleTreeViewAll(childNode);
+        }
+    }
+
+    function CheckIsNodeCheck(node) {
+        for (var i = 0; i < node.GetNodeCount() ; i++) {
+            var childNode = node.GetNode(i);
+
+
+            if (childNode.GetChecked() == true) {
+                return true;
+            } else {
+                CheckIsNodeCheck(childNode);
+            }
+
+            return false;
+        }
+        return false;
+    }
+</script>
+
+<div style="clear: both; display: none;">
+    @Html.DropDownList("MaToChucNguoiDung", String.Empty)
+
+</div>
+@Html.Partial("TreeViewCoCauToChuc", ViewData["TreeCoCau"])
+<div style="left: 10px;top: 420px;position: absolute">
+    <input type="checkbox" id="CheckOnly" name="CheckOnly" value="CheckOnly">Chỉ hiện thị những cơ cấu tổ chức được chọn
+</div>

@@ -1,0 +1,109 @@
+@Html.DevExpress().HtmlEditor(
+    settings =>
+    {
+        settings.Name = "FeaturesHtml";
+        settings.CallbackRouteValues = new { Controller = "DanhMucBaiViet", Action = "FeaturesPartial" };
+        settings.Width = Unit.Percentage(100);
+        // settings.Height = 700;
+        settings.SettingsHtmlEditing.AllowIFrames = true;
+        settings.SettingsImageUpload.UploadCallbackRouteValues = new { Controller = "DanhMucBaiViet", Action = "FeaturesImageUpload" };
+        settings.SettingsImageUpload.UploadImageFolder = nguoiduado.Controllers.HtmlEditorFeaturesDemosHelper.UploadDirectory;
+        settings.SettingsImageUpload.ValidationSettings.Assign(nguoiduado.Controllers.HtmlEditorFeaturesDemosHelper.ImageUploadValidationSettings);
+        settings.SettingsHtmlEditing.AllowYouTubeVideoIFrames = true;
+        nguoiduado.Controllers.HtmlEditorFeaturesDemosHelper.SetHtmlEditorImageSelectorSettings(settings.SettingsImageSelector);
+
+        //if (Session["Options"] != null)
+        //{
+        //    nguoiduado.Controllers.HtmlEditorFeaturesDemoOptions options = (nguoiduado.Controllers.HtmlEditorFeaturesDemoOptions)Session["Options"];
+        //    settings.SettingsHtmlEditing.AllowScripts = options.AllowScripts;
+        //    settings.SettingsHtmlEditing.AllowIFrames = options.AllowIFrames;
+        //    settings.SettingsHtmlEditing.AllowFormElements = options.AllowFormElements;
+        //    settings.SettingsHtmlEditing.UpdateDeprecatedElements = options.UpdateDeprecatedElements;
+        //    settings.SettingsHtmlEditing.UpdateBoldItalic = options.UpdateBoldItalic;
+        //    settings.SettingsHtmlEditing.EnterMode = options.EnterMode;
+        //    settings.Settings.AllowContextMenu = options.AllowContextMenu;
+        //    settings.Settings.AllowDesignView = options.AllowDesignView;
+        //    settings.Settings.AllowHtmlView = options.AllowHtmlView;
+        //    settings.Settings.AllowPreview = options.AllowPreview;
+        //    settings.ActiveView = options.ActiveView;
+        //}
+
+
+        // nguoiduado.Controllers.HtmlEditorFeaturesDemoOptions options = (nguoiduado.Controllers.HtmlEditorFeaturesDemoOptions)Session["Options"];
+        settings.SettingsHtmlEditing.AllowScripts = true;
+        //settings.SettingsHtmlEditing.AllowIFrames = true;
+        settings.SettingsHtmlEditing.AllowFormElements = true;
+        settings.SettingsHtmlEditing.UpdateDeprecatedElements = true;
+        settings.SettingsHtmlEditing.UpdateBoldItalic = true;
+        settings.SettingsHtmlEditing.EnterMode = HtmlEditorEnterMode.Default;
+        settings.Settings.AllowContextMenu = DefaultBoolean.Default;
+        settings.Settings.AllowDesignView = true;
+        settings.Settings.AllowHtmlView = true;
+        settings.Settings.AllowPreview = true;
+
+       // settings.ActiveView = true;
+
+        MVCxHtmlEditorToolbar toolbar = settings.Toolbars.Add();
+        toolbar.Items.Add(new ToolbarCutButton());
+        toolbar.Items.Add(new ToolbarCopyButton());
+        toolbar.Items.Add(new ToolbarPasteButton());
+        toolbar.Items.Add(new ToolbarPasteFromWordButton());
+        toolbar.Items.Add(new ToolbarUndoButton());
+        toolbar.Items.Add(new ToolbarRedoButton());
+        toolbar.Items.Add(new ToolbarRemoveFormatButton());
+        toolbar.Items.Add(new ToolbarSuperscriptButton());
+        toolbar.Items.Add(new ToolbarSubscriptButton());
+        toolbar.Items.Add(new ToolbarIndentButton());
+        toolbar.Items.Add(new ToolbarOutdentButton());
+        toolbar.Items.Add(new ToolbarInsertOrderedListButton());
+        toolbar.Items.Add(new ToolbarInsertLinkDialogButton());
+
+        toolbar.Items.Add(new ToolbarInsertImageDialogButton());
+        toolbar.Items.Add(new ToolbarInsertTableDialogButton());
+        toolbar.Items.Add(new ToolbarFullscreenButton());
+        toolbar.Items.Add(new ToolbarJustifyLeftButton(true));
+        toolbar.Items.Add(new ToolbarJustifyCenterButton());
+        toolbar.Items.Add(new ToolbarJustifyRightButton());
+        toolbar.Items.Add(new ToolbarJustifyFullButton());
+        toolbar.Items.Add(new ToolbarFontColorButton());
+        toolbar.Items.Add(new ToolbarBackColorButton());
+        toolbar.Items.Add(new ToolbarInsertYouTubeVideoDialogButton());
+
+        toolbar.Items.Add<ToolbarParagraphFormattingEdit>(paragraph =>
+            {
+
+                paragraph.Items.Add("<h1>Heading 1<h1>", "<h1>");
+                paragraph.Items.Add("<h2>Heading 2<h2>", "<h2>");
+                paragraph.Items.Add("<h3>Heading 3<h3>", "<h3>");
+                paragraph.Items.Add("<h4>Heading 4<h4>", "<h4>");
+                paragraph.Items.Add("<h5>Heading 5<h5>", "<h5>");
+                paragraph.Items.Add("<h6>Heading 6<h6>", "<h6>");
+
+            });
+        toolbar.Items.Add<ToolbarFontNameEdit>(fontNameItem =>
+        {
+            fontNameItem.Items.Add("Times New Roman", "Times New Roman");
+            fontNameItem.Items.Add("Tahoma", "Tahoma");
+            fontNameItem.Items.Add("Verdana", "Verdana");
+            fontNameItem.Items.Add("Arial", "Arial");
+            fontNameItem.Items.Add("MS Sans Serif", "MS Sans Serif");
+            fontNameItem.Items.Add("Courier", "Courier");
+        });
+
+        toolbar.Items.Add<ToolbarFontSizeEdit>(fontSizeItem =>
+        {
+            fontSizeItem.Items.Add("1 (8pt)", "1");
+            fontSizeItem.Items.Add("2 (10pt)", "2");
+            fontSizeItem.Items.Add("3 (12pt)", "3");
+            fontSizeItem.Items.Add("4 (14pt)", "4");
+            fontSizeItem.Items.Add("5 (18pt)", "5");
+            fontSizeItem.Items.Add("6 (24pt)", "6");
+            fontSizeItem.Items.Add("7 (36pt)", "7");
+        });
+        toolbar.Items.Add(new ToolbarBoldButton(true));
+        toolbar.Items.Add(new ToolbarItalicButton());
+        toolbar.Items.Add(new ToolbarUnderlineButton());
+        toolbar.Items.Add(new ToolbarStrikethroughButton());
+
+
+    }).Bind(ViewBag.NoiDung).GetHtml()

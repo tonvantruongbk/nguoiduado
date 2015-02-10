@@ -1,0 +1,52 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "LienKetWeb", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "LienKetWeb", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "LienKetWeb", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "LienKetWeb", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Width = Unit.Percentage(100);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "ID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsText.CommandCancel = "Cancel";
+        settings.SettingsText.CommandDelete = "Xóa";
+        settings.SettingsText.CommandUpdate = "Cập nhật";
+        settings.SettingsText.CommandNew = "Thêm mới";
+        settings.SettingsText.CommandEdit = "Sửa";
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LinkWeb";
+            column.Width = Unit.Percentage(40);
+            column.Caption = "Link liên kết";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenLienKet";
+            column.Width = Unit.Percentage(50);
+            column.Caption = "Tên liên kết";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

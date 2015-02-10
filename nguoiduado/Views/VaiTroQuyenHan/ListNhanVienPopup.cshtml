@@ -1,0 +1,149 @@
+﻿@using System.Web.UI.WebControls
+@{
+    Layout = "~/Views/Shared/ViewLayout.cshtml";
+}
+@model System.Collections.IEnumerable
+@*@model System.Data.DataTable
+*@<style>
+      .popup-addnew div.dxpc-content
+      {
+          height: 360px;
+      }
+  </style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#btnSelect').click(function () {
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "HoVaTen", GetRowValuesHT);
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "ViTriCongViec", GetRowValuesVT);
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DonViCongTac", GetRowValuesDV);
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DTDD", GetRowValuesDTDT);
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DTCQ", GetRowValuesDTCQ);
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "EmailCQ", GetRowValuesEmail);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "UserID", GetRowValues);ViTriCongViec/ DonViCongTac / DTDD
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "HoVaTen", GetRowValues2);
+            $('#UserIDs').val(gvPaging.GetSelectedKeysOnPage());
+            isSelect = true;
+            if (gvPaging.GetSelectedKeysOnPage().length == 0) {
+                alert('Bạn chưa chọn nhân viên');
+                return false;
+            }
+            return true;
+        });
+
+        if($('#hdSuccess').val()=='true'){
+            window.parent.eventClosePopupAddUser();
+        }
+    });
+    var isSelect = false;
+    function isSelected() {
+        return isSelect;
+    }
+    function GetRowValuesHT(values) {
+        window.parent.SetValueTextbox("HoVaTen", values);
+    }
+
+    function GetRowValuesVT(values) {
+        window.parent.SetValueTextbox("ViTriCongViec", values);
+    }
+    
+    function GetRowValuesDV(values) {
+        window.parent.SetValueTextbox("DonViCongTac", values);
+    }
+    
+    function GetRowValuesDTDT(values) {
+        window.parent.SetValueTextbox("DTDD", values);
+    }
+
+    function GetRowValuesDTCQ(values) {
+        window.parent.SetValueTextbox("DTCQ", values);
+    }
+
+    function GetRowValuesEmail(values) {
+        window.parent.SetValueTextbox("EmailCQ", values);
+    }
+
+
+    var madonvi = 0;
+    function OnTreeViewNodeClick(s,e) {
+        //gvPaging.Refresh();
+        madonvi = e.node.name;
+        gvPaging.Refresh();
+    }
+    
+    function OnBeginCallback(s, e) {
+        e.customArgs["MaDonVi"] = madonvi;
+        
+    }
+
+    function CloseListNguoiDungPopup() {
+        window.parent.eventClosePopupAddUser();
+    }
+
+
+
+</script>
+<script src="@Url.Content("~/Content/Script/QuanLyNguoiDung.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Content/Script/Script.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/ChildSite.css")" rel="stylesheet" type="text/css" />*@
+
+@using (Html.BeginForm())
+{
+
+@Html.DevExpress().Splitter(settings=>
+                                {
+                                    settings.Name = "splResizing";
+                                    settings.Height = 410;
+                                    settings.Width = Unit.Percentage(100);
+                                    settings.Styles.Pane.Paddings.Padding = 0;
+                                    settings.Panes.Add(treviewPane =>
+                                                           {
+                                                               treviewPane.Name = "treeviewContainer";
+                                                               treviewPane.Size = Unit.Percentage(20);
+                                                               treviewPane.ScrollBars=ScrollBars.Auto;
+                                                               treviewPane.ShowCollapseBackwardButton = DefaultBoolean.True;
+                                                               treviewPane.SetContent(()=>
+                                                                                          {
+                                                                                              @Html.RenderPartial("TreeViewCoCau", ViewData["TreeCoCau"]);  
+                                                                                          });
+                                                           });
+
+                                    settings.Panes.Add(grid =>
+                                                           {
+                                                               grid.Name = "gridContainer";
+                                                               grid.Size = Unit.Percentage(79);
+                                                               grid.MinSize = 100;
+                                                               grid.SetContent(()=>
+                                                                                   {
+                                                                                       @Html.RenderPartial("LstNhanvienPartial", Model);
+                                                                                   });
+                                                           });
+                                }).GetHtml()
+
+<div class="page">
+    <ul>       
+        <li>
+            @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnSelect";
+                    settings.Text = "Chọn";
+                    settings.UseSubmitBehavior = true;
+                }
+            ).GetHtml()
+        </li>
+       <li>
+            @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.Text = "Thoát";
+                    settings.ClientSideEvents.Click = "CloseListNguoiDungPopup";
+                }
+            ).GetHtml()
+        </li>
+    </ul>
+</div>
+    <input type="hidden" id="UserIDs" name="UserIDs" />
+    <input type="hidden" id="hdSuccess" name="hdSuccess" value="@ViewBag.Success"/>
+}

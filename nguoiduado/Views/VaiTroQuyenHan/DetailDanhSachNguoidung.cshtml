@@ -1,0 +1,135 @@
+﻿@using System.Globalization
+@model System.Collections.IEnumerable
+@*@{ Layout = "~/Views/Shared/ViewLayout.cshtml"; }*@
+<script type="text/javascript">
+    function openPopup() {
+        popupAddUser.SetContentUrl("/VaiTroQuyenHan/ListNhanVienPopup?MaVaiTro=" + _ID + '&ListNguoiDungs=' + $(gvPagingDt.GetKeyValuesInput()).val());
+        popupAddUser.Show();
+    }
+    window.eventClosePopupAddUser = function () {
+        popupAddUser.Hide();
+    };
+
+    
+    //function ShowAddnewBangCap() {
+    //    puAddNewDt.Show();
+    //    //puAddNewDt.SetContentUrl(AcctionAddNewDt);
+    //    puAddNewDt.SetContentUrl(AcctionAddNewDt + '?manhanvien=' + _ID);
+    //}
+    //function ShowEditBangCap() {
+    //    if (_IDDt != null) {
+    //        puEditDt.SetContentUrl(ActionEditDt + '' + _IDDt);
+    //        //onValidateSuccess();
+    //    }
+    //    else {
+    //        puEditDt.Hide();
+    //    }
+    //}
+
+    function DeleteVaiTroNguoiDung() {
+        if (gvPagingDt.GetSelectedKeysOnPage().length == 0) {
+            alert("Bạn chưa chọn bản ghi nào");
+            return false;
+        }
+        if (!confirm("Bạn có muốn xóa bản ghi này không?")) return true;            
+            $.post('/VaiTroQuyenHan/DeleteVaiTroNguoiDung?MaVaiTro='+ _ID +'&MaNguoiDungs='+gvPagingDt.GetSelectedKeysOnPage()
+            , function (data) {
+                // khi update thành công thì refresh lại trang      
+                alert(data);
+                gvPagingDt.Refresh();
+            }).fail(function () { alert("Có lỗi xảy ra"); });
+            return false;
+
+            
+    }
+
+    function gridRowDoubleClickBCDt(parameters) {
+        puEditDt.SetContentUrl(ActionEditDt + '' + _IDDt);
+        puEditDt.Show();
+    }
+
+    function RefreshVaiTroNhanVien() {
+        // Refresh Gridview
+        gvPagingDt.Refresh();
+        $('#openPopup').removeClass('puMainContent');
+    }
+</script>
+@*<script src="@Url.Content("~/Content/Script/CommonCategories.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Content/Script/Script.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/ChildSite.css")" rel="stylesheet" type="text/css" />*@
+<style>
+    .popup-addnew iframe
+    {
+        /*height: 560px !important;*/
+        height: 450px !important;
+    }
+</style>
+
+<div>
+    @Html.Partial("DetailNguoiDungList", Model)
+</div>
+<div class="page">
+    <ul>
+        <li>
+            @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnAddUser";
+                    settings.Text = "Chọn";
+                    settings.ClientSideEvents.Click = "openPopup";
+                    //settings.ClientSideEvents.Click = "ShowAddnewBangCap";
+                }
+            ).GetHtml()
+        </li>
+
+        <li>
+            @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnDeleteUser";
+                    settings.Text = "Loại bỏ";
+                    settings.ClientSideEvents.Click = "DeleteVaiTroNguoiDung";
+                  
+                }
+            ).GetHtml()
+        </li>
+    </ul>
+</div>
+
+<input type="hidden" id="UserIDs" name="UserIDs" />
+
+@*Load dữ liệu từ form khác vào đây*@
+
+@*------------------------------------------------------------------- Popup thêm mới ----------------------------------------------------------------------*@
+<div id="divPuAddNew" class="popup-addnew" style="margin-right: 10px;">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupAddUser";
+        //settings.PopupElementID = "btnAddUser";
+        settings.Width = 920;
+        //settings.Height = 400;
+        // settings.MinHeight = System.Web.UI.WebControls.Unit.Pixel(200);
+        settings.Height = System.Web.UI.WebControls.Unit.Pixel(450);
+        settings.ShowFooter = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        settings.HeaderText = "Danh sách người dùng";
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.PopupAnimationType=PopupAnimationType.Fade;
+        settings.EnableAnimation = false;
+        settings.AppearAfter = 0;
+        //settings.ContentUrl = "/VaiTroQuyenHan/ListNhanVienPopup";
+        //settings.SetContent(() =>
+        //{
+        //    //ViewContext.Writer.Write("fsdfsdfdsf");
+        //    Html.RenderAction("NguoiDungList");
+        //    //ViewContext.Writer.Write(
+        //    //   Html.Action("ListNguoiDungPopup", Model));
+        //});
+        settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshVaiTroNhanVien(); }";
+        settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+    }).GetHtml()
+</div>

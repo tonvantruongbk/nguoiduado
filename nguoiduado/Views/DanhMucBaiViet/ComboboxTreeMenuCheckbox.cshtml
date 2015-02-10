@@ -1,0 +1,40 @@
+@model System.Data.DataTable          
+
+@Html.DevExpress().DropDownEdit(
+                    settings =>
+                    {
+                        settings.Name = "treeViewComboBoxCheckbox";
+                        settings.Text = ViewBag.TenMenu;
+                        settings.Width = 300;
+                     
+                        settings.Properties.DropDownWindowStyle.BackColor = System.Drawing.Color.White;
+                        settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                      
+                        settings.SetDropDownWindowTemplateContent(c =>
+                        {
+                            ViewContext.Writer.Write("<div style=\"padding: 6px; height: 220px;overflow:auto;\">");
+                            @Html.DevExpress().TreeView(tv =>
+                            {
+                                tv.Name = "treeMenu";
+                                tv.NameField = "MaMenu";
+                                tv.AllowSelectNode = true;
+                                nguoiduado.Controllers.DanhMucBaiVietController.CreateTreeViewNodesRecursiveHienThi(Model, tv.Nodes, 0);
+                                tv.ClientSideEvents.NodeClick = "OnTreeViewNodeSearchClick";
+
+                                tv.ClientSideEvents.CheckedChanged = "function(s, e) { OnCheckedTreeChanged(s ,e) }";
+                                tv.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaMenu'] = key; }";
+                                
+                                tv.ShowTreeLines = true;
+                                tv.ShowExpandButtons = true;
+                                tv.AllowCheckNodes = true;
+                            })
+                            .Render();
+                           
+                            ViewContext.Writer.Write("</div>");
+                        });
+                        settings.ReadOnly = true;
+                        settings.Properties.EnableAnimation = true;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                    }
+                ).GetHtml()                    

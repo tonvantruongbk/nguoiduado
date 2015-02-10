@@ -1,0 +1,44 @@
+@using System.Data
+@{
+    nguoiduado.Models.PictureModel PicModel = new nguoiduado.Models.PictureModel();
+}
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridView1Partial" };
+        settings.KeyFieldName = "MaNoiDung";
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MaNoiDung";
+            column.Visible = true;
+        });
+        settings.Columns.Add("PictureId");
+        settings.Columns.Add("TieuDe");
+        settings.Columns.Add("NoiDung");
+        settings.Settings.ShowColumnHeaders = false;
+        settings.SetDataRowTemplateContent(c =>
+        {
+            string NDUrl = "../Home/Detail?MaNoiDung="+(decimal)DataBinder.Eval(c.DataItem, "MaNoiDung");
+            ViewContext.Writer.Write(
+               "<li><span>" +
+               "<img src='" + @PicModel.GetPictureUrl((int)DataBinder.Eval(c.DataItem, "PictureId")) + "'>" +
+               "</span><div>"+
+
+                             "<h4><a href='" + NDUrl + "'>" + DataBinder.Eval(c.DataItem, "TieuDe") + "</a></h4>" +
+                             "<p>" + DataBinder.Eval(c.DataItem, "TrichDan") + "</p>" +
+                             "<p><a href='" + NDUrl + "'>Xem thêm...</a></p>" +
+
+                        "</div></li>"
+             );
+        });
+
+    });
+
+
+}
+@grid.Bind(Model).GetHtml()

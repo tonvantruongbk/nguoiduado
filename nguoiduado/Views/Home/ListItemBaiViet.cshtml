@@ -1,0 +1,23 @@
+﻿
+<html lang="vi">
+@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
+@model List<nguoiduado.Models.TBL_NoiDung>
+@using nguoiduado.Models
+
+<head>
+    <title>Nguoiduado.vn</title>
+    
+</head>
+<body>
+<div class="col-sm-8">
+    <div class="category">
+        <h3>@ViewBag.TenMenu</h3>
+        <ul class="news">
+            @Html.Action("GridView1Partial")
+        </ul>
+    </div>
+  
+</div>
+   
+</body>
+</html>

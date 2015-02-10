@@ -1,0 +1,101 @@
+﻿@model RS.nguoiduadoTW.NET.Models.TBL_AD_VaiTro
+@{ Layout = "~/Views/Shared/ViewLayout.cshtml"; }
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.EditorFor(model => model.MaVaiTro)
+     <div class="childform">
+        <table cellpadding="0" cellspacing="0" style="margin-top: 10px">
+        <tr>
+            <td >
+              @*  @Html.LabelFor(model => model.TenVaiTro) <strong>(*)</strong> *@
+                Tên vai trò  <strong>(*)</strong>
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @Html.DevExpress().TextBox(textbox =>
+                                               {
+                                                   textbox.Name = "TenVaiTro";
+                                                   //textbox.Text = Model.KyHieuChucVuDang;
+                                                   textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                                   textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                                   textbox.Properties.MaxLength = 500;
+                                                   textbox.Width = 260;
+                                                   textbox.Properties.ValidationSettings.RequiredField.ErrorText = "Bạn chưa nhập tên vai trò";
+                                                   textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                                               }).Bind(Model.TenVaiTro).GetHtml()
+            </td>
+        </tr>
+        <tr style="height: 8px;" ></tr>
+            <tr>
+                <td>
+                    @* @Html.LabelFor(model => model.GhiChu)*@
+                </td>
+                <td style="width: 10px;"></td>
+                <td>
+                    @Html.DevExpress().Memo(textbox =>
+                    {
+                        textbox.Name = "GhiChu";
+                        //textbox.Text = Model.KyHieuChucVuDang;
+                        textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                        textbox.ShowModelErrors = true;
+                        textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        textbox.Width = 260;
+                        textbox.Height = 150;
+                    }).Bind(Model.GhiChu).GetHtml()
+                </td>
+            </tr>
+              <tr style="height: 15px"></tr>
+            <tr>
+                <td>Cho phép phát hành bài viết</td>
+                <td style="width: 10px;"></td>
+                <td>
+                    @Html.CheckBoxFor(model => model.PhatHanhBaiViet)
+           
+                </td>
+            </tr>
+    </table>
+    </div>
+    <div class="popup-btn" id="popup-btn">
+        <table>
+            <tr>
+                <td>
+                    @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnSubmitAdd";
+                    settings.Text = "Cập nhật";
+                    settings.UseSubmitBehavior = true;
+                }
+            ).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnCancel";
+                    settings.Text = "Thoát";
+                }
+            ).GetHtml()
+                </td>
+            </tr>
+        </table>
+
+
+
+    </div>
+<input type="hidden" id="idthongbao" name="idthongbao" value='@ViewBag.success' />
+}
+<script type="text/javascript">
+    //Đóng form
+    $('#btnCancel').click(function() {
+        window.parent.eventCloseEditFromIframe();
+    });
+
+    $(document).ready(function () {
+        if ($('#idthongbao').val() != '') {
+            alert($('#idthongbao').val());
+        }
+        $('#TenVaiTro').focus();
+    });
+</script>

@@ -1,0 +1,30 @@
+@media screen and (max-width: 992px){
+/*chuyen muc*/
+.btn{background-color:#939393;color:#fff; font:14px tahoma,sans-serif; text-align:center; text-transform:uppercase; border:none; width:100%; margin-bottom:10px}
+.btn .caret{margin-left:7px}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {color: #fff;background-color: #2e2e2e;}
+.dropdown-menu { width:100%; margin:0; border-radius:0; border:solid 1px #ccc; padding:0; margin-top:-10px}
+.dropdown-menu > li > a {font:12px tahoma; background:url(../images/bullet.png) no-repeat 7px center; padding:7px 0 7px 20px; border-bottom: dotted 1px #ccc}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {color: #fff;background:url(../images/bullet_h.png) no-repeat 7px center #939393;}
+/*news*/
+.news li span{width:35%}
+.news li div{width:60%}
+}
+
+@media screen and (max-width: 768px){
+.pd768{padding:0 1%}
+/*news*/
+.news li span{width:25%}
+.news li div{width:70%}
+}
+@media screen and (max-width:480px){
+/*news*/
+.news li span{width:45%}
+.news li div{width:50%}
+}

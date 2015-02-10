@@ -1,0 +1,117 @@
+﻿<!--Begin chuyên mục-->
+@model List<nguoiduado.Models.TBL_MenuDanhMuc>
+<div class="menuleft">
+    <h3>Chuyên mục</h3>
+    <ul>
+        @foreach (var item in (List<nguoiduado.Models.TBL_MenuDanhMuc>)ViewData["MenuDanhMuc"])
+        {
+            <li><span></span><a href="../Home/ListItemBaiViet?MenuID=@item.MenuID">@item.TenMenu</a></li>
+          
+        }
+     
+    </ul>
+</div>
+<!--End chuyên mục-->
+<!--Begin tự giới thiệu-->
+<div class="introduce_oneself">
+    <h3>Tự giới thiệu</h3>
+    <div class="border">
+        <h4>Nguyễn Sỹ Hồ</h4>
+        <div class="img"><span><img src="../Content/images/tugioithieu.png"></span></div>
+        <ul>
+            <li>
+                <strong>Quê quán:</strong>
+                <p>Hương Trạch - Hương Khê - Hà Tĩnh </p>
+            </li>
+            <li>
+                <strong>Cư ngụ tại:</strong>
+                <p>Số nhà 12 - Tổ 2 - Ấp Cổng Xanh - Tân Bình - Tân Uyên - Bình Dương </p>
+            </li>
+            <li>
+                <strong><span>Các câu nói ưa thích:</span></strong>
+                <p><span>Thời gian khôngđược tính bằng năm tháng mà được tính bằng những gì anh đã làm</span></p>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--End tự giới thiệu-->
+<div class="weblinks">
+    <h3>Liên kết web</h3>
+    <ul>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw1.png"></span>
+                <p>Nhóm FB người đưa đò</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw2.png"></span>
+                <p>Vnweblogs Người đưa đò</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw3.png"></span>
+                <p>Trở về từ ký ức </p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw4.png"></span>
+                <p>Hội HTGĐLS Việt Nam </p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw5.png"></span>
+                <p>Tìm người thất lạc</p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw6.png"></span>
+                <p>Ban liên lạc CCB E24 </p>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span><img src="../Content/images/img_lkw7.png"></span>
+                <p>BLL mặt trận B3</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--Begin thống kê-->
+<div class="statistic">
+    <h3>Thống kê website</h3>
+    <p><span>Lượt truy cập</span> <strong>44168</strong> </p>
+    <p><span>Đang online</span> <strong>118</strong></p>
+    <p><span>Tổng số thành viên</span> <strong>3518</strong></p>
+    <p><span>Thành viên mới nhất</span> <strong>Hà Nga</strong></p>
+    <h4>Danh sách thành viên:</h4>
+    <div class="mem_list">
+        <ul>
+            <li>Trịnh Đăng Minh</li>
+            <li>Hà Nga</li>
+            <li>Đỗ Cảnh Minh</li>
+            <li>Dương Dung</li>
+            <li>Trương Thị Thắm</li>
+            <li>Nguyễn Thịnh</li>
+            <li>Trịnh Đăng Minh</li>
+            <li>Hà Nga</li>
+            <li>Đỗ Cảnh Minh</li>
+            <li>Dương Dung</li>
+            <li>Trương Thị Thắm</li>
+            <li>Nguyễn Thịnh</li>
+            <li>Trịnh Đăng Minh</li>
+            <li>Hà Nga</li>
+            <li>Đỗ Cảnh Minh</li>
+            <li>Dương Dung</li>
+            <li>Trương Thị Thắm</li>
+            <li>Nguyễn Thịnh</li>
+        </ul>
+    </div>
+</div>
+<!--End thống kê-->
+       

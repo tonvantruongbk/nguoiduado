@@ -1,0 +1,133 @@
+﻿@using System.Web.UI.WebControls;
+@using DevExpress.Data;
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "GridView1Partial";
+        settings.KeyFieldName = "MaNoiDung";
+        settings.CallbackRouteValues = new { Controller = "DanhMucBaiViet", Action = "GridView1Partial" };
+        settings.Width = Unit.Percentage(100);
+       
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "#";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var id = DataBinder.Eval(c.DataItem, "MaNoiDung");
+
+                Html.DevExpress().HyperLink(hl =>
+                {
+                    hl.Name = "hlEdit_" + c.KeyValue.ToString();
+                    hl.NavigateUrl = Url.Action("EditBaiViet", "DanhMucBaiViet", new { MaNoiDung = id });
+                    hl.Properties.Text = "Sửa";
+                   // hl.Properties.ImageUrl = "~/Content/ImageAdmin/edit.jpg";
+                }).Render();
+
+                ViewContext.Writer.Write(" ");
+
+                string deleteActionUrl = Url.Action("DeleteBaiViet", "DanhMucBaiViet", new { MaNoiDung = id });
+
+                Html.DevExpress().HyperLink(hl =>
+                {
+                    hl.Name = "hlDelete_" + c.KeyValue.ToString();
+                    hl.NavigateUrl = "javascript:;";
+                    hl.Properties.Text = "Xóa";
+                    hl.Properties.ClientSideEvents.Click = string.Format("function(s, e) {{ if(confirm('Do you really want to delete this record?')) document.location.href = '{0}'; }}", deleteActionUrl);
+             
+                    //   hl.Properties.ImageUrl = "~/Content/ImageAdmin/delete.jpg";
+                }).Render();
+            });
+            column.SetHeaderTemplateContent(c =>
+            {
+                Html.DevExpress().HyperLink(hl =>
+                {
+                    hl.Name = "hlNew";
+                    hl.NavigateUrl = Url.Action("AddNewBaiViet", "DanhMucBaiViet", new { MaNoiDung = -1 });
+                    hl.Properties.Text = "Thêm mới";
+                  //  hl.Properties.ImageUrl = "~/Content/ImageAdmin/addnew.jpg";
+                }).Render();
+            });
+
+        });
+
+        settings.Columns.Add(column =>
+       {
+           column.FieldName = "TenMenu";
+           column.Width = Unit.Percentage(10);
+           column.Caption = "Tên menu";
+       });
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TieuDe";
+            column.Width = Unit.Percentage(20);
+            column.Caption = "Tiêu đề bài viết";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TrichDan";
+            column.Width = Unit.Percentage(30);
+            column.Caption = "Trích dẫn";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NguoiNhap";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(8);
+            column.Caption = "Người nhập";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NgayNhap";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(10);
+            column.Caption = "Ngày nhập";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.SortOrder = ColumnSortOrder.Descending;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NguoiCapNhat";
+            column.Width = Unit.Percentage(8);
+            column.Caption = "Người cập nhật";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NgayCapNhat";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Ngày cập nhật";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.SortOrder = ColumnSortOrder.Descending;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NguonTin";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Nguồn tin";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LuotXem";
+            column.Width = Unit.Percentage(5);
+            column.Caption = "Lượt xem";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.SettingsBehavior.AllowFocusedRow = true;
+    }).Bind(Model).GetHtml()

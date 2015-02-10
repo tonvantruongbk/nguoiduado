@@ -1,0 +1,337 @@
+﻿@using System.Web.UI.WebControls
+@model RS.nguoiduadoTW.NET.Models.QuanLyNguoiDungViewModel
+@Html.EditorFor(model => model.MaNguoiDung)
+
+<div class="childform">
+    <table cellpadding="0" cellspacing="0" style="margin-top: 10px; margin-right: 10px; padding-right: 10px;">
+        <tr>
+            <td width="120px">
+                @Html.LabelFor(model => model.TenDangNhap) <strong>(*)</strong>
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @*@{
+                    Html.RenderPartial("ComboBoxVaiTro", ViewData["VaiTro"]);
+                }*@
+
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 300;
+                        settings.Height = 20;
+                        settings.Name = "TenDangNhap";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                        settings.Properties.ValidationSettings.RequiredField.ErrorText = "Tên đăng nhập không được để trống";
+                    }).Bind(Model.TenDangNhap).GetHtml()
+
+
+            </td>
+
+            <td>
+                @Html.DevExpress().CheckBox(checkBoxSettings =>
+                    {
+                        checkBoxSettings.Name = "DaKichHoat";
+                        checkBoxSettings.Text = "Đã kích hoạt";
+                    }).Bind(Model.DaKichHoat).GetHtml()
+            </td>
+            <td>
+
+              @*  @{
+                    Html.RenderPartial("ComboBoxVaiTro", ViewData["VaiTro"]);
+                }*@
+            </td>
+        </tr>
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.HoVaTen) <strong>(*)</strong>
+
+            </td>
+            <td style="width: 10px;"></td>
+            <td colspan="2">
+                @Html.DevExpress().TextBox(
+                    settings =>
+                        {
+
+                            settings.Width = 300;
+                            settings.Height = 20;
+                            settings.Name = "HoVaTen";
+                            settings.ShowModelErrors = true;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            //settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.SetFocusOnError = true;
+                            //settings.Properties.ValidationSettings.RequiredField.ErrorText = "Họ và đệm không được để trống";
+                        }).Bind(Model.HoVaTen).GetHtml()
+                @*@Html.TextBoxFor(model => model.HoVaTen, new { @class = "text-input" })
+                @Html.ValidationMessageFor(model => model.HoVaTen)*@
+                <div class="span-error">@ViewBag.TenTonTai</div>
+            </td>
+            
+            <td class="btnP">
+                 @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnNhanVien";
+                    settings.Text = "";
+                    settings.ToolTip = "Tùy chọn nâng cao";
+                    settings.Styles.Style.Width = 10;
+                    settings.Styles.Style.Height = 20;
+                    settings.Styles.Style.Paddings.PaddingLeft = 0;
+                    settings.Styles.Style.Paddings.PaddingTop = 0;
+                    settings.Styles.Style.Paddings.PaddingRight = 0;
+                    settings.Styles.Style.Paddings.PaddingBottom = 0;
+                    settings.Styles.Style.BackgroundImage.ImageUrl = "~/Content/Images/btnPop.png";
+                    settings.Styles.Style.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+                }
+            ).GetHtml()
+            </td>
+        </tr>
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>Chức danh
+            </td>
+            <td style="width: 10px;"></td>
+            <td colspan="3">
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 300;
+                        settings.Height = 20;
+                        settings.Name = "ChucDanh";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.ChucDanh).GetHtml()
+            </td>
+        </tr>
+
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>Đơn vị công tác
+            </td>
+            <td style="width: 10px;"></td>
+            <td colspan="3">
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 300;
+                        settings.Height = 20;
+                        settings.Name = "DonViCongTac";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.DonViCongTac).GetHtml()
+            </td>
+        </tr>
+
+
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>ĐT di động
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 100;
+                        settings.Height = 20;
+                        settings.Name = "DienThoaiDiDong";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.DienThoaiDiDong).GetHtml()
+            </td>
+
+            <td style="width: 10px;"></td>
+            <td>Email cơ quan
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 100;
+                        settings.Height = 20;
+                        settings.Name = "Email";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.Email).GetHtml()
+            </td>
+        </tr>
+
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>ĐT cơ quan
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 100;
+                        settings.Height = 20;
+                        settings.Name = "DienThoaiCoQuan";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.DienThoaiCoQuan).GetHtml()
+            </td>
+            <td style="width: 10px;"></td>
+            <td>Fax
+            </td>
+            <td style="width: 10px;"></td>
+            <td>
+                @Html.DevExpress().TextBox(
+                    settings =>
+                    {
+
+                        settings.Width = 100;
+                        settings.Height = 20;
+                        settings.Name = "Fax";
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Properties.ValidationSettings.SetFocusOnError = true;
+                    }).Bind(Model.Fax).GetHtml()
+            </td>
+        </tr>
+
+        <tr style="height: 8px;"></tr>
+        <tr>
+            <td>Mô tả
+
+            </td>
+            <td style="width: 10px;"></td>
+            <td colspan="3">
+                @Html.DevExpress().Memo(settings =>
+                    {
+                        settings.Name = "GhiChu";
+                        settings.Width = 300;
+                        settings.ShowModelErrors = true;
+                        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                        settings.Height = System.Web.UI.WebControls.Unit.Pixel(50);
+                    }).Bind(Model.GhiChu).GetHtml()
+            </td>
+        </tr>
+
+
+        <tr style="height: 8px;"></tr>
+    </table>
+    <fieldset style="height: 90px; margin-left: -10px;">
+        <legend style="margin-top: -5px;">Đặt mật khẩu</legend>
+        <table cellpadding="0" cellspacing="0" style="margin-top: 10px; margin-right: 10px; padding-right: 10px;">
+            <tr>
+                <td width="120px">Mật khẩu mới
+                </td>
+                <td style="width: 10px;"></td>
+                <td>
+                    @Html.DevExpress().TextBox(
+                        settings =>
+                        {
+
+                            settings.Width = 300;
+                            settings.Height = 20;
+                            settings.Name = "MatKhau";
+                            settings.ClientEnabled = true;
+                            settings.Text = "";
+                            //settings.Properties.Password = true;
+                            settings.ShowModelErrors = true;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            //settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.SetFocusOnError = true;
+                            //settings.Properties.ValidationSettings.RequiredField.ErrorText = "Tên đăng nhập không được để trống";
+                        }).Bind(Model.MatKhau).GetHtml()
+                </td>
+            </tr>
+
+            <tr style="height: 8px;"></tr>
+            <tr>
+                <td width="120px">Xác nhận lại mật khẩu
+                </td>
+                <td style="width: 10px;"></td>
+                <td>
+                    @Html.DevExpress().TextBox(
+                        settings =>
+                        {
+                            settings.Width = 300;
+                            settings.Height = 20;
+                            settings.Name = "MatKhauXacNhan";
+                            settings.ClientEnabled = true;
+                            //settings.Properties.Password = true;
+                            settings.ShowModelErrors = true;
+                            settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            //settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                            settings.Properties.ValidationSettings.SetFocusOnError = true;
+                            //settings.Properties.ValidationSettings.RequiredField.ErrorText = "Tên đăng nhập không được để trống";
+                        }).Bind(Model.MatKhauXacNhan).GetHtml()
+
+
+                </td>
+
+
+            </tr>
+
+            @*<tr>
+                <td>IMG</td>
+                <td colspan="2">
+                    @Html.DevExpress().CallbackPanel(
+    settings =>
+    {
+        settings.Name = "cbpIMG";
+        //settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "DetailPanel" };
+        settings.Width = Unit.Percentage(100);
+
+        settings.SetContent(() =>
+                                {
+                                    ViewContext.Writer.Write(
+                                        "</div>" +
+
+                                        "<div><label>First Name:</label><span>" + (tt++).ToString() +
+                                        "</div>");
+                                });
+
+        //settings.ClientSideEvents.BeginCallback = "DetailNguoiDungPanelOnBeginCallback";
+        //settings.ClientSideEvents.EndCallback = "DetailNguoiDungPanelOnEndCallback";
+    }
+).GetHtml()
+                </td>
+            </tr>*@
+        </table>
+
+
+    </fieldset>
+</div>
+
+<style>
+    .popup-addnew div.dxpc-content
+    {
+        height: 250px!important;
+    }
+
+    .chilform label
+    {
+        float: left;
+        width: 95px !important;
+    }
+
+    .chilform table
+    {
+        width: 75% !important;
+    }
+</style>
+<script type="text/javascript">
+    $('#btnNhanVien').click(function () {
+        window.parent.showpopupNV('/VaiTroQuyenHan/ListNhanVienPopup', 'Danh sách Nhân viên', 'HoVaTen', 'HoVaTen');
+
+    });
+</script>

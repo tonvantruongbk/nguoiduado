@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Administrator - Người Đưa Đò</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/MicrosoftAjax.js"></script>
+    <script src="~/Scripts/MicrosoftMvcValidation.js"></script>
+    <script src="~/Content/JS/CheckboxInDropDownList.js"></script>
+    <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
+    <script src="~/Scripts/MicrosoftMvcValidation.debug.js"></script>
+    <script src="~/Scripts/MicrosoftAjax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    @Html.DevExpress().GetStyleSheets( 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }, 
+    new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Chart },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+@Html.DevExpress().GetScripts( 
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout }, 
+    new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }, 
+    new Script { ExtensionSuite = ExtensionSuite.GridView }, 
+    new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new Script { ExtensionSuite = ExtensionSuite.Editors }, 
+    new Script { ExtensionSuite = ExtensionSuite.Chart },
+    new Script { ExtensionSuite = ExtensionSuite.Report },
+    new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+    new Script { ExtensionSuite = ExtensionSuite.TreeList },
+    new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new Script { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+</head>
+<body>
+    @Html.DevExpress().Splitter(settings => {
+        settings.Name = "MainSplitter";
+        settings.AllowResize = false;
+        settings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
+        settings.FullscreenMode = true;
+        settings.SeparatorVisible = false;
+        settings.Styles.Pane.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.Styles.Pane.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+   
+        settings.Panes.Add(pane => {
+            pane.Name = "Header";
+            pane.AutoHeight = true;
+            pane.PaneStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+            pane.PaneStyle.CssClass = "headerPane";
+            pane.SetContent(() => {
+                Html.RenderPartial("HeaderPartialView");
+            });
+        });
+
+        settings.Panes.Add(subpane =>
+        {
+            subpane.Name = "ContentCenter";
+            subpane.PaneStyle.CssClass = "contentPane";
+            subpane.ScrollBars = System.Web.UI.WebControls.ScrollBars.Auto;
+            subpane.Separator.Visible = DefaultBoolean.True;
+            subpane.Separator.SeparatorStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+            subpane.Separator.SeparatorStyle.BorderTop.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+            subpane.SetContent(RenderBody().ToHtmlString());
+        });
+       
+        //settings.Panes.Add(pane => {
+        //    pane.Name = "Footer";
+        //    pane.Size = System.Web.UI.WebControls.Unit.Pixel(125);
+        //    pane.PaneStyle.CssClass = "footerPane";
+        //    pane.SetContent(() => {
+        //        Html.RenderPartial("FooterPartialView");
+        //    });
+        //});
+    }).GetHtml()
+</body>
+</html>

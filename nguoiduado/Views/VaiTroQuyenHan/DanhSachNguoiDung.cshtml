@@ -1,0 +1,424 @@
+﻿@using System.Globalization
+@using System.Web.UI.WebControls
+@*@model System.Collections.IEnumerable
+*@
+@model RS.nguoiduadoTW.NET.Models.QuanLyNguoiDungViewModel
+<style>
+    /*.popup-addnew iframe
+    {
+        width: 440px !important;
+        height: 220px !important;
+    }*/
+    /*#popupEdit_PWC-1 .dxpc-content
+    {
+        height: 450px;
+    }*/
+
+    .dxpc-content {
+        height: 500px;
+    }
+
+    .chkcss {
+        height: 10px;
+        padding: 0px !important;
+    }
+    /* Chỉnh độ cao popup Phân quyền*/
+    /*.popup-PQ iframe
+    {
+        
+        height: 480px !important;
+    }*/
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Tên ID của bảng
+        var id = 'UserID';
+        // Tên button
+        var btnAddNew = 'btnAddNew';
+        var btnEdit = 'btnEdit';
+        var btnDelete = 'btnDelete';
+        var btnCancel = 'btnCancel';
+        // Đường dẫn Action
+        var acctionAddNew = '/VaiTroQuyenHan/AddNewAdNguoiDung/';
+        var actionEdit = '/VaiTroQuyenHan/EditAdNguoiDung/?MaNguoiDung=';
+        var actionDelete = '/VaiTroQuyenHan/DeleteAdNguoiDung/?MaNguoiDung=';
+        // Popup
+        var puAddNew = popupAddNew; // Tên popup addnew
+        var puEdit = popupEdit; // Tên popup edit
+        var grPaging = gvPaging; // Tên gridview
+
+        /////////////Detail VaiTro: Khai báo biến
+        // Tên ID của bảng
+        var idVT = 'MaVaiTroNguoiDung';
+        // Tên button
+        var btnAddNewVTDt = 'btnAddNewVTDt';
+        var btnEditVTDt = 'btnEditVTDt';
+        var btnDeleteVTDt = 'btnDeleteVTDt';
+        var btnCancelVTDt = 'btnCancelVTDt';
+        // Đường dẫn Action
+        var acctionAddNewVTDt = '/KinhNghiemLamViec/AddNewKinhNghiemLamViec/';
+        var actionEditVTDt = '/KinhNghiemLamViec/EditKinhNghiemLamViec/?MaKinhNghiem=';
+        var actionDeleteVTDt = '/VaiTroQuyenHan/DeleteVaiTroDetail/?MaVaiTroNguoiDung=';
+        // Popup
+        var puAddNewVTDt = popupAddNewVTDt; // Tên popup addnew
+        var puEditVTDt = popupEditVTDt; // Tên popup edit
+        var grPagingVTDt = gvVaiTro; // Tên gridview
+
+
+
+
+        Init(id, btnAddNew, btnEdit, btnDelete, btnCancel, acctionAddNew, actionEdit, actionDelete, puAddNew, puEdit, grPaging);
+
+        InitVTDt(idVT, btnAddNewVTDt, btnEditVTDt, btnDeleteVTDt, btnCancelVTDt, acctionAddNewVTDt, actionEditVTDt, actionDeleteVTDt, puAddNewVTDt, puEditVTDt, grPagingVTDt);
+
+        $('#btnSelect').click(function () {
+            gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "MaNguoiDung", GetRowValues);
+            isSelect = true;
+        });
+
+        $('#btnPhanQuyen').click(function () {
+            popupPQ.SetContentUrl('/VaiTroQuyenHan/PhanQuyen_/?mavaitro=' + _ID);
+            popupPQ.SetHeaderText('Phân quyền');
+            popupPQ.Show();
+        });
+
+
+    });
+
+
+    //var isSelect = false;
+    //function isSelected() {
+    //    return isSelect;
+    //}
+    //function GetNameCombobox() {
+    //    return 'cbbAD_NguoiDung';
+    //}
+    //function GetRowValues(values) {
+    //    var check = true;
+    //    window.parent.SetValueCbb("cbbAD_NguoiDung", values, check);
+    //}
+
+    function OnSplitterPaneResized(s, e) {
+        var name = e.pane.name;
+        if (name == 'gridDetailContainer')
+            ResizeControl(pcNguoiDungDeltail, e.pane);
+        else if (name == 'gridContainer')
+            ResizeControl(gvPaging, e.pane);
+
+    }
+
+    function ResizeControl(control, splNguoiDung) {
+        //control.SetWidth(splNguoiDung.GetClientWidth());
+        control.SetHeight(splNguoiDung.GetClientHeight());
+    }
+
+    //error
+    function CallbackVT() {
+        //cbpIMG.PerformCallback();
+        alert('Vai tro callback');
+    }
+
+    function isQLND() {
+        if (nameText == 'QLND') {
+            return true;
+        }
+        return false;
+    }
+    /////////////////////Popup Nhân viên**************************
+    var nameText = '';
+    var idText = '';
+    function showpopupNV(param, headertext, _idText, _nameText) {
+        popupNV.SetContentUrl(param);
+        popupNV.SetHeaderText(headertext);
+        nameText = _nameText;
+        idText = _idText;
+        popupNV.Show();
+    }
+
+    //set giá trị vào hidden (id nhân viên)
+    function SetValueTextbox(tencontrol, giatri) {
+        //tencbb ko su dung
+        try {
+            var wind = popupAddNew.GetWindowContentIFrame(popupAddNew.GetWindow(0)).contentWindow;
+            if (wind != null) {
+                switch (tencontrol) {
+                    case "HoVaTen":
+                        wind['HoVaTen'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    case "ViTriCongViec":
+                        wind['ChucDanh'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    case "DonViCongTac":
+                        wind['DonViCongTac'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    case "DTDD":
+                        wind['DienThoaiDiDong'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    case "DTCQ":
+                        wind['DienThoaiCoQuan'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    case "EmailCQ":
+                        wind['Email'].SetValue(giatri);
+                        popupNV.Hide();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (e) {
+            var wind = popupEdit.GetWindowContentIFrame(popupEdit.GetWindow(0)).contentWindow;
+            if (wind != null) {
+                if (wind != null) {
+                    switch (tencontrol) {
+                        case "HoVaTen":
+                            wind['HoVaTen'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        case "ViTriCongViec":
+                            wind['ChucDanh'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        case "DonViCongTac":
+                            wind['DonViCongTac'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        case "DTDD":
+                            wind['DienThoaiDiDong'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        case "DTCQ":
+                            wind['DienThoaiCoQuan'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        case "EmailCQ":
+                            wind['Email'].SetValue(giatri);
+                            popupNV.Hide();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    //set giá trị vào textbox (tên nhân viên)
+    //function SetValueTextbox2(tencbb, MaCombobox) {
+    //    //tencbb không su dung
+    //    try {
+    //        var wind = popupAddNewNV.GetWindowContentIFrame(popupAddNewNV.GetWindow(0)).contentWindow;
+    //        if (wind != null) {
+    //            wind[nameText].SetValue(MaCombobox);
+    //            popupNV.Hide();
+    //            //this.check = _true;
+    //        }
+    //    } catch (e) {
+    //        var wind = popupEditNV.GetWindowContentIFrame(popupEditNV.GetWindow(0)).contentWindow;
+    //        if (wind != null) {
+    //            wind[nameText].SetValue(MaCombobox);
+    //            popupNV.Hide();
+    //            //this.check = _true;
+    //        }
+    //    }
+    //}
+
+    //end Popup Nhanvien******************************
+
+</script>
+<script src="@Url.Content("~/Content/Script/QuanLyNguoiDung.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Script/Script.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/ChildSite.css")" rel="stylesheet" type="text/css" />
+
+<table width="100%">
+    <tr>
+        <td>
+            <div class="divHeader">Quản lý người dùng</div>
+        </td>
+        <td>
+            <div class="page">
+                <ul>
+                    @* <li>
+            @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnPhanQuyen";
+                    settings.Text = "Phân quyền";
+                }
+                 ).GetHtml()
+        </li>*@
+                    <li>
+                        @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnAddNew";
+                    settings.Text = "Thêm mới";
+                    settings.ClientVisible = false;
+                }
+                 ).GetHtml()
+                    </li>
+                    <li>
+                        @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnEdit";
+                    settings.Text = "Sửa";
+                }
+                 ).GetHtml()
+                    </li>
+                    <li>
+                        @Html.DevExpress().Button(
+                settings =>
+                {
+                    settings.Name = "btnDelete";
+                    settings.Text = "Xóa";
+                    settings.ClientVisible = false;
+                }
+                 ).GetHtml()
+                    </li>
+                </ul>
+
+            </div>
+        </td>
+    </tr>
+</table>
+@*@Html.Partial("ListAD_NguoiDung", Model)*@
+
+@*<div>
+     @Html.Partial("DetailPanel", Model)
+</div>*@
+
+<div style="clear: both">
+    @Html.DevExpress().Splitter(settings =>
+                                {
+                                    settings.Name = "splNguoiDung";
+                                    settings.Height = 600;
+                                    settings.Width = Unit.Percentage(100);
+                                    settings.Styles.Pane.Paddings.Padding = 0;
+                                    settings.Orientation = Orientation.Vertical;
+                                    settings.Panes.Add(treviewPane =>
+                                                           {
+                                                               treviewPane.Name = "gridContainer";
+                                                               //treviewPane.Size = Unit.Percentage(40);
+                                                               treviewPane.ScrollBars = ScrollBars.Auto;
+                                                               treviewPane.ShowCollapseBackwardButton = DefaultBoolean.True;
+                                                               treviewPane.SetContent(() =>
+                                                                                          {
+                                                                                              @Html.RenderPartial("ListAD_NguoiDung", Model);
+                                                                                          });
+                                                           });
+
+                                    settings.Panes.Add(grid =>
+                                                           {
+                                                               grid.Name = "gridDetailContainer";
+                                                               //grid.Size = Unit.Percentage(40);
+                                                               grid.MinSize = 100;
+                                                               grid.SetContent(() =>
+                                                                                   {
+                                                                                       @Html.RenderPartial("DetailPanel", Model);
+                                                                                   });
+                                                           });
+                                    settings.ClientSideEvents.PaneResized = "OnSplitterPaneResized";
+                                }).GetHtml()
+</div>
+
+@*------------------------------------------------------------------- Popup thêm mới ----------------------------------------------------------------------*@
+<div id="divPuAddNew" class="popup-addnew">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupAddNew";
+        settings.PopupElementID = "btnAddNew";
+        settings.Width = 800;
+        settings.Height = 530;
+        settings.ShowFooter = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        settings.HeaderText = "Thêm mới" + " " + "người dùng";
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        ////settings.PopupAnimationType=PopupAnimationType.Fade;
+        //settings.AnimationType = false;
+        settings.AppearAfter = 0;
+        settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGrid(); }";
+        settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+    }).GetHtml()
+</div>
+@*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+@*------------------------------------------------------------------- Popup sửa ---------------------------------------------------------------------------*@
+<div id="divPuEdit" class="popup-addnew">
+    @Html.DevExpress().PopupControl(
+        settings =>
+        {
+            settings.Name = "popupEdit";
+
+            settings.PopupElementID = "btnEdit";
+            settings.Width = 800;
+            settings.Height = 530;
+            settings.ShowFooter = true;
+            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+            ////settings.PopupAnimationType=PopupAnimationType.Fade;
+            //settings.EnableAnimation = false;
+            settings.AppearAfter = 0;
+            settings.CloseAction = CloseAction.CloseButton;
+            settings.FooterText = "Footer text";
+            settings.ShowFooter = false;
+            //settings.HeaderText = "Sửa" + " " + "người dùng";
+            settings.HeaderText = "Cập nhật phân quyền người dùng";
+            settings.ClientSideEvents.CloseUp = "function(s, e) { RefreshGrid(); }";
+            settings.ClientSideEvents.PopUp = "function(s, e) { OpenPopup(); }";
+        }).GetHtml()
+    @*------------------------------------------------------------------- End ---------------------------------------------------------------------------------*@
+</div>
+
+
+<div id="divPuAddNew_" class="popup-popup">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupNV";
+        settings.Width = 1000;
+        settings.Height = 460;// System.Web.UI.WebControls.Unit.Pixel(350);
+        settings.ShowFooter = true;
+        settings.AllowResize = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        //settings.HeaderText = "Danh sách" + " " + tenPopup;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.PopupAnimationType=PopupAnimationType.Fade;
+        settings.EnableAnimation = false;
+        settings.AppearAfter = 0;
+        settings.ClientSideEvents.CloseUp = "function(s, e) { CloseUpNV(); }";
+    }).GetHtml()
+</div>
+
+<div id="divPuAddNew__" class="popup-PQ">
+    @Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "popupPQ";
+        settings.Width = 1000;
+        settings.Height = 300;// System.Web.UI.WebControls.Unit.Pixel(350);
+        settings.ShowFooter = true;
+        settings.AllowResize = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.FooterText = "Footer text";
+        settings.ShowFooter = false;
+        //settings.HeaderText = "Danh sách" + " " + tenPopup;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        //settings.PopupAnimationType=PopupAnimationType.Fade;
+        settings.EnableAnimation = false;
+        settings.AppearAfter = 0;
+        //settings.ClientSideEvents.CloseUp = "function(s, e) { CloseUpNV(); }";
+    }).GetHtml()
+</div>

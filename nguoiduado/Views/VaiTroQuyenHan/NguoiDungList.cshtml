@@ -1,0 +1,79 @@
+﻿<script src="@Url.Content("~/Content/Script/CommonCategories.js")" type="text/javascript"></script>
+
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvPaging";
+        settings.KeyFieldName = "MaNguoiDung";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "NguoiDungList" };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+        settings.Styles.Cell.Wrap = DefaultBoolean.False;
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenDangNhap";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Tên đăng nhập";
+        });
+      
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HoVaTen";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Họ và tên";
+        });
+      
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ChucDanh";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Chức danh";
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DonViCongTac";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Cơ cấu tổ chức";
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "GhiChu";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(22);
+            column.Caption = "Diễn giải";
+        });
+
+
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Bottom;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "20", "30", "40" };
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 40;
+        settings.Settings.VerticalScrollableHeight = 350;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+
+        settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+
+        settings.CommandColumn.Width = System.Web.UI.WebControls.Unit.Percentage(8);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ClearFilterButton.Visible = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+        settings.CommandColumn.SetHeaderTemplateContent(c => Html.DevExpress().CheckBox(settingsCheckBox =>
+        {
+            settingsCheckBox.Name = "cbSelectAll";
+            settingsCheckBox.Properties.ClientSideEvents.CheckedChanged = string.Format("function(s, e) {{ if(s.GetChecked()) {0}.SelectRows(); else {0}.UnselectRows(); }}", settings.Name);
+            settingsCheckBox.Checked = c.Grid.VisibleRowCount == c.Grid.Selection.Count;
+            settingsCheckBox.ControlStyle.CssClass = "chkcss";
+        }).Render());
+
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "gridRowDoubleClick";
+    }).Bind(Model).GetHtml()

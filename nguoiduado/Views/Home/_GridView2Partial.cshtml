@@ -1,0 +1,115 @@
+﻿@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView2";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridView2Partial" };
+		settings.KeyFieldName = "LietSiID";
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Width = Unit.Percentage(100);
+        settings.Height = 1000;
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = false;
+        settings.KeyFieldName = "LietSiID";
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HoVaTen";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Họ và tên liệt sĩ";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NamSinh";
+            column.Width = Unit.Percentage(10);
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+            column.Caption = "Năm sinh";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NguyenQuan";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Nguyên quán";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CapBacChucVu";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Cấp bậc chức vụ";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DonViLucHySinh";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Đơn vị lúc hi sinh";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "NgayHiSinh";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Ngày hi sinh";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HoVaTenThanNhan";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Họ tên thân nhân";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DiaChiThanNhan";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Địa chỉ thân nhân";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DienThoaiThanNhan";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Điện thoại thân nhân";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "EmailThanNhan";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Email thân nhân";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MoTaThem";
+            column.Width = Unit.Percentage(10);
+            column.Caption = "Mô tả thêm";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+			});
+}
+@grid.Bind(Model).GetHtml()

@@ -1,0 +1,71 @@
+﻿@model System.Collections.IEnumerable
+@{
+    Layout = "~/Views/Shared/ViewLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#btnSelect').click(function () {
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "HoVaTen", GetRowValuesHT);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "ViTriCongViec", GetRowValuesVT);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DonViCongTac", GetRowValuesDV);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DTDD", GetRowValuesDTDT);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "DTCQ", GetRowValuesDTCQ);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "EmailCQ", GetRowValuesEmail);
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "UserID", GetRowValues);ViTriCongViec/ DonViCongTac / DTDD
+            //gvPaging.GetRowValues(gvPaging.GetFocusedRowIndex(), "HoVaTen", GetRowValues2);
+            $('#idvaitros').val(gvVaiTroNV.GetSelectedKeysOnPage());
+            isSelect = true;
+            
+            if (gvVaiTroNV.GetSelectedKeysOnPage().length == 0) {
+                alert('Bạn chưa chọn vai trò');
+                return false;
+            }
+            return true;
+        });
+
+
+        $('#btnCancel').click(function () {
+            window.parent.eventClosePopupAddRole();
+        });
+
+        if ($('#hdSuccess').val() == 'true') {
+            window.parent.eventClosePopupAddRole();
+        }
+    });
+    function OnBeginCallback(s, e) {
+        //e.customArgs["MaDonVi"] = madonvi;
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("ListVaiTroNV", Model)
+    <div class="page">
+        <ul>
+            <li>
+                @Html.DevExpress().Button(
+                    settings =>
+                    {
+                        settings.Name = "btnSelect";
+                        settings.Text = "Chọn";
+                        settings.UseSubmitBehavior = true;
+                    }
+                ).GetHtml()
+            </li>
+            <li>
+                @Html.DevExpress().Button(
+                    settings =>
+                    {
+                        settings.Name = "btnCancel";
+                        settings.Text = "Thoát";
+                        //settings.ClientSideEvents.Click = "CloseListNguoiDungPopup";
+                    }
+                ).GetHtml()
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" id="idvaitros" name="idvaitros" />
+    <input type="hidden" id="hdSuccess" name="hdSuccess" value="@ViewBag.Success"/>
+
+}

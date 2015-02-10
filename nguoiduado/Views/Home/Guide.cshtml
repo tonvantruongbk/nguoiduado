@@ -1,0 +1,42 @@
+﻿
+<html lang="vi">
+@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
+@using nguoiduado.Models
+@model nguoiduado.Models.TBL_NoiDung
+
+
+<head>
+    <title>Nguoiduado.vn</title>
+</head>
+<body>
+<div class="col-sm-8">
+    <div class="category">
+        <h3>Hướng dẫn</h3>
+        <div class="guide">
+            <h4>QUÝ THÂN NHÂN LIỆT SĨ VÀ QUÝ ĐỘC GIẢ KHI VÀO WEBSITE ĐỂ TÌM THÔNG TIN MỘ LIỆT SĨ CẦN LƯU Ý:</h4>
+            <p><strong class="clred">1. Đây là công trình thiện nguyện do Nguyễn Sỹ Hồ</strong> (mà mọi người đã đặt tên cho là Người đưa đò) thực hiện từ khâu tìm kiếm thông tin cho đến khâu cuối cùng là đưa lên web để giúp mọi người nên áp lực rất nặng nề. Vì thế để nhẹ bớt thời gian và công sức cho phần việc quản trị trang web, mong quý vị hết sức chú ý:</p>
+            <p>
+                <strong>Thứ nhất:</strong> Cần tìm thông tin mộ liệt sĩ, quý vị click chuột vào nút lệnh "TÌM MỘ LIỆT SĨ" ở cột bên phải trang web rồi cung cấp các thông tin muốn tìm, sau đó bấm lệnh "Tìm kiếm". Nếu càng nhiều yêu cầu thì phạm vi tìm kiếm càng thu hẹp. Một điều hết sức chú ý nữa là tên liệt sĩ trên bia mộ và trong giấy báo tử có thể không trùng khớp vì rất nhiều nguyên nhân. Ví dụ tên Vương rất có thể trên bia mộ là Dương, tên Diên trên bia mộ là Duyên, tên Trắc ghi thành tên Chắt, ..., cá biệt hơn quê ở Hoà Bình ghi thành Hà Bắc, Hà Tây ghi thành Hà Tĩnh.<br>
+                Vì thế có rất nhiều mộ liệt sĩ chỉ tìm được bắng cách tìm thủ công nhu sau: Bấm chọn chuyên mục "Danh sách mộ liệt sĩ", website sẽ hiển thị danh sách mộ liệt sĩ có trong thư viện Người đưa đò. Để khoanh vùng tìm kiếm, quý vị mở ComboBox "Chọn tỉnh thành" để chọn tỉnh, có thể mở tiếp ComboBox "Chọn nghĩa trang" để khoanh vùng nhỏ hơn.
+            </p>
+            <p>
+                <strong>Thứ hai:</strong> Khi cần đăng tin nhờ tìm mộ liệt sĩ thì click vào nút lệnh "ĐĂNG TIN TÌM MỘ", cung cấp các thông tin cần thiết theo mẫu, thông tin có đánh dấu (*) là bắt buộc, sau đó bấm lệnh "Gửi đi". Đề nghị quý vị cố gắng tìm kiếm thật kỹ như hướng dẫn trên rồi mới đăng tin. Khi đăng tin, quý vị cố gắng viết chữ có dấu tiếng Việt, kiểm tra kỹ các thông tin trước khi gửi đi tránh trường hợp đăng tin nhiều lần.<br>
+                Có những trường hợp thông tin mộ liệt sĩ có sẵn ngay trong kho tư liệu của Người đưa đò nhưng một số thông tin bị sai lệch, vậy mà quý vị chưa tìm kiếm, cứ đăng tin rất nhiều lần. Việc đăng tin ở đây không chỉ nhờ riêng Người đưa đò mà có thể đồng đội, bạn bè, người quen, độc giả biết thông tin mộ liệt sĩ để rồi họ thông báo cho gia đình. Chú ý không đăng tin vào mục "Bài viết của thành viên" hay mục "Ý kiến bạn đọc".
+            </p>
+            <p><strong>Thứ ba:</strong> Chuyên mục "Bài viết của thành viên" là nơi dành riêng cho những thành viên đã đăng ký của website www.nguoiduado.vn đăng các bài viết, chính kiến của mình về các vấn đề liên quan lĩnh vực tìm mộ liệt sĩ, chế độ chính sách, những bức xúc, ... hoặc những chia sẻ với Người đưa đò.</p>
+            <p><strong>Thứ tư:</strong> "Ý kiến của bạn" (nằm cuối mỗi tin) là nơi để quý ghi ý kiến về bài viết cùng những chia sẻ của mình. Không đăng tin nhờ tìm mộ vào đây!</p>
+            <p><strong class="clred">2. Thông tin được chia thành hai nhóm:</strong></p>
+            <p><strong>Nhóm 1:</strong> Thông tin mộ liệt sĩ có trong các Nghĩa trang liệt sĩ. Khi tìm thấy thông tin mộ liệt sĩ tức chắc chắn có mộ trên Nghĩa trang. Còn có hài cốt hay không lại là một chuyện khác.</p>
+            <p><strong>Nhóm 2:</strong> Thông tin về liệt sĩ được ghi nhận tại thời điểm liệt sĩ hi sinh. Khi tìm thấy tên liệt sĩ trong nhóm này, có thể liệt sĩ có mộ với đầy đủ thông tin trong một NTLS nào đó, có thể nằm trong khu mộ chưa biết tên của một NTLS, cũng có thể hài cốt liệt sĩ đang nằm tại nơi mai táng ban đầu. Chúng tôi cung cấp nhóm thông tin này nhằm giúp quý thân nhân liệt sĩ định hướng đúng khi đi tìm mộ người thân.</p>
+            <div class="line"></div>
+            <p>Website đang trong quá trình xây dựng và nhập liệu, Người đưa đò đang từng bước để hoàn thiện nó. Rất mong quý vị cùng chung tay, góp sức để công trình phát triển bến vững!</p>
+            <p>
+                <strong class="clred">Lưu ý:</strong><br>
+                Các bài viết và thông tin tìm mộ đăng vào không đúng chuyên mục, các mẫu tin, ý kiến đánh máy không dấu tiếng Việt sẽ bị xóa, mong quý thân nhân liệt sĩ tìm hiểu kỹ trước khi thực hiện các thao tác với website này.
+            </p>
+        </div>
+    </div>
+</div>
+   
+</body>
+</html>

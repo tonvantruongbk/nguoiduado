@@ -1,0 +1,45 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView2";
+        settings.CallbackRouteValues = new { Controller = "DanhMucDiaPhuong", Action = "GridView2Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DanhMucDiaPhuong", Action = "GridView2PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DanhMucDiaPhuong", Action = "GridView2PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DanhMucDiaPhuong", Action = "GridView2PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "MaDiaPhuong";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsText.CommandCancel = "Cancel";
+        settings.SettingsText.CommandDelete = "Xóa";
+        settings.SettingsText.CommandUpdate = "Cập nhật";
+        settings.SettingsText.CommandNew = "Thêm mới";
+        settings.SettingsText.CommandEdit = "Sửa";
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenDiaPhuong";
+            column.Width = Unit.Percentage(100);
+            column.Caption = "Tên Địa Phương";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

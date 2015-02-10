@@ -1,0 +1,20 @@
+﻿@using System.Web.UI.WebControls
+@model RS.nguoiduadoTW.NET.Models.QuanLyNguoiDungViewModel
+@Html.DevExpress().CallbackPanel(
+    settings =>
+    {
+        settings.Name = "cbpDetail";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "DetailPanel" };
+        settings.Width =Unit.Percentage(100);
+        settings.Height = 300;
+
+        settings.SetContent(() =>
+                                {
+                                    ViewContext.Writer.Write(
+                                        Html.Action("DetailPageControl", Model));
+                                });
+
+        settings.ClientSideEvents.BeginCallback = "DetailNguoiDungPanelOnBeginCallback";
+        //settings.ClientSideEvents.EndCallback = "DetailNguoiDungPanelOnEndCallback";
+    }
+).GetHtml()

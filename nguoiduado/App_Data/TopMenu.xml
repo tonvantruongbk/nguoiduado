@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <Group Text ="Quản trị">
+    <item Text="Danh mục menu trang chủ" NavigateUrl="/MenuDanhMuc/Index"  />
+    <item Text="Danh sách thành viên" NavigateUrl="/ThanhVien/Index"  />
+    <item Text="Danh mục địa phương" NavigateUrl="/DanhMucDiaPhuong/Index"  />
+    <item Text="Liên kết website" NavigateUrl="/LienKetWeb/Index"  />
+  </Group>
+  <Group Text ="Bài Viết">
+    <item Text="Danh mục bài viết" NavigateUrl="/DanhMucBaiViet/Index" />
+    <item Text="Danh mục phản hồi" NavigateUrl="/DanhMucBaiViet/Index" />
+  </Group>
+
+  <item Text="Danh mục liệt sĩ" NavigateUrl="/DanhMucLietSi/Index"  />
+  
+</items>

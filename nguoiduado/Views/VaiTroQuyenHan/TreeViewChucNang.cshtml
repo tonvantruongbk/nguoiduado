@@ -1,0 +1,9 @@
+﻿@model System.Data.DataTable
+@Html.DevExpress().TreeView(settings =>
+                                {
+                                    settings.Name = "treeChucNang";
+                                    settings.ClientSideEvents.NodeClick = "OnTreeViewChucNangNodeClick";
+                                    //settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "TreeViewChucNang" };
+                                    settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['MaChucNang'] = machucnang;}";
+                                    RS.nguoiduadoTW.NET.Controllers.HoSo.VaiTroQuyenHanController.CreateTreeViewChucNangNodesRecursive(Model, settings.Nodes, 0);
+                                }).GetHtml()

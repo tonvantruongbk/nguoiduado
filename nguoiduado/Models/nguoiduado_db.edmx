@@ -1,0 +1,1314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nguoiduado_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBL_AD_Menu">
+          <Key>
+            <PropertyRef Name="MaMenu" />
+          </Key>
+          <Property Name="MaMenu" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CapMenu" Type="tinyint" />
+          <Property Name="MaMenuCha" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="TenMenu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuDung" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro">
+          <Key>
+            <PropertyRef Name="MaVaiTro" />
+          </Key>
+          <Property Name="MaVaiTro" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenVaiTro" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhatHanhBaiViet" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro_Menu">
+          <Key>
+            <PropertyRef Name="MaVaiTroManHinh" />
+          </Key>
+          <Property Name="MaVaiTroManHinh" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaMenu" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaVaiTro" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="SuDung" Type="bit" Nullable="false" />
+          <Property Name="Them" Type="bit" Nullable="false" />
+          <Property Name="Sua" Type="bit" Nullable="false" />
+          <Property Name="Xoa" Type="bit" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro_NguoiDung">
+          <Key>
+            <PropertyRef Name="MaVaiTroNguoiDung" />
+          </Key>
+          <Property Name="MaVaiTroNguoiDung" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNguoiDung" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaVaiTro" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Counter">
+          <Key>
+            <PropertyRef Name="MaCounter" />
+          </Key>
+          <Property Name="MaCounter" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Counter" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_DanhSachLietSi">
+          <Key>
+            <PropertyRef Name="LietSiID" />
+          </Key>
+          <Property Name="LietSiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoVaTen" Type="nvarchar" MaxLength="200" />
+          <Property Name="NamSinh" Type="nvarchar" MaxLength="200" />
+          <Property Name="NguyenQuan" Type="nvarchar" MaxLength="500" />
+          <Property Name="CapBacChucVu" Type="nvarchar" MaxLength="500" />
+          <Property Name="DonViLucHySinh" Type="nvarchar" MaxLength="500" />
+          <Property Name="NgayHiSinh" Type="datetime" />
+          <Property Name="HoVaTenThanNhan" Type="nvarchar" MaxLength="200" />
+          <Property Name="DiaChiThanNhan" Type="nvarchar" MaxLength="500" />
+          <Property Name="DienThoaiThanNhan" Type="nvarchar" MaxLength="15" />
+          <Property Name="EmailThanNhan" Type="nvarchar" MaxLength="200" />
+          <Property Name="MoTaThem" Type="ntext" />
+          <Property Name="TrangThaiHienThi" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_DiaPhuong">
+          <Key>
+            <PropertyRef Name="MaDiaPhuong" />
+          </Key>
+          <Property Name="MaDiaPhuong" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDiaPhuong" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TBL_LichSu">
+          <Key>
+            <PropertyRef Name="IDLichSu" />
+          </Key>
+          <Property Name="IDLichSu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="MaNoiDung" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="TieuDe" Type="ntext" />
+          <Property Name="Menu" Type="nvarchar" MaxLength="512" />
+          <Property Name="NguonTin" Type="nvarchar" MaxLength="512" />
+          <Property Name="FileAttachment" Type="nvarchar" MaxLength="512" />
+          <Property Name="LoaiKhaiThac" Type="nvarchar" MaxLength="512" />
+          <Property Name="LoaiBaiViet" Type="nvarchar" MaxLength="512" />
+          <Property Name="TrichDan" Type="ntext" />
+          <Property Name="ChiTiet" Type="ntext" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="200" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="200" />
+          <Property Name="PictureId" Type="int" />
+          <Property Name="PictureBinary" Type="ntext" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TBL_LienKet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkWeb" Type="nvarchar" MaxLength="512" />
+          <Property Name="TenLienKet" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="TBL_MenuDanhMuc">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CapMenu" Type="int" />
+          <Property Name="MenuCha" Type="int" />
+          <Property Name="TenMenu" Type="nvarchar" MaxLength="256" />
+          <Property Name="Link" Type="nvarchar" MaxLength="256" />
+          <Property Name="ThuTu" Type="int" />
+          <Property Name="TrangThaiHienThi" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_NoiDung">
+          <Key>
+            <PropertyRef Name="MaNoiDung" />
+          </Key>
+          <Property Name="MaNoiDung" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSo" Type="nvarchar(max)" />
+          <Property Name="MenuID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="TieuDe" Type="ntext" />
+          <Property Name="LinkAnh" Type="nvarchar" MaxLength="512" />
+          <Property Name="NoiDung" Type="ntext" />
+          <Property Name="TrichDan" Type="ntext" />
+          <Property Name="Comment" Type="ntext" />
+          <Property Name="NguoiNhap" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayNhap" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="TrangThaiPhatHanh" Type="int" />
+          <Property Name="MucUuTienBaiViet" Type="int" />
+          <Property Name="NguonTin" Type="nvarchar" MaxLength="512" />
+          <Property Name="NguoiDuyet" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayDuyet" Type="datetime" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="FileWord" Type="nvarchar" MaxLength="512" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+          <Property Name="FileImage" Type="nvarchar" MaxLength="512" />
+          <Property Name="KhaiThac" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaLienQuanBaiViet" Type="nvarchar" MaxLength="15" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="20" />
+          <Property Name="TuKhoaTag" Type="ntext" />
+          <Property Name="TrangThaiSua" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_NoiDung_lienQuan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNoiDung" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaNoiDungLienQuan" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_PhanHoi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNoiDung" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="Noidung" Type="ntext" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" />
+          <Property Name="NgayDangTin" Type="datetime" Nullable="false" />
+          <Property Name="TenNguoiDang" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaUser" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="MaPhanHoiCha" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureBinary" Type="varbinary(max)" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SeoFilename" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsNew" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_QuangCao">
+          <Key>
+            <PropertyRef Name="QuangCaoID" />
+          </Key>
+          <Property Name="QuangCaoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+          <Property Name="Vitri" Type="int" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="NgayBatDau" Type="datetime" />
+          <Property Name="NgayKetThuc" Type="datetime" />
+          <Property Name="NguoiDang" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="NguoiDuyet" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayDuyet" Type="datetime" />
+          <Property Name="TrangThaiPhatHanh" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_ThanhVien">
+          <Key>
+            <PropertyRef Name="MaThanhVien" />
+          </Key>
+          <Property Name="MaThanhVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HOVATEN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MATKHAU" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NGAYDANGKY" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBL_ThuVienAnh">
+          <Key>
+            <PropertyRef Name="HinhAnhID" />
+          </Key>
+          <Property Name="HinhAnhID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ListAnh" Type="ntext" Nullable="false" />
+          <Property Name="ListNoiDung" Type="ntext" Nullable="false" />
+          <Property Name="NguoiDang" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="TrangThaiPhatHanh" Type="int" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="128" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBL_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaVaiTro" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="MaNhanVien" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
+          <Property Name="HoVaTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="NoiO" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoiSinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="NguyenQuan" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageAvatar" Type="nvarchar" MaxLength="200" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="DienThoaiDD" Type="nvarchar" MaxLength="32" />
+          <Property Name="DienThoaiCD" Type="nvarchar" MaxLength="32" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuDung" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_VanBan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenVanBan" Type="nvarchar" MaxLength="500" />
+          <Property Name="CoQuanPhatHanh" Type="nvarchar" MaxLength="500" />
+          <Property Name="SoHieu" Type="nchar" MaxLength="20" />
+          <Property Name="NgayBanHanh" Type="date" />
+          <Property Name="TrichYeuNoiDung" Type="nvarchar" MaxLength="500" />
+          <Property Name="NguoiKy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoaiVanBan" Type="nvarchar" MaxLength="50" />
+          <Property Name="TepVanBan1" Type="nvarchar" MaxLength="512" />
+          <Property Name="TepVanBan2" Type="nvarchar" MaxLength="512" />
+          <Property Name="TepVanBan3" Type="nvarchar" MaxLength="512" />
+          <Property Name="TepVanBan4" Type="nvarchar" MaxLength="512" />
+          <Property Name="TepVanBan5" Type="nvarchar" MaxLength="512" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Video">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="200" />
+          <Property Name="LinkAnh" Type="ntext" />
+          <Property Name="LinkVideo" Type="ntext" />
+          <Property Name="NguonTin" Type="nvarchar" MaxLength="128" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="NguoiDang" Type="nvarchar" MaxLength="64" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="NguoiCapNhat" Type="nvarchar" MaxLength="64" />
+          <Property Name="NgayCapNhat" Type="datetime" />
+          <Property Name="TrangThaiPhatHanh" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu">
+          <End Role="TBL_AD_Menu" Type="Self.TBL_AD_Menu" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_Menu" Type="Self.TBL_AD_VaiTro_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_Menu">
+              <PropertyRef Name="MaMenu" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_Menu">
+              <PropertyRef Name="MaMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_Menu" Type="Self.TBL_AD_VaiTro_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_Menu">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_NguoiDung" Type="Self.TBL_AD_VaiTro_NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_NguoiDung">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_User">
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_NguoiDung" Type="Self.TBL_AD_VaiTro_NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NoiDung_lienQuan_TBL_NoiDung">
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="1" />
+          <End Role="TBL_NoiDung_lienQuan" Type="Self.TBL_NoiDung_lienQuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_NoiDung">
+              <PropertyRef Name="MaNoiDung" />
+            </Principal>
+            <Dependent Role="TBL_NoiDung_lienQuan">
+              <PropertyRef Name="MaNoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NoiDung_TBL_Menu">
+          <End Role="TBL_MenuDanhMuc" Type="Self.TBL_MenuDanhMuc" Multiplicity="0..1" />
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MenuDanhMuc">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="TBL_NoiDung">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_PhanHoi_TBL_NoiDung">
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="0..1" />
+          <End Role="TBL_PhanHoi" Type="Self.TBL_PhanHoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_NoiDung">
+              <PropertyRef Name="MaNoiDung" />
+            </Principal>
+            <Dependent Role="TBL_PhanHoi">
+              <PropertyRef Name="MaNoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_User_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="0..1" />
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_User">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nguoiduado_dbModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_AD_Menu" EntityType="Self.TBL_AD_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_AD_VaiTro" EntityType="Self.TBL_AD_VaiTro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_AD_VaiTro_Menu" EntityType="Self.TBL_AD_VaiTro_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_AD_VaiTro_NguoiDung" EntityType="Self.TBL_AD_VaiTro_NguoiDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Counter" EntityType="Self.TBL_Counter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DanhSachLietSi" EntityType="Self.TBL_DanhSachLietSi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DiaPhuong" EntityType="Self.TBL_DiaPhuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_LichSu" EntityType="Self.TBL_LichSu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_LienKet" EntityType="Self.TBL_LienKet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MenuDanhMuc" EntityType="Self.TBL_MenuDanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_NoiDung" EntityType="Self.TBL_NoiDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_NoiDung_lienQuan" EntityType="Self.TBL_NoiDung_lienQuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PhanHoi" EntityType="Self.TBL_PhanHoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Picture" EntityType="Self.TBL_Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_QuangCao" EntityType="Self.TBL_QuangCao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_ThanhVien" EntityType="Self.TBL_ThanhVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_ThuVienAnh" EntityType="Self.TBL_ThuVienAnh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_User" EntityType="Self.TBL_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_VanBan" EntityType="Self.TBL_VanBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Video" EntityType="Self.TBL_Video" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu" Association="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu">
+            <End Role="TBL_AD_Menu" EntitySet="TBL_AD_Menu" />
+            <End Role="TBL_AD_VaiTro_Menu" EntitySet="TBL_AD_VaiTro_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro" Association="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_AD_VaiTro_Menu" EntitySet="TBL_AD_VaiTro_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro" Association="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_AD_VaiTro_NguoiDung" EntitySet="TBL_AD_VaiTro_NguoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_User" Association="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_AD_VaiTro_NguoiDung" EntitySet="TBL_AD_VaiTro_NguoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NoiDung_lienQuan_TBL_NoiDung" Association="Self.FK_TBL_NoiDung_lienQuan_TBL_NoiDung">
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+            <End Role="TBL_NoiDung_lienQuan" EntitySet="TBL_NoiDung_lienQuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NoiDung_TBL_Menu" Association="Self.FK_TBL_NoiDung_TBL_Menu">
+            <End Role="TBL_MenuDanhMuc" EntitySet="TBL_MenuDanhMuc" />
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_PhanHoi_TBL_NoiDung" Association="Self.FK_TBL_PhanHoi_TBL_NoiDung">
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+            <End Role="TBL_PhanHoi" EntitySet="TBL_PhanHoi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_User_TBL_AD_VaiTro" Association="Self.FK_TBL_User_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_User" EntitySet="TBL_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nguoiduado_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBL_AD_Menu">
+          <Key>
+            <PropertyRef Name="MaMenu" />
+          </Key>
+          <Property Name="MaMenu" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CapMenu" Type="Byte" />
+          <Property Name="MaMenuCha" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TenMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuDung" Type="Boolean" />
+          <NavigationProperty Name="TBL_AD_VaiTro_Menu" Relationship="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu" FromRole="TBL_AD_Menu" ToRole="TBL_AD_VaiTro_Menu" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro">
+          <Key>
+            <PropertyRef Name="MaVaiTro" />
+          </Key>
+          <Property Name="MaVaiTro" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenVaiTro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhatHanhBaiViet" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TBL_AD_VaiTro_Menu" Relationship="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro" FromRole="TBL_AD_VaiTro" ToRole="TBL_AD_VaiTro_Menu" />
+          <NavigationProperty Name="TBL_AD_VaiTro_NguoiDung" Relationship="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro" FromRole="TBL_AD_VaiTro" ToRole="TBL_AD_VaiTro_NguoiDung" />
+          <NavigationProperty Name="TBL_User" Relationship="Self.FK_TBL_User_TBL_AD_VaiTro" FromRole="TBL_AD_VaiTro" ToRole="TBL_User" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro_Menu">
+          <Key>
+            <PropertyRef Name="MaVaiTroManHinh" />
+          </Key>
+          <Property Name="MaVaiTroManHinh" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaMenu" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaVaiTro" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="SuDung" Type="Boolean" Nullable="false" />
+          <Property Name="Them" Type="Boolean" Nullable="false" />
+          <Property Name="Sua" Type="Boolean" Nullable="false" />
+          <Property Name="Xoa" Type="Boolean" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_AD_Menu" Relationship="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu" FromRole="TBL_AD_VaiTro_Menu" ToRole="TBL_AD_Menu" />
+          <NavigationProperty Name="TBL_AD_VaiTro" Relationship="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro" FromRole="TBL_AD_VaiTro_Menu" ToRole="TBL_AD_VaiTro" />
+        </EntityType>
+        <EntityType Name="TBL_AD_VaiTro_NguoiDung">
+          <Key>
+            <PropertyRef Name="MaVaiTroNguoiDung" />
+          </Key>
+          <Property Name="MaVaiTroNguoiDung" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNguoiDung" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaVaiTro" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_AD_VaiTro" Relationship="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro" FromRole="TBL_AD_VaiTro_NguoiDung" ToRole="TBL_AD_VaiTro" />
+          <NavigationProperty Name="TBL_User" Relationship="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_User" FromRole="TBL_AD_VaiTro_NguoiDung" ToRole="TBL_User" />
+        </EntityType>
+        <EntityType Name="TBL_Counter">
+          <Key>
+            <PropertyRef Name="MaCounter" />
+          </Key>
+          <Property Name="MaCounter" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Counter" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_DanhSachLietSi">
+          <Key>
+            <PropertyRef Name="LietSiID" />
+          </Key>
+          <Property Name="LietSiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoVaTen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NamSinh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NguyenQuan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CapBacChucVu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DonViLucHySinh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NgayHiSinh" Type="DateTime" Precision="3" />
+          <Property Name="HoVaTenThanNhan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiThanNhan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoaiThanNhan" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="EmailThanNhan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaThem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThaiHienThi" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_DiaPhuong">
+          <Key>
+            <PropertyRef Name="MaDiaPhuong" />
+          </Key>
+          <Property Name="MaDiaPhuong" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDiaPhuong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_LichSu">
+          <Key>
+            <PropertyRef Name="IDLichSu" />
+          </Key>
+          <Property Name="IDLichSu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="MaNoiDung" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Menu" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="NguonTin" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="FileAttachment" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiKhaiThac" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiBaiViet" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TrichDan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PictureId" Type="Int32" />
+          <Property Name="PictureBinary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MimeType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_LienKet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkWeb" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TenLienKet" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_MenuDanhMuc">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CapMenu" Type="Int32" />
+          <Property Name="MenuCha" Type="Int32" />
+          <Property Name="TenMenu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ThuTu" Type="Int32" />
+          <Property Name="TrangThaiHienThi" Type="Boolean" />
+          <NavigationProperty Name="TBL_NoiDung" Relationship="Self.FK_TBL_NoiDung_TBL_Menu" FromRole="TBL_MenuDanhMuc" ToRole="TBL_NoiDung" />
+        </EntityType>
+        <EntityType Name="TBL_NoiDung">
+          <Key>
+            <PropertyRef Name="MaNoiDung" />
+          </Key>
+          <Property Name="MaNoiDung" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkAnh" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrichDan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayNhap" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="TrangThaiPhatHanh" Type="Int32" />
+          <Property Name="MucUuTienBaiViet" Type="Int32" />
+          <Property Name="NguonTin" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiDuyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDuyet" Type="DateTime" Precision="3" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="FileWord" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+          <Property Name="FileImage" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="KhaiThac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaLienQuanBaiViet" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TuKhoaTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThaiSua" Type="Int32" />
+          <NavigationProperty Name="TBL_MenuDanhMuc" Relationship="Self.FK_TBL_NoiDung_TBL_Menu" FromRole="TBL_NoiDung" ToRole="TBL_MenuDanhMuc" />
+          <NavigationProperty Name="TBL_NoiDung_lienQuan" Relationship="Self.FK_TBL_NoiDung_lienQuan_TBL_NoiDung" FromRole="TBL_NoiDung" ToRole="TBL_NoiDung_lienQuan" />
+          <NavigationProperty Name="TBL_PhanHoi" Relationship="Self.FK_TBL_PhanHoi_TBL_NoiDung" FromRole="TBL_NoiDung" ToRole="TBL_PhanHoi" />
+        </EntityType>
+        <EntityType Name="TBL_NoiDung_lienQuan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNoiDung" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="MaNoiDungLienQuan" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <NavigationProperty Name="TBL_NoiDung" Relationship="Self.FK_TBL_NoiDung_lienQuan_TBL_NoiDung" FromRole="TBL_NoiDung_lienQuan" ToRole="TBL_NoiDung" />
+        </EntityType>
+        <EntityType Name="TBL_PhanHoi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNoiDung" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="NgayDangTin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TenNguoiDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaUser" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="MaPhanHoiCha" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_NoiDung" Relationship="Self.FK_TBL_PhanHoi_TBL_NoiDung" FromRole="TBL_PhanHoi" ToRole="TBL_NoiDung" />
+        </EntityType>
+        <EntityType Name="TBL_Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SeoFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsNew" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_QuangCao">
+          <Key>
+            <PropertyRef Name="QuangCaoID" />
+          </Key>
+          <Property Name="QuangCaoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+          <Property Name="Vitri" Type="Int32" Nullable="false" />
+          <Property Name="LinkUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBatDau" Type="DateTime" Precision="3" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="3" />
+          <Property Name="NguoiDang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="NguoiDuyet" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDuyet" Type="DateTime" Precision="3" />
+          <Property Name="TrangThaiPhatHanh" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBL_ThanhVien">
+          <Key>
+            <PropertyRef Name="MaThanhVien" />
+          </Key>
+          <Property Name="MaThanhVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HOVATEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAYDANGKY" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBL_ThuVienAnh">
+          <Key>
+            <PropertyRef Name="HinhAnhID" />
+          </Key>
+          <Property Name="HinhAnhID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListNoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NguoiDang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="TrangThaiPhatHanh" Type="Int32" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBL_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaVaiTro" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="MaNhanVien" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoVaTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="NoiO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoiSinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NguyenQuan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageAvatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoaiDD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoaiCD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuDung" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TBL_AD_VaiTro" Relationship="Self.FK_TBL_User_TBL_AD_VaiTro" FromRole="TBL_User" ToRole="TBL_AD_VaiTro" />
+          <NavigationProperty Name="TBL_AD_VaiTro_NguoiDung" Relationship="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_User" FromRole="TBL_User" ToRole="TBL_AD_VaiTro_NguoiDung" />
+        </EntityType>
+        <EntityType Name="TBL_VanBan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenVanBan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CoQuanPhatHanh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SoHieu" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="NgayBanHanh" Type="DateTime" Precision="0" />
+          <Property Name="TrichYeuNoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiKy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiVanBan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TepVanBan1" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TepVanBan2" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TepVanBan3" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TepVanBan4" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="TepVanBan5" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_Video">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LinkAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguonTin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="NguoiDang" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="NguoiCapNhat" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="TrangThaiPhatHanh" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu">
+          <End Role="TBL_AD_Menu" Type="Self.TBL_AD_Menu" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_Menu" Type="Self.TBL_AD_VaiTro_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_Menu">
+              <PropertyRef Name="MaMenu" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_Menu">
+              <PropertyRef Name="MaMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_Menu" Type="Self.TBL_AD_VaiTro_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_Menu">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_NguoiDung" Type="Self.TBL_AD_VaiTro_NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_NguoiDung">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_User_TBL_AD_VaiTro">
+          <End Role="TBL_AD_VaiTro" Type="Self.TBL_AD_VaiTro" Multiplicity="0..1" />
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_AD_VaiTro">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TBL_User">
+              <PropertyRef Name="MaVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_User">
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="1" />
+          <End Role="TBL_AD_VaiTro_NguoiDung" Type="Self.TBL_AD_VaiTro_NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TBL_AD_VaiTro_NguoiDung">
+              <PropertyRef Name="MaNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NoiDung_TBL_Menu">
+          <End Role="TBL_MenuDanhMuc" Type="Self.TBL_MenuDanhMuc" Multiplicity="0..1" />
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MenuDanhMuc">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="TBL_NoiDung">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_NoiDung_lienQuan_TBL_NoiDung">
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="1" />
+          <End Role="TBL_NoiDung_lienQuan" Type="Self.TBL_NoiDung_lienQuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_NoiDung">
+              <PropertyRef Name="MaNoiDung" />
+            </Principal>
+            <Dependent Role="TBL_NoiDung_lienQuan">
+              <PropertyRef Name="MaNoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_PhanHoi_TBL_NoiDung">
+          <End Role="TBL_NoiDung" Type="Self.TBL_NoiDung" Multiplicity="0..1" />
+          <End Role="TBL_PhanHoi" Type="Self.TBL_PhanHoi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_NoiDung">
+              <PropertyRef Name="MaNoiDung" />
+            </Principal>
+            <Dependent Role="TBL_PhanHoi">
+              <PropertyRef Name="MaNoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nguoiduado_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TBL_AD_Menu" EntityType="Self.TBL_AD_Menu" />
+          <EntitySet Name="TBL_AD_VaiTro" EntityType="Self.TBL_AD_VaiTro" />
+          <EntitySet Name="TBL_AD_VaiTro_Menu" EntityType="Self.TBL_AD_VaiTro_Menu" />
+          <EntitySet Name="TBL_AD_VaiTro_NguoiDung" EntityType="Self.TBL_AD_VaiTro_NguoiDung" />
+          <EntitySet Name="TBL_Counter" EntityType="Self.TBL_Counter" />
+          <EntitySet Name="TBL_DanhSachLietSi" EntityType="Self.TBL_DanhSachLietSi" />
+          <EntitySet Name="TBL_DiaPhuong" EntityType="Self.TBL_DiaPhuong" />
+          <EntitySet Name="TBL_LichSu" EntityType="Self.TBL_LichSu" />
+          <EntitySet Name="TBL_LienKet" EntityType="Self.TBL_LienKet" />
+          <EntitySet Name="TBL_MenuDanhMuc" EntityType="Self.TBL_MenuDanhMuc" />
+          <EntitySet Name="TBL_NoiDung" EntityType="Self.TBL_NoiDung" />
+          <EntitySet Name="TBL_NoiDung_lienQuan" EntityType="Self.TBL_NoiDung_lienQuan" />
+          <EntitySet Name="TBL_PhanHoi" EntityType="Self.TBL_PhanHoi" />
+          <EntitySet Name="TBL_Picture" EntityType="Self.TBL_Picture" />
+          <EntitySet Name="TBL_QuangCao" EntityType="Self.TBL_QuangCao" />
+          <EntitySet Name="TBL_ThanhVien" EntityType="Self.TBL_ThanhVien" />
+          <EntitySet Name="TBL_ThuVienAnh" EntityType="Self.TBL_ThuVienAnh" />
+          <EntitySet Name="TBL_User" EntityType="Self.TBL_User" />
+          <EntitySet Name="TBL_VanBan" EntityType="Self.TBL_VanBan" />
+          <EntitySet Name="TBL_Video" EntityType="Self.TBL_Video" />
+          <AssociationSet Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu" Association="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu">
+            <End Role="TBL_AD_Menu" EntitySet="TBL_AD_Menu" />
+            <End Role="TBL_AD_VaiTro_Menu" EntitySet="TBL_AD_VaiTro_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro" Association="Self.FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_AD_VaiTro_Menu" EntitySet="TBL_AD_VaiTro_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro" Association="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_AD_VaiTro_NguoiDung" EntitySet="TBL_AD_VaiTro_NguoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_User_TBL_AD_VaiTro" Association="Self.FK_TBL_User_TBL_AD_VaiTro">
+            <End Role="TBL_AD_VaiTro" EntitySet="TBL_AD_VaiTro" />
+            <End Role="TBL_User" EntitySet="TBL_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_AD_VaiTro_NguoiDung_TBL_User" Association="Self.FK_TBL_AD_VaiTro_NguoiDung_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_AD_VaiTro_NguoiDung" EntitySet="TBL_AD_VaiTro_NguoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NoiDung_TBL_Menu" Association="Self.FK_TBL_NoiDung_TBL_Menu">
+            <End Role="TBL_MenuDanhMuc" EntitySet="TBL_MenuDanhMuc" />
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_NoiDung_lienQuan_TBL_NoiDung" Association="Self.FK_TBL_NoiDung_lienQuan_TBL_NoiDung">
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+            <End Role="TBL_NoiDung_lienQuan" EntitySet="TBL_NoiDung_lienQuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_PhanHoi_TBL_NoiDung" Association="Self.FK_TBL_PhanHoi_TBL_NoiDung">
+            <End Role="TBL_NoiDung" EntitySet="TBL_NoiDung" />
+            <End Role="TBL_PhanHoi" EntitySet="TBL_PhanHoi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nguoiduado_dbModelStoreContainer" CdmEntityContainer="nguoiduado_dbEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_AD_Menu">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_AD_Menu">
+              <MappingFragment StoreEntitySet="TBL_AD_Menu">
+                <ScalarProperty Name="MaMenu" ColumnName="MaMenu" />
+                <ScalarProperty Name="CapMenu" ColumnName="CapMenu" />
+                <ScalarProperty Name="MaMenuCha" ColumnName="MaMenuCha" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="SuDung" ColumnName="SuDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_AD_VaiTro">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_AD_VaiTro">
+              <MappingFragment StoreEntitySet="TBL_AD_VaiTro">
+                <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
+                <ScalarProperty Name="TenVaiTro" ColumnName="TenVaiTro" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="PhatHanhBaiViet" ColumnName="PhatHanhBaiViet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_AD_VaiTro_Menu">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_AD_VaiTro_Menu">
+              <MappingFragment StoreEntitySet="TBL_AD_VaiTro_Menu">
+                <ScalarProperty Name="MaVaiTroManHinh" ColumnName="MaVaiTroManHinh" />
+                <ScalarProperty Name="MaMenu" ColumnName="MaMenu" />
+                <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
+                <ScalarProperty Name="SuDung" ColumnName="SuDung" />
+                <ScalarProperty Name="Them" ColumnName="Them" />
+                <ScalarProperty Name="Sua" ColumnName="Sua" />
+                <ScalarProperty Name="Xoa" ColumnName="Xoa" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_AD_VaiTro_NguoiDung">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_AD_VaiTro_NguoiDung">
+              <MappingFragment StoreEntitySet="TBL_AD_VaiTro_NguoiDung">
+                <ScalarProperty Name="MaVaiTroNguoiDung" ColumnName="MaVaiTroNguoiDung" />
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+                <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Counter">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_Counter">
+              <MappingFragment StoreEntitySet="TBL_Counter">
+                <ScalarProperty Name="MaCounter" ColumnName="MaCounter" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DanhSachLietSi">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_DanhSachLietSi">
+              <MappingFragment StoreEntitySet="TBL_DanhSachLietSi">
+                <ScalarProperty Name="LietSiID" ColumnName="LietSiID" />
+                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="NguyenQuan" ColumnName="NguyenQuan" />
+                <ScalarProperty Name="CapBacChucVu" ColumnName="CapBacChucVu" />
+                <ScalarProperty Name="DonViLucHySinh" ColumnName="DonViLucHySinh" />
+                <ScalarProperty Name="NgayHiSinh" ColumnName="NgayHiSinh" />
+                <ScalarProperty Name="HoVaTenThanNhan" ColumnName="HoVaTenThanNhan" />
+                <ScalarProperty Name="DiaChiThanNhan" ColumnName="DiaChiThanNhan" />
+                <ScalarProperty Name="DienThoaiThanNhan" ColumnName="DienThoaiThanNhan" />
+                <ScalarProperty Name="EmailThanNhan" ColumnName="EmailThanNhan" />
+                <ScalarProperty Name="MoTaThem" ColumnName="MoTaThem" />
+                <ScalarProperty Name="TrangThaiHienThi" ColumnName="TrangThaiHienThi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DiaPhuong">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_DiaPhuong">
+              <MappingFragment StoreEntitySet="TBL_DiaPhuong">
+                <ScalarProperty Name="MaDiaPhuong" ColumnName="MaDiaPhuong" />
+                <ScalarProperty Name="TenDiaPhuong" ColumnName="TenDiaPhuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_LichSu">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_LichSu">
+              <MappingFragment StoreEntitySet="TBL_LichSu">
+                <ScalarProperty Name="IDLichSu" ColumnName="IDLichSu" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="MaNoiDung" ColumnName="MaNoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="NguonTin" ColumnName="NguonTin" />
+                <ScalarProperty Name="FileAttachment" ColumnName="FileAttachment" />
+                <ScalarProperty Name="LoaiKhaiThac" ColumnName="LoaiKhaiThac" />
+                <ScalarProperty Name="LoaiBaiViet" ColumnName="LoaiBaiViet" />
+                <ScalarProperty Name="TrichDan" ColumnName="TrichDan" />
+                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="PictureBinary" ColumnName="PictureBinary" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_LienKet">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_LienKet">
+              <MappingFragment StoreEntitySet="TBL_LienKet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LinkWeb" ColumnName="LinkWeb" />
+                <ScalarProperty Name="TenLienKet" ColumnName="TenLienKet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MenuDanhMuc">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_MenuDanhMuc">
+              <MappingFragment StoreEntitySet="TBL_MenuDanhMuc">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="CapMenu" ColumnName="CapMenu" />
+                <ScalarProperty Name="MenuCha" ColumnName="MenuCha" />
+                <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="TrangThaiHienThi" ColumnName="TrangThaiHienThi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_NoiDung">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_NoiDung">
+              <MappingFragment StoreEntitySet="TBL_NoiDung">
+                <ScalarProperty Name="MaNoiDung" ColumnName="MaNoiDung" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="LinkAnh" ColumnName="LinkAnh" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TrichDan" ColumnName="TrichDan" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="NguoiNhap" ColumnName="NguoiNhap" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="TrangThaiPhatHanh" ColumnName="TrangThaiPhatHanh" />
+                <ScalarProperty Name="MucUuTienBaiViet" ColumnName="MucUuTienBaiViet" />
+                <ScalarProperty Name="NguonTin" ColumnName="NguonTin" />
+                <ScalarProperty Name="NguoiDuyet" ColumnName="NguoiDuyet" />
+                <ScalarProperty Name="NgayDuyet" ColumnName="NgayDuyet" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="FileWord" ColumnName="FileWord" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+                <ScalarProperty Name="KhaiThac" ColumnName="KhaiThac" />
+                <ScalarProperty Name="MaLienQuanBaiViet" ColumnName="MaLienQuanBaiViet" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="TuKhoaTag" ColumnName="TuKhoaTag" />
+                <ScalarProperty Name="TrangThaiSua" ColumnName="TrangThaiSua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_NoiDung_lienQuan">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_NoiDung_lienQuan">
+              <MappingFragment StoreEntitySet="TBL_NoiDung_lienQuan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaNoiDung" ColumnName="MaNoiDung" />
+                <ScalarProperty Name="MaNoiDungLienQuan" ColumnName="MaNoiDungLienQuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PhanHoi">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_PhanHoi">
+              <MappingFragment StoreEntitySet="TBL_PhanHoi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaNoiDung" ColumnName="MaNoiDung" />
+                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayDangTin" ColumnName="NgayDangTin" />
+                <ScalarProperty Name="TenNguoiDang" ColumnName="TenNguoiDang" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+                <ScalarProperty Name="MaPhanHoiCha" ColumnName="MaPhanHoiCha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Picture">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_Picture">
+              <MappingFragment StoreEntitySet="TBL_Picture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PictureBinary" ColumnName="PictureBinary" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="SeoFilename" ColumnName="SeoFilename" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_QuangCao">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_QuangCao">
+              <MappingFragment StoreEntitySet="TBL_QuangCao">
+                <ScalarProperty Name="QuangCaoID" ColumnName="QuangCaoID" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="Vitri" ColumnName="Vitri" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="NguoiDuyet" ColumnName="NguoiDuyet" />
+                <ScalarProperty Name="NgayDuyet" ColumnName="NgayDuyet" />
+                <ScalarProperty Name="TrangThaiPhatHanh" ColumnName="TrangThaiPhatHanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ThanhVien">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_ThanhVien">
+              <MappingFragment StoreEntitySet="TBL_ThanhVien">
+                <ScalarProperty Name="MaThanhVien" ColumnName="MaThanhVien" />
+                <ScalarProperty Name="HOVATEN" ColumnName="HOVATEN" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NGAYDANGKY" ColumnName="NGAYDANGKY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ThuVienAnh">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_ThuVienAnh">
+              <MappingFragment StoreEntitySet="TBL_ThuVienAnh">
+                <ScalarProperty Name="HinhAnhID" ColumnName="HinhAnhID" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ListAnh" ColumnName="ListAnh" />
+                <ScalarProperty Name="ListNoiDung" ColumnName="ListNoiDung" />
+                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="TrangThaiPhatHanh" ColumnName="TrangThaiPhatHanh" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_User">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_User">
+              <MappingFragment StoreEntitySet="TBL_User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="NoiO" ColumnName="NoiO" />
+                <ScalarProperty Name="NoiSinh" ColumnName="NoiSinh" />
+                <ScalarProperty Name="NguyenQuan" ColumnName="NguyenQuan" />
+                <ScalarProperty Name="ImageAvatar" ColumnName="ImageAvatar" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DienThoaiDD" ColumnName="DienThoaiDD" />
+                <ScalarProperty Name="DienThoaiCD" ColumnName="DienThoaiCD" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="SuDung" ColumnName="SuDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_VanBan">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_VanBan">
+              <MappingFragment StoreEntitySet="TBL_VanBan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenVanBan" ColumnName="TenVanBan" />
+                <ScalarProperty Name="CoQuanPhatHanh" ColumnName="CoQuanPhatHanh" />
+                <ScalarProperty Name="SoHieu" ColumnName="SoHieu" />
+                <ScalarProperty Name="NgayBanHanh" ColumnName="NgayBanHanh" />
+                <ScalarProperty Name="TrichYeuNoiDung" ColumnName="TrichYeuNoiDung" />
+                <ScalarProperty Name="NguoiKy" ColumnName="NguoiKy" />
+                <ScalarProperty Name="LoaiVanBan" ColumnName="LoaiVanBan" />
+                <ScalarProperty Name="TepVanBan1" ColumnName="TepVanBan1" />
+                <ScalarProperty Name="TepVanBan2" ColumnName="TepVanBan2" />
+                <ScalarProperty Name="TepVanBan3" ColumnName="TepVanBan3" />
+                <ScalarProperty Name="TepVanBan4" ColumnName="TepVanBan4" />
+                <ScalarProperty Name="TepVanBan5" ColumnName="TepVanBan5" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Video">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_Video">
+              <MappingFragment StoreEntitySet="TBL_Video">
+                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="LinkAnh" ColumnName="LinkAnh" />
+                <ScalarProperty Name="LinkVideo" ColumnName="LinkVideo" />
+                <ScalarProperty Name="NguonTin" ColumnName="NguonTin" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="NguoiCapNhat" ColumnName="NguoiCapNhat" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="TrangThaiPhatHanh" ColumnName="TrangThaiPhatHanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

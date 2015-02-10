@@ -1,0 +1,7 @@
+﻿@model System.Data.DataTable
+@Html.DevExpress().TreeView(settings =>
+                                {
+                                    settings.Name = "treeNhanvien";
+                                    settings.ClientSideEvents.NodeClick = "OnTreeViewNodeClick";
+                                    RS.nguoiduadoTW.NET.Controllers.HoSo.VaiTroQuyenHanController.CreateTreeViewNodesRecursive(Model, settings.Nodes, 0);
+                                }).GetHtml()

@@ -1,0 +1,161 @@
+﻿@using System.Web.UI.WebControls
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvPaging";
+        settings.KeyFieldName = "UserID";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "LstNhanvienPartial" };
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+        settings.Styles.Cell.Wrap=DefaultBoolean.False;
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MaNhanVien";
+            column.Width = Unit.Percentage(10);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Mã nhân viên";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "HoVaTen";
+            column.Width = Unit.Percentage(20);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Họ và tên";
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "GioiTinh";
+            column.Width = Unit.Percentage(10);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Giới tính";
+        });
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ViTriCongViec";
+            column.Width = Unit.Percentage(10);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Vị trí công việc";
+        });
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "NgaySinh";
+        //    column.Width = Unit.Percentage(10);
+        //    column.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        //    column.Caption = "Ngày sinh";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "TrinhDoDaoTao";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Trình độ đào tạo";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "NoiDaoTao";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Nơi đào tạo";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "ChuyenNganh";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Chuyên ngành";
+        //});
+
+       
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "DonViCongTac";
+            column.Width = Unit.Percentage(10);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Đơn vị công tác";
+        });
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "DTDD";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "ĐT di động";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "DTCQ";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "ĐT cơ quan";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "EmailCQ";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Email cơ quan";
+        //});
+        
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "NgayThuViec";
+        //    column.Width = Unit.Percentage(10);
+        //    column.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        //    column.Caption = "Ngày thử việc";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "NgayChinhThuc";
+        //    column.Width = Unit.Percentage(10);
+        //    column.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        //    column.Caption = "Ngày chính thức";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "LoaiHopDong";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Loại hợp đồng";
+        //});
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "TrangThai";
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Trạng thái";
+        //});
+        
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsPager.Position = PagerPosition.Bottom;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "20", "30", "40" };
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 20;
+        settings.Settings.VerticalScrollableHeight = 312;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.ClientSideEvents.BeginCallback = "OnBeginCallback";
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "gridRowDoubleClick";
+
+        settings.CommandColumn.Width = Unit.Percentage(4);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ClearFilterButton.Visible = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+        settings.CommandColumn.SetHeaderTemplateContent(c => Html.DevExpress().CheckBox(settingsCheckBox =>
+        {
+            settingsCheckBox.Name = "cbSelectAll";
+            settingsCheckBox.Properties.ClientSideEvents.CheckedChanged = string.Format("function(s, e) {{ if(s.GetChecked()) {0}.SelectRows(); else {0}.UnselectRows(); }}", settings.Name);
+            settingsCheckBox.Checked = c.Grid.VisibleRowCount == c.Grid.Selection.Count;
+            settingsCheckBox.ControlStyle.CssClass = "chkcss";
+        }).Render());
+    }).Bind(Model).GetHtml()

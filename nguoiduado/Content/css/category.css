@@ -1,0 +1,32 @@
+.category h3{ color:#bd2f28; font:700 20px arial; text-transform:uppercase; border-bottom:solid 1px #bd2f28; margin-bottom:5px}
+
+/*tin tuc*/
+.news li{float:left; width:100%; border-bottom:dotted 1px #cecece; padding:10px 0}
+.news li span{float:left; width:25%; margin-right:2%}
+.news li span img{width:100%; border:solid 1px #ddd; padding:3%}
+.news li div{float:left; width:70%}
+.news li h4{font:700 12px tahoma; margin-bottom:7px}
+.news li h4 a,.news li p a{color:#bd2f28}
+.news li h4 a:hover{color:#0080e2; text-decoration:none}
+.news li p{ margin-bottom:5px}
+.pagination{float:right}
+
+/*gioi thieu*/
+.introduce p,
+.guide p,
+.contact p{padding:7px 0}
+.clred{color:red}
+.clblue{color:#0048b3}
+
+/*huong dan*/
+.guide h4{ font:700 14px/18px arial; text-transform:uppercase; margin-top:10px}
+.line{border-bottom:dashed 1px #000; width:50%; float:left; margin:20px 25%}
+.map{float:left; width:100%; margin:10px 0}
+.map img{width:100%}
+.forminput{float:left; width:100%}
+.forminput input[type="text"],.forminput textarea{border:solid 1px #ccc; width:100%; padding:3px 5px}
+.forminput label{float:left; width:100%; margin-top:20px}
+.forminput p{float:left; width:100%; margin:5px 0}
+.forminput input[type="checkbox"]{margin-right:5px}
+.forminput input[type="button"]{ background:#bd2f28; border:none; color:#fff; font:700 14px arial; padding:7px 20px; border-radius:5px}
+.forminput input[type="button"]:hover{background:#0085ce}

@@ -1,0 +1,189 @@
+/*css Reset*/
+* {margin: 0;padding: 0;}
+body{color: #000;margin: 0;padding: 0; font:12px/18px arial; background:url(../images/bg1.png) repeat}
+table{border-collapse:collapse;}
+a {text-decoration: none;}
+img{border:none}
+ul, li {list-style: none outside none;}
+p,h2,h3,h4{padding:0; margin:0}
+
+/* Float */
+.fl {float: left;}
+.fr {float: right;}
+.clearfix {display: block;width: 100%;}
+.clearfix:after {clear: both;content: ".";display: block;height: 0;visibility: hidden;}
+.clear {clear: both;height: 1px;overflow: hidden;}
+
+.wrap{max-width:1170px; margin:0 auto}
+
+.top{ background:#fff; height:30px; width:100%; float:left}
+.top a{font:12px/30px Tahoma; color:#7c7c7c}
+.top a:hover{text-decoration:none; color:#2e2e2e}
+.top ul{float:left; height:30px}
+.top li{float:left; border-right:solid 1px #cccccc; padding:0 7px}
+.top .support i{background:url(../images/ico_phone.png) no-repeat center left; float:left; width:25px; height:30px}
+.top .user{ float:right}
+.top .signin{float:left; border-right: dotted 1px #ccc; margin-right:5px; padding-right:5px}
+.top .signin i{ background:url(../images/ico_signin.png) no-repeat left center; width:22px; height:30px; float:left}
+.top .register i{background:url(../images/ico_register.png) no-repeat left center;width:22px; height:30px; float:left}
+
+.banner{text-align:center}
+.banner img{width:100%}
+
+/*menu*/
+#menu{background:#2e2e2e}
+.navbar-default{background:#2e2e2e;border:none; border-radius:0;min-height:46px}
+.navbar-default .navbar-nav > li{ padding:0 1px}
+.navbar-default .navbar-nav > li > a{font:700 13px/46px arial; color:#fff; text-transform:uppercase; background:url(../images/menu_line.png) repeat-y right; padding:0 60px}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{background: url(../images/ar_home.png) no-repeat center right #bd2f28; color:#fff}
+
+/*content*/
+.mt10{ margin-top:10px}
+.pr10{ padding-right:10px}
+.pl20{ padding-left:20px}
+
+/*col_left*/
+.menuleft{ border: solid 1px #aaaaaa; float:left; width:100%}
+.menuleft h3{ background:#939393; color:#fff; font:14px/34px tahoma,sans-serif; text-align:center; text-transform:uppercase}
+.menuleft ul{margin:0}
+.menuleft li{ border-bottom:solid 1px #e6e6e6;}
+.menuleft li:last-child{border-bottom:none}
+.menuleft li a{ font:12px tahoma; color:#707070; display:block;padding:7px}
+.menuleft li a:hover{color:#fff; background:#bd2f28; text-decoration: none}
+.menuleft li span{ width:4px; height:4px; float:left; background:#717171; margin:12px 7px; display:block}
+.menuleft li:hover span{background:#fff}
+
+.introduce_oneself{ border: solid 1px #aaaaaa; margin-top:10px; float:left; width:100%}
+.introduce_oneself h3{ background:#bd2f28;color:#fff; font:14px/34px tahoma,sans-serif; text-align:center; text-transform:uppercase}
+.introduce_oneself h4{ text-align:center; color:#ff6b00; font-size:14px; margin:10px 0; text-transform:uppercase}
+.introduce_oneself span{text-align:center; width:90%; margin-left:5%;float:left}
+.introduce_oneself span img{width:100%}
+.introduce_oneself li{ border-bottom:solid 1px #e6e6e6; padding:5px 5%; float:left; width:100%}
+.introduce_oneself p{padding-top:2px; float:left; width:100%}
+.introduce_oneself strong span{ color:#cb160d;text-align: left; margin:0}
+.introduce_oneself p span{color:#1594d3; text-align:left; margin:0}
+
+.weblinks{border: solid 1px #aaaaaa; margin-top:10px; float:left; width:100%; margin-top:10px}
+.weblinks h3{ background:#939393; margin:0; color:#fff; font:14px/34px tahoma,sans-serif; text-align:center; text-transform:uppercase}
+.weblinks li{border-bottom:solid 1px #e6e6e6; padding:10px 5%; float:left; width:100%; text-align:center}
+.weblinks span{text-align:center; width:90%; margin-left:5%;float:left}
+.weblinks span img{max-width:100%; margin-bottom:5px}
+.weblinks li a p{ float:left; width:100%;color:#000}
+.weblinks li a:hover p{color:red}
+
+.statistic{border: solid 1px #aaaaaa; margin-top:10px; float:left; width:100%; margin-top:10px; font-size:11px}
+.statistic h3{ background:#939393; color:#fff; font:14px/34px tahoma; text-align:center; text-transform:uppercase}
+.statistic p{padding:2px 3%; float:left; width:100%}
+.statistic p span{float:left}
+.statistic p strong{font-size:12px; color:#b83f2b; float:right}
+.statistic h4{text-transform:uppercase; color:#0f72aa; font-size:11px; padding:5px 3%; float:left; width:100%}
+.mem_list{ margin:0 3%; width:94%; height:280px; overflow-y:auto; border:solid 1px #cccccc; padding:3%}
+.mem_list li{ background:url(../images/ico_memlist.png) no-repeat left 4px; padding:2px 0 2px 22px}
+
+/*col_right*/
+.featured{width:68%; float:left}
+.featured h3{ font:700 14px/18px arial; color:#ff6b00; text-transform:uppercase;margin:7px 0}
+.featured h3 a:hover{ text-decoration:none;color:red}
+.featured img{width:100%}
+
+.list_hotnews{width:30%; float:right}
+.list_hotnews ul{float:left; width:100%}
+.list_hotnews li{ float:left; width:100%; padding:3px 0; border-bottom:solid 1px #e6e6e6}
+.list_hotnews li:last-child{border-bottom:none}
+.list_hotnews li a{ font-weight:bold; color:#292929}
+.list_hotnews li a:hover{text-decoration:none; color:red}
+.list_hotnews li span{background:url(../images/ico_camera.png) no-repeat left center; width:17px; height:17px; float:left}
+
+.col_video{padding-left:1.5%}
+.search{ border:solid 1px #d7d7d7; float:left; width:100%; background:#fff}
+.search input{border:none}
+.search input[type="text"]{ width:85%; float:left; padding:2px 2%; font-size:11px}
+.search input[type="submit"]{float:right; background:url(../images/search_bt.png) no-repeat; width:27px; height:22px; cursor:pointer;text-indent: -9999px}
+.video{ float:left; width:100%; margin-top:10px}
+.video h3{ float:left; width:100%; margin-bottom:5px}
+.video h3 img{width:100%}
+.video li{float:left; width:100%; padding:5px 0}
+.video li a{color:#262626}
+.video li a:hover{ color:red}
+.video li span:first-child{ float:left; width:25%; margin-right:2%}
+.video li span img{width:100%}
+.video li span:last-child{ float:left; width:73%}
+
+.list_cemetery{ float:left; width:100%; margin:10px 0}
+.list_cemetery h3{ background:#bd2f28; font:700 13px/27px arial; text-transform:uppercase; padding-left:1%; color:#fff}
+.list_cemetery h3 a{float:right; font:11px tahoma; color:#fff; text-transform:none; margin:6px 5px 0 0}
+.list_cemetery li{float:left; width:19%; margin-right:1%; margin-top:10px}
+.list_cemetery li img{ width:100%; margin-bottom:5px}
+.list_cemetery li a{ color:#262626; font:700 12px arial}
+.list_cemetery li a:hover{ text-decoration:none; color:red}
+
+.cate{float:left; width:100%; margin-top:10px}
+.cate h3{border-top:solid 1px #bd2f28; border-bottom:solid 1px #e5e5e5; padding:7px 0; float:left; width:100%}
+.cate h3 a{color:#bd2f28;font:700 14px arial; text-transform:uppercase; float:left}
+.cate h3 a:hover{text-decoration:none; color:#006dab}
+.cate h3 a.rss{background:url(../images/rss.png) no-repeat; width:14px; height:14px; float:right; margin-right:5px}
+
+.feature_cate{ float:left; width:60%}
+.feature_cate a{ color:#262626; font:700 13px arial; float:left; width:100%; margin:10px 0}
+.feature_cate a:hover{text-decoration:none; color:#0078bc}
+.feature_cate .img{float:left; width:42%; margin-right:3%}
+.feature_cate .img img{width:100%}
+.feature_cate .txt{ float:left; width:54%}
+.feature_cate .txt p{ text-align:justify}
+.feature_cate .txt p a{ color:#f87402; font:12px arial}
+
+.list_cate{ border-left:solid 1px #e5e5e5; padding:5px 0 0 2%; width:38%; float:right}
+.list_cate li{ float:left; margin:5px 0}
+.list_cate li span{float:left; margin-right:2%; width:28%}
+.list_cate li span img{width:100%}
+.list_cate li strong{ color:#663d0d; font:700 11px arial; float:left; width:70%}
+
+.list_sp{float:left; width:100%; margin-top:5px}
+.list_sp li{ float:left; margin:5px 0; border-style:solid; border-width:1px;width:100%}
+.list_sp li a{ font:14px/40px arial; text-transform:uppercase; float:left; width:77%; padding-left:3%}
+.list_sp li a:hover{text-decoration:none}
+.list_sp li span{width:20%; height:40px; float:right}
+.list_sp .red{border-color: #bd2f28}
+.list_sp .red a{color:#bd2f28}
+.list_sp .red span{ background:url(../images/support_ico.png) no-repeat center center #bd2f28}
+.list_sp .red1 span{ background:url(../images/search_ico.png) no-repeat center center #bd2f28}
+.list_sp .blue{border-color: #2989b5}
+.list_sp .blue span{ background:url(../images/email_ico.png) no-repeat center center #2989b5}
+
+.photo_report h3{ color:#ff6b00; font:700 14px arial; border-top:solid 2px #ff6b00; text-transform:uppercase; padding:7px 0}
+.photo_report img{width:100%}
+.photo_report p{float:left; width:100%;  background:#ff6b00; padding:5px 2%}
+.photo_report p a{font:700 13px arial; color:#fff}
+
+.photo_tombs{ float:left; width:100%; margin-bottom:10px}
+.photo_tombs h3{ background:#bd2f28; color:#fff; font:700 13px/27px arial; text-transform:uppercase; padding-left:1%; margin-bottom:10px}
+.photo_tombs h3 a{float:right; font:11px tahoma; color:#fff; text-transform:none; margin:6px 5px 0 0}
+.photo_tombs li{ float:left; width:15%; margin-right:1.6%}
+.photo_tombs li img{width:100%}
+.photo_tombs li p{ text-align:center; font:700 13px arial; color:#262626; margin:7px 0}
+.photo_tombs li a:hover{text-decoration:none}
+.photo_tombs li a:hover p{color:red}
+
+.information{float:left; width:100%}
+.information h3{ float:left; width:100%;border-bottom:solid 1px #3392c8}
+.information h3 span{ font:14px/34px arial; color:#fff; background:#3392c8; border-radius:0 5px 0 0;text-transform:uppercase; padding:0 7px; float:left}
+.information ul{ border: dotted 1px #ccc; float:left; width:100%; border-top:none; padding:10px 2%}
+.information li{width:30%; margin-right:3%; float:left; padding:5px 0}
+.information li a{ background:url(../images/information_ico.png) no-repeat left 6px; padding:5px 0 5px 20px; float:left; color:#000}
+.information li a:hover{text-decoration:none; color:red}
+
+.search_tomb{ border:solid 1px #cccccc; border-top: solid 1px #ff6b00; float:left; width:100%}
+.search_tomb h3{float:left; width:100%;border-bottom:solid 1px #ccc}
+.search_tomb h3 a{ color:#ff6b00; font:700 14px arial; text-transform:uppercase; padding:10px 7px; float:left}
+.search_tomb h3 a:hover{text-decoration:none}
+.search_tomb li{border-bottom:solid 1px #e5e5e5; padding:10px 7px; float:left; width:100%}
+.search_tomb li:last-child{border-bottom:none}
+.search_tomb li a{font:700 12px/17px arial; color:#5b5b5b; background:url(../images/information_ico.png) no-repeat left 0; padding-left:20px; float:left; width:100%}
+
+.qc{ float:left; width:100%; margin-top:10px}
+.qc img{width:100%}
+
+.footer{ background:url(../images/footer_bg.png) repeat-x top #fff; float:left; width:100%; padding:10px 0; text-align:center; margin-top:10px}
+.footer p{padding:2px 0}

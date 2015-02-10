@@ -1,0 +1,58 @@
+﻿@{ Layout = null; }
+@model nguoiduado.Models.LoginModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Đăng nhập</title>
+    <link href="@Url.Content("~/Content/Login.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <section>
+            <div id="container_demo">
+                <a class="hiddenanchor" id="tologin"></a>
+                <div id="wrapper">
+                    <div id="login" class="animate form">
+
+                        @using (Html.BeginForm(new { ReturnUrl = @ViewBag.ReturnUrl }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            <h1>Đăng nhập</h1>
+                            <div class="@ViewBag.Class" style="margin-left:100px;color:red">@ViewBag.Status</div>
+                            <p>
+                                <label for="username" class="uname"> Tên đăng nhập </label>
+                                @Html.TextBoxFor(m => m.UserName, new { @style = "width:200px;height:15px" })
+                                <br />
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </p>
+                            <p>
+                                <label for="password" class="youpasswd"> Mật khẩu </label>
+                                &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp; @Html.PasswordFor(m => m.Password, new { @style = "width:200px;height:15px" })
+                                <br />
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </p>
+                            <p class="keeplogin">
+                                <input checked="checked" name="loginkeeping" id="loginkeeping" value="loginkeeping" type="checkbox">
+                                <label for="loginkeeping">Lưu mật khẩu khi đăng nhập</label>
+                            </p>
+                            <p class="login button">
+                                <input value="Đăng nhập" type="submit">
+                            </p>
+                            <p class="change_link">
+                                Quên mật khẩu ?
+                                <a href="#" class="to_register">Join us</a>
+                            </p>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

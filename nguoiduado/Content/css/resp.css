@@ -1,0 +1,106 @@
+/*Top*/
+@media screen and (max-width: 640px){
+.user i{display:block}
+.user span{ display:none}
+.top .container{padding:0}
+}
+@media screen and (max-width: 480px){
+.top .support span{display:none}
+.top a{font-size:11px}
+.top li{padding:0 5px}
+}
+
+/*Menu*/
+@media screen and (max-width: 1200px){.navbar-default .navbar-nav > li > a{padding:0 45px}}
+@media screen and (max-width: 992px){
+.navbar{height:36px}
+.navbar-default{min-height:36px}
+.navbar-default .navbar-nav > li > a{ line-height:36px; font-size:12px;padding:0 30px}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{background-size:18%}
+}
+@media screen and (max-width: 768px){
+.container-fluid {margin:0 auto;}
+.navbar-toggle{padding: 5px 6px;margin:4px 0 0 5px; float:left}
+.navbar-default{background:#bd2f28}
+.navbar-default .navbar-toggle .icon-bar{background-color: #fff;}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {background-color: #2e2e2e;}
+
+.navbar-collapse.in{overflow-y: visible}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{background-image: none}
+}
+
+/*search_menu*/
+@media screen and (max-width: 768px){.search{ position:absolute; top:6px; left:60px; width:90%}}
+@media screen and (max-width: 680px){.search{width:85%}}
+@media screen and (max-width: 480px){.search{width:80%}}
+@media screen and (max-width: 370px){.search{width:75%}}
+
+/*content*/
+@media screen and (min-width: 992px){.nonemin992{display:none}}
+@media screen and (max-width: 992px){
+.nonemax992{display:none}
+.hotnews{ float:left; width:100%}
+.introduce_oneself{ border:none}
+.introduce_oneself h3{ font-weight:bold; text-align:left; padding:0 1%}
+.introduce_oneself .border{ padding:0 1% 1% 1%;border: solid 1px #aaaaaa; float:left}
+.introduce_oneself .img{float:left; width:30%}
+.introduce_oneself h4{ text-align:left; font-weight:bold}
+.introduce_oneself span{width:100%; margin-left:0}
+.introduce_oneself ul{ float:left; width:70%}
+.introduce_oneself li{ border-bottom: none; padding:2px 0 2px 2%}
+
+.cmandvideo{ border-top: solid 3px #bd2f28; float:left; width:100%; margin-top:10px; padding-top:10px}
+
+.video{float:right; width:98%; margin-top:0}
+.video h3{ float:left; width:100%}
+.video h3 img{width:100%}
+.video li span:first-child{ float:left; width:25%; margin-right:2%}
+.video li span img{width:100%}
+.video li span:last-child{ float:left; width:73%}
+.list_sp{float:right; width:98%}
+.photo_tombs li p{ font-size:12px}
+}
+
+@media screen and (min-width: 768px){.nonemin768{display:none}}
+@media screen and (max-width: 768px){
+.nonemax768{display:none}
+.featured{ margin-left:1%;width:67%}
+.list_hotnews{width:29%; margin-right:1%}
+.introduce_oneself .border,
+.cmandvideo{ margin:1%; width:98%}
+.list_cemetery ul{ margin-left:3%; width:97%}
+.list_cemetery li{width:30%; margin-right:3%; margin-top:10px}
+.cate{width:98%; margin-left:1%}
+.photo_tombs ul{margin-left:1%}
+}
+@media screen and (max-width: 640px){
+.featured{width:60%}
+.list_hotnews{width:36%}
+}
+@media screen and (max-width: 480px){
+.nonemax480{display:none}
+.photo_tombs li{width:30%; margin-right:3%}
+}
+
+/* saf3+, chrome1+,opera */
+@media screen and (-webkit-min-device-pixel-ratio:0){ 
+.navbar-nav { width:100%}
+.navbar-nav > li{width:16.66%;text-align: center;}
+.navbar-default .navbar-nav > li > a {padding:0}
+.information h3 span{width:35%}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 640px){.information h3 span{width:40%}}
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 568px){.information h3 span{width:45%}}
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 480px){
+.top ul{width:80%}
+.top li{ text-align:center}
+.top li:nth-child(2){ width:40%}
+.top li:nth-child(3){ width:35%}
+.information h3 span{width:55%}
+}

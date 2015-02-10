@@ -1,0 +1,26 @@
+﻿@Html.DevExpress().ComboBox(settings =>
+        {
+            settings.Name = "vaitro";
+            settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "ComboBoxVaiTro" };
+            settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+            settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+            settings.Properties.EnableCallbackMode = true;
+            settings.Properties.CallbackPageSize = 30;
+            settings.Properties.TextField = "TenVaiTro";
+            settings.Properties.ValueType = typeof(decimal);
+            settings.Properties.ValueField = "MaVaiTro";
+            settings.Properties.ClientSideEvents.SelectedIndexChanged = "function(s, e) { window.parent.CallbackVT(); }";
+            //settings.PreRender = (s, e) =>
+            //{
+            //    var combo = s as MVCxComboBox;
+            //    if (ViewBag.MaVaiTro != null)
+            //    {
+            //        if (combo != null)
+            //        {
+            //            combo.Value = ViewBag.MaVaiTro;
+            //        }
+            //    }
+            //};
+        }).BindList(Model).GetHtml()
+
+

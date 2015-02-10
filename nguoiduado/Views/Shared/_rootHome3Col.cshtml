@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Nguoiduado.vn - Tìm mộ liệt sĩ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="../Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/css/resp.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/css/category.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/css/category_resp.css" rel="stylesheet" type="text/css" />
+</head>
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Chart },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+    @Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new Script { ExtensionSuite = ExtensionSuite.HtmlEditor },
+    new Script { ExtensionSuite = ExtensionSuite.GridView },
+    new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new Script { ExtensionSuite = ExtensionSuite.Editors },
+    new Script { ExtensionSuite = ExtensionSuite.Chart },
+    new Script { ExtensionSuite = ExtensionSuite.Report },
+    new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+    new Script { ExtensionSuite = ExtensionSuite.TreeList },
+    new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new Script { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+</head>
+<body>
+    @Html.Action("_rootHomeHeader", "Home")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 nonemax992 pr10">
+                @Html.Action("_rootHomeLeft", "Home")
+            </div>
+            <div class="col-md-10 pd768">
+                <div class="col-sm-12 nonemin992">
+                   
+                 </div>
+                
+
+                  <div class="col-sm-12">
+                      @RenderBody()
+                       @Html.Action("_rootHome3ColRight", "Home")
+                </div>
+
+        </div>
+    </div>
+        </div>
+    <div class="footer">
+        @Html.Action("_rootHomeFooter", "Home")
+        </div>
+      
+</body>
+</html>

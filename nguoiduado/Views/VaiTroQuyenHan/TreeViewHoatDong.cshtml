@@ -1,0 +1,41 @@
+﻿@*@model System.Data.DataTable
+*@
+
+@Html.DevExpress().TreeView(settings =>
+    {
+        settings.Name = "treeHoatDong";
+        //settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "TreeViewCoCauToChuc" };
+        //settings.ClientSideEvents.CheckedChanged = "function(s, e) { OnTreeViewCCNodeClick(s, e); }";
+        //settings.ClientSideEvents.BeginCallback = "function(s, e) { e.customArgs['NodeID'] = key; e.customArgs['NodeName'] = _node;  }";
+        settings.Nodes.Add(node =>
+            {
+                node.Text = "Sử dung";
+                node.Name = "sudung";
+            });
+        settings.Nodes.Add(node =>
+            {
+                node.Text = "Thêm";
+                node.Name = "them";
+            });
+        settings.Nodes.Add(node =>
+            {
+                node.Text = "Sửa";
+                node.Name = "sua";
+            });
+        settings.Nodes.Add(node =>
+            {
+                node.Text = "Xóa";
+                node.Name = "xoa";
+            });
+        settings.AllowSelectNode = true;
+        settings.AllowCheckNodes = true;
+        settings.CheckNodesRecursive = true;
+        settings.ShowExpandButtons = true;
+        settings.PreRender = (source, e) =>
+            {
+                ASPxTreeView treeView = (ASPxTreeView) source;
+                treeView.ExpandAll();
+            };
+        //settings.ClientSideEvents.NodeClick = "OnTreeViewHoatDongNodeClick";
+        //RS.nguoiduadoTW.NET.Controllers.HoSo.VaiTroQuyenHanController.CreateTreeViewChucNangNodesRecursive(Model, settings.Nodes, 0);
+    }).GetHtml()

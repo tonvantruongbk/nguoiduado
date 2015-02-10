@@ -1,0 +1,51 @@
+﻿@model System.Collections.IEnumerable
+@{
+    ViewBag.Title = "NguoiDungList";
+    Layout = "~/Views/Shared/ViewLayout.cshtml"; 
+}
+@using (Html.BeginForm())
+{
+   // @Html.Partial("NguoiDungList", Model)
+
+    <div class="page">
+        <ul>
+            <li>
+                @Html.DevExpress().Button(
+                    settings =>
+                    {
+                        settings.Name = "btnAddUser";
+                        settings.Text = "Chọn";
+                        settings.UseSubmitBehavior = true;
+                    }
+                ).GetHtml()
+            </li>
+
+            <li>
+                @Html.DevExpress().Button(
+                    settings =>
+                    {
+                        settings.Name = "btnCancel";
+                        settings.Text = "Hủy bỏ";
+                        settings.ClientSideEvents.Click = "CloseListNguoiDungPopup";
+                    }
+                ).GetHtml()
+            </li>
+        </ul>
+    </div>
+     
+}
+
+
+<script type="text/javascript">
+    //Đóng form
+    
+    function CloseListNguoiDungPopup(){
+        //window.parent.eventClosePopupAddUser();
+        alert('sdfds');
+    }
+
+    $(document).ready(function () {
+        $('#idnguoidungs').val(gvPaging.GetSelectedKeysOnPage());
+    });
+</script>
+

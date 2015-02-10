@@ -1,0 +1,171 @@
+﻿@using System.Data
+@using System.Web.UI.WebControls
+@model List<RS.nguoiduadoTW.NET.Models.PhanQuyenViewModel>
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvEditing";
+        settings.KeyFieldName = "MaMenu";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "EditPhanQuyen" };
+        settings.Width = Unit.Percentage(100);
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "MaMenu";
+        //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        //    column.Width = Unit.Percentage(10);
+        //    column.Caption = "Menu";
+        //});
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenMenu";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Width = Unit.Percentage(50);
+            column.Caption = "Tên menu";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var cap = Convert.ToInt32(DataBinder.Eval(c.DataItem, "CapMenu").ToString());
+                var tem = "";
+                if (cap == 1)
+                {
+                    var address = tem + DataBinder.Eval(c.DataItem, "TenMenu").ToString().Trim();
+                    ViewContext.Writer.Write(string.Format("<div style='text-overflow:ellipsis;overflow:hidden; white-space:pre; font-weight:bold;'>{0}</div>", address));
+                }
+                else
+                    if (cap == 2 && DataBinder.Eval(c.DataItem, "ControllerName") == null)
+                    {
+                        tem += " ".PadLeft(cap * 3);
+                        var address = tem + DataBinder.Eval(c.DataItem, "TenMenu").ToString().Trim();
+                        ViewContext.Writer.Write(string.Format("<div style='text-overflow:ellipsis;overflow:hidden; white-space:pre; font-weight:bold;font-style:italic;'>{0}</div>", address));
+                    }
+                    else
+                        if (cap == 2)
+                        {
+
+                            tem += " ".PadLeft(cap * 3);
+                            var address = tem + DataBinder.Eval(c.DataItem, "TenMenu").ToString().Trim();
+                            ViewContext.Writer.Write(string.Format("<div style='text-overflow:ellipsis;overflow:hidden; white-space:pre'>{0}</div>", address));
+                        }
+                        else
+                            if (cap > 2)
+                            {
+
+                                tem += " ".PadLeft(cap * 5);
+                                var address = tem + DataBinder.Eval(c.DataItem, "TenMenu").ToString().Trim();
+                                ViewContext.Writer.Write(string.Format("<div style='text-overflow:ellipsis;overflow:hidden; white-space:pre'>{0}</div>", address));
+                            }
+
+
+            }
+            );
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "SuDung";
+            column.Width = Unit.Percentage(15);
+            column.Caption = "Sử dụng";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ReadOnly = false;
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (DataBinder.Eval(c.DataItem, "ControllerName") != null)
+                {
+                    Html.DevExpress().CheckBox(ch =>
+                    {
+                        ch.Name = "chksd" + c.KeyValue;
+                        ch.Properties.ValueChecked = true;
+                        ch.Properties.ValueUnchecked = false;
+                        ch.ControlStyle.CssClass = "chkcss";
+                    }).Bind(DataBinder.Eval(c.DataItem, c.Column.FieldName)).Render();
+                }
+
+            }
+            );
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Them";
+            column.Width = Unit.Percentage(15);
+            column.Caption = "Thêm";
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ReadOnly = false;
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (DataBinder.Eval(c.DataItem, "ControllerName") != null)
+                {
+                    Html.DevExpress().CheckBox(ch =>
+                        {
+                            ch.Name = "chkt" + c.KeyValue;
+                            ch.Properties.ValueChecked = true;
+                            ch.Properties.ValueUnchecked = false;
+                            ch.ControlStyle.CssClass = "chkcss";
+                        }).Bind(DataBinder.Eval(c.DataItem, c.Column.FieldName)).Render();
+                }
+            }
+            );
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Sua";
+            column.Width = Unit.Percentage(15);
+            column.Caption = "Sửa";
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ReadOnly = false;
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (DataBinder.Eval(c.DataItem, "ControllerName") != null)
+                {
+                    Html.DevExpress().CheckBox(ch =>
+                        {
+                            ch.Name = "chks" + c.KeyValue;
+                            ch.Properties.ValueChecked = true;
+                            ch.Properties.ValueUnchecked = false;
+                            ch.ControlStyle.CssClass = "chkcss";
+                        }).Bind(DataBinder.Eval(c.DataItem, c.Column.FieldName)).Render();
+                }
+            }
+            );
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Xoa";
+            column.Width = Unit.Percentage(15);
+            column.Caption = "Xóa";
+            column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.ReadOnly = false;
+            column.SetDataItemTemplateContent(c =>
+            {
+                if (DataBinder.Eval(c.DataItem, "ControllerName") != null)
+                {
+                    Html.DevExpress().CheckBox(ch =>
+                        {
+                            ch.Name = "chkx" + c.KeyValue;
+                            ch.Properties.ValueChecked = true;
+                            ch.Properties.ValueUnchecked = false;
+                            ch.ControlStyle.CssClass = "chkcss";
+                        }).Bind(DataBinder.Eval(c.DataItem, c.Column.FieldName)).Render();
+                }
+            }
+            );
+        });
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsPager.FirstPageButton.Visible = false;
+        settings.SettingsPager.LastPageButton.Visible = false;
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 50;
+        settings.Settings.VerticalScrollableHeight = 430;
+    }).Bind(Model).GetHtml()
+
+
+

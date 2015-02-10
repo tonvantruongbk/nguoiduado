@@ -1,0 +1,22 @@
+﻿
+<html lang="vi">
+@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
+@using nguoiduado.Models
+@model nguoiduado.Models.TBL_NoiDung
+
+
+<head>
+    <title>Nguoiduado.vn</title>
+</head>
+<body>
+<div class="col-sm-8">
+    <div class="category">
+        <h3>@ViewBag.TieuDe</h3>
+        <div class="guide">
+           @Html.Raw(Model.NoiDung)
+        </div>
+    </div>
+</div>
+   
+</body>
+</html>

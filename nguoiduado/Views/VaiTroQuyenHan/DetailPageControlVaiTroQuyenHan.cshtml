@@ -1,0 +1,28 @@
+﻿@using System.Web.UI.WebControls
+@model RS.nguoiduadoTW.NET.Models.VaiTroQuyenHanModel
+@Html.DevExpress().PageControl(
+            settings =>
+            {
+                settings.Name = "pcNguoiDungDeltail";
+                settings.ActivateTabPageAction = ActivateTabPageAction.Click;
+                settings.EnableHotTrack = true;
+                settings.SaveStateToCookies = true;
+                settings.TabAlign = TabAlign.Left;
+                settings.EnableClientSideAPI = true;
+                settings.EnableTabScrolling = true;
+                settings.TabPosition = TabPosition.Top;
+                settings.Width = Unit.Percentage(100);
+                settings.Height = Unit.Percentage(100);
+                settings.TabPages.Add("1. Danh sách người dùng").SetContent(() =>
+                                                                                            {
+                                                                                                ViewContext.Writer.Write(
+                                                                                                Html.Action("DetailDanhSachNguoidung", Model));
+
+                                                                                            });
+
+
+                //settings.TabPages.Add("2. Thông tin liên hệ", "thongtinlienhe").SetContent(() =>
+                //{
+                //    ViewContext.Writer.Write("sdjfhdskjfdhs");
+                //});
+            }).GetHtml()

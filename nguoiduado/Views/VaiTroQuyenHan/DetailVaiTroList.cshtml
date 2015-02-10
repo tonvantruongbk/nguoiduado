@@ -1,0 +1,52 @@
+﻿@using System.Web.UI.WebControls
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "gvVaiTro";
+        settings.KeyFieldName = "MaVaiTro";
+        settings.CallbackRouteValues = new { Controller = "VaiTroQuyenHan", Action = "DetailVaiTroList" };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenVaiTro";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(30);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            column.Caption = "Tên vai trò";
+        });
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "GhiChu";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(70);
+            column.Caption = "Ghi chú";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+        settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Bottom;
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "30" };
+        settings.Settings.ShowVerticalScrollBar = true;
+        settings.SettingsPager.PageSize = 10;
+        settings.Settings.VerticalScrollableHeight = 100;
+
+        settings.ClientSideEvents.FocusedRowChanged = "OnGridFocusedRowChangedVTDt";
+        //settings.ClientSideEvents.RowDblClick = "gridRowDoubleClick";
+
+        settings.CommandColumn.Width = System.Web.UI.WebControls.Unit.Percentage(3);
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ClearFilterButton.Visible = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+        settings.CommandColumn.SetHeaderTemplateContent(c => Html.DevExpress().CheckBox(settingsCheckBox =>
+        {
+            settingsCheckBox.Name = "cbSelectAll";
+            settingsCheckBox.Properties.ClientSideEvents.CheckedChanged = string.Format("function(s, e) {{ if(s.GetChecked()) {0}.SelectRows(); else {0}.UnselectRows(); }}", settings.Name);
+            settingsCheckBox.Checked = c.Grid.VisibleRowCount == c.Grid.Selection.Count;
+            settingsCheckBox.ControlStyle.CssClass = "chkcss";
+        }).Render());
+    }).Bind(Model).GetHtml()
