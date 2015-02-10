@@ -78,11 +78,11 @@ namespace nguoiduado.Controllers
         public ActionResult ListItemBaiViet(decimal MenuID)
         {
             nguoiduado_dbEntities db = new nguoiduado_dbEntities();
-            DanhMucMenuModel DMModel= new DanhMucMenuModel();
-            if (MenuID==-1)
+            DanhMucMenuModel DMModel = new DanhMucMenuModel();
+            if (MenuID == -1)
             { ViewBag.TenMenu = "Tin Tức"; }
             else
-            ViewBag.TenMenu = DMModel.GetTenMenuByID(MenuID);
+                ViewBag.TenMenu = DMModel.GetTenMenuByID(MenuID);
             return View();
         }
 
@@ -90,16 +90,17 @@ namespace nguoiduado.Controllers
 
         [ValidateInput(false)]
         public ActionResult GridView1Partial(int MenuID)
-        {  nguoiduado_dbEntities db = new nguoiduado_dbEntities();
-          List<TBL_NoiDung> model = new List<TBL_NoiDung>();
-          
-            if(MenuID==-1)
+        {
+            nguoiduado_dbEntities db = new nguoiduado_dbEntities();
+            List<TBL_NoiDung> model = new List<TBL_NoiDung>();
+
+            if (MenuID == -1)
             {
-                 model = db.TBL_NoiDung.ToList();
+                model = db.TBL_NoiDung.ToList();
             }
             else
-            {  model = db.TBL_NoiDung.Where(c => c.MenuID == MenuID).ToList(); }
-           
+            { model = db.TBL_NoiDung.Where(c => c.MenuID == MenuID).ToList(); }
+
             return PartialView("_GridView1Partial", model);
         }
 
@@ -107,14 +108,14 @@ namespace nguoiduado.Controllers
         {
             nguoiduado_dbEntities db = new nguoiduado_dbEntities();
             DanhMucBaiVietModel DMModel = new DanhMucBaiVietModel();
-            TBL_NoiDung ND= new TBL_NoiDung();
+            TBL_NoiDung ND = new TBL_NoiDung();
             ND = DMModel.GetBaiVietByID(MaNoiDung);
             ViewBag.TieuDe = ND.TieuDe;
             return View(ND);
         }
         public ActionResult Intro()
         {
-           
+
             return View();
         }
         public ActionResult Guide()
@@ -135,7 +136,11 @@ namespace nguoiduado.Controllers
         {
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult DangTinTimMo(TBL_DanhSachLietSi DSLietSi)
+        {
+            return View();
+        }
         [ValidateInput(false)]
         public ActionResult GridView2Partial()
         {
