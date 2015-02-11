@@ -145,7 +145,7 @@ namespace nguoiduado.Controllers
                 }
                 else
                 {
-                    CacheHelper._cache["LstNDTop10Menu" + i] = bvmodel.GetTop10BaiViet(LstAllMenu[i].MenuID)
+                    CacheHelper._cache["LstNDTop10Menu" + i] = bvmodel.GetTop10BaiViet(LstAllMenu[i].MenuID);
                     ViewData["LstNDTop10Menu" + i] = CacheHelper._cache["LstNDTop10Menu" + i];
                 }
 
