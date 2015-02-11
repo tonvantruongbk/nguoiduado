@@ -11,7 +11,7 @@ namespace nguoiduado.Controllers
         // GET: QuanTri
         public ActionResult Index()
         {
-            return View();
+            return View(); 
         }
     }
 }

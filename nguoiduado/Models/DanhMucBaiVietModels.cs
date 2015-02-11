@@ -73,7 +73,7 @@ namespace nguoiduado.Models
         public IEnumerable<LstBaiViet> GetAllBaiViet()
         {
             return (from c in nguoiduadodb.TBL_NoiDung
-                    orderby c.MaNoiDung, c.NgayNhap, c.NgayCapNhat ascending
+                    orderby c.MaNoiDung, c.NgayNhap ascending
                     select new LstBaiViet
                     {
                         MaNoiDung = c.MaNoiDung,

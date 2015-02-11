@@ -2,30 +2,41 @@
 @model nguoiduado.Models.TBL_NoiDung
 @{ Layout = "~/Views/Shared/_rootAdmin.cshtml"; }
 
-    
+
 
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true)   
-  
-    <div class="container" style="overflow: auto!important">
-        <div class="row">
-            <div class="col-md-6">
-                
-                <div class="col-md-3">
-                    <p>Thuộc menu</p>
-                </div>
-                <div class="col-md-9">
-                    @Html.Action("ComboBoxPartial")
-                </div>
-            </div>
+    @Html.ValidationSummary(true)
 
-            <div class="col-md-6">
-                <div class="col-md-3">
-                    Tiêu đề
-                </div>
-                <div class="col-md-9">
-                    @Html.DevExpress().TextBox(textbox =>
+    <div style="padding: 5px" class="bg-shadow">
+        <div class="heading">
+            <div style="margin-top: 6px; position: absolute">
+                <img alt="" src="@Url.Content("~/Content/Images/product.png")" />
+            </div>
+            <div style="margin-left: 30px;">
+                <h1>Thêm mới bài viết</h1>
+                &nbsp;
+                <a style="padding: 8px 0 0; font-size: 13px; position: absolute" href="/DanhMucBaiViet">(Quay lại danh sách)</a>
+            </div>
+        </div>
+        <div class="content" style="clear: both;">
+            <div class="container" style="overflow: auto!important">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <p>Thuộc menu</p>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.Action("ComboBoxPartial")
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            Tiêu đề
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DevExpress().TextBox(textbox =>
                                                                {
                                                                    textbox.Name = "TieuDe";
                                                                    textbox.Properties.ValidationSettings.SetFocusOnError = true;
@@ -34,17 +45,17 @@
                                                                    textbox.Width = Unit.Percentage(100);
                                                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                                                                }).Bind(Model.TieuDe).GetHtml()
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-3">
-                    Nguồn tin
-                </div>
-                <div class="col-md-9">
-                    @Html.DevExpress().TextBox(textbox =>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            Nguồn tin
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DevExpress().TextBox(textbox =>
                                                                {
                                                                    textbox.Name = "NguonTin";
                                                                    textbox.Properties.ValidationSettings.SetFocusOnError = true;
@@ -52,37 +63,40 @@
                                                                    textbox.Width = Unit.Percentage(100);
                                                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                                                                }).Bind(Model.NguonTin).GetHtml()
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="col-md-6">
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
                 
-            </div>
-        </div>
+                <div class="distanceRow"></div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-3">
-                    Ảnh đại diện
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.PictureId)
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            Ảnh đại diện
+                        </div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.PictureId)
+                        </div>
+                    </div>
 
-            <div class="col-md-6">
-                <div class="col-md-3">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-9">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                Trích dẫn
-            </div>
-            <div class="col-md-10">
-                @Html.DevExpress().Memo(
+                <div class="distanceRow"></div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Trích dẫn
+                    </div>
+                    <div class="col-md-10">
+                        @Html.DevExpress().Memo(
                         textbox =>
                         {
                             textbox.Name = "TrichDan";
@@ -93,41 +107,43 @@
                             //textbox.Height = 150;
                             textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                         }).Bind(Model.TuKhoaTag).GetHtml()
-            </div>
-        </div>
+                    </div>
+                </div>
+                <div class="distanceRow"></div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Nội dung
+                    </div>
+                    <div class="col-md-10">
+                        @Html.Partial("FeaturesPartial", Model)
+                    </div>
+                </div>
+                <div class="distanceRow"></div>
+                <div class="row">
+                    <div class="col-md-2">
+                        Tag
+                    </div>
+                    <div class="col-md-10">
+                        @Html.DevExpress().TextBox(
+                            textbox =>
+                            {
+                                textbox.Name = "TuKhoaTag";
+                                textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                textbox.Properties.MaxLength = 500;
+                                textbox.Width = Unit.Percentage(100);
+                                textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            }).Bind(Model.TuKhoaTag).GetHtml()
+                        <strong>(Từ khóa cách nhau bởi dấu ;)</strong>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-2">
-                Nội dung
-            </div>
-            <div class="col-md-10">
-                @Html.Partial("FeaturesPartial", Model)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                Tag
-            </div>
-            <div class="col-md-10">
-                @Html.DevExpress().TextBox(
-                        textbox =>
-                        {
-                            textbox.Name = "TuKhoaTag";
-                            textbox.Properties.ValidationSettings.SetFocusOnError = true;
-                            textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
-                            textbox.Properties.MaxLength = 500;
-                            textbox.Width = Unit.Percentage(100);
-                            textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
-                        }).Bind(Model.TuKhoaTag).GetHtml()
-                <strong>(Từ khóa cách nhau bởi dấu ;)</strong>
-            </div>
-           
-        </div>
-        <div class="row">
-            <div class="col-md-10">
-            </div>
-            <div class="col-md-1">
-                @Html.DevExpress().Button(
+                </div>
+                <div class="distanceRow"></div>
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DevExpress().Button(
                         settings =>
                         {
                             settings.Name = "btnSubmitAdd";
@@ -135,20 +151,24 @@
                             settings.UseSubmitBehavior = true;
                         }
                          ).GetHtml()
-            </div>
-            <div class="col-md-1">
-                @Html.DevExpress().Button(
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DevExpress().Button(
                         settings =>
                         {
                             settings.Name = "btnCancel";
                             settings.Text = "Cancel";
                         }
                          ).GetHtml()
+                    </div>
+                </div>
             </div>
+            <div class="row"></div>
+            <input type="hidden" id="idthongbao" name="idthongbao" value='@ViewBag.success' />
         </div>
     </div>
-      <div class="row"></div>
-      <input type="hidden" id="idthongbao" name="idthongbao" value='@ViewBag.success' />
+
+
 }
 
 <script type="text/javascript">
