@@ -19,6 +19,7 @@ namespace nguoiduado.Code
         //ViewData["LstNDTop10Menu" + i] = CacheHelper._cache["LstNDTop10Menu" + i];
         public CacheHelper()
         {
+           
 
         }
 
