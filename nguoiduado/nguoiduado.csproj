@@ -317,6 +317,9 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\uploads\Images\default-avatar.jpg" />
+    <Content Include="Content\uploads\Images\default-image.gif" />
+    <Content Include="Content\uploads\Images\icon_default.png" />
     <Content Include="Content\uploads\Images\Thumbs\default-image.gif" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
