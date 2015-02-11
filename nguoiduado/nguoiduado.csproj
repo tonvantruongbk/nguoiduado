@@ -517,6 +517,7 @@
     </Compile>
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ThuVienAnhModels.cs" />
     <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\nguoiduado_db.Context.cs">
       <AutoGen>True</AutoGen>
