@@ -43,16 +43,13 @@
                     //   hl.Properties.ImageUrl = "~/Content/ImageAdmin/delete.jpg";
                 }).Render();
             });
-            column.SetHeaderTemplateContent(c =>
+            column.SetHeaderTemplateContent(c => Html.DevExpress().HyperLink(hl =>
             {
-                Html.DevExpress().HyperLink(hl =>
-                {
-                    hl.Name = "hlNew";
-                    hl.NavigateUrl = Url.Action("AddNewBaiViet", "DanhMucBaiViet", new { MaNoiDung = -1 });
-                    hl.Properties.Text = "Thêm mới";
-                  //  hl.Properties.ImageUrl = "~/Content/ImageAdmin/addnew.jpg";
-                }).Render();
-            });
+                hl.Name = "hlNew";
+                hl.NavigateUrl = Url.Action("AddNewBaiViet", "DanhMucBaiViet");
+                hl.Properties.Text = "Thêm mới";
+                //  hl.Properties.ImageUrl = "~/Content/ImageAdmin/addnew.jpg";
+            }).Render());
 
         });
 
