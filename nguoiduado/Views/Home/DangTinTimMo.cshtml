@@ -42,9 +42,15 @@
     width:300px!important;
 }
 </style>
-
+<script>
+    $(document).ready(function () {
+        if ($('#thongbao').val() != null && $('#thongbao').val() != '')
+            alert($('#thongbao').val());
+    });
+</script>
 @using (Html.BeginForm())
-{
+{ 
+    <input id="thongbao" type="hidden" value="@ViewBag.ThongBao"/>
     <div class="col-sm-8">
         <div class="category">
             <h3>Đăng tin tìm mộ</h3>

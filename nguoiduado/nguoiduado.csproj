@@ -474,6 +474,9 @@
     <Content Include="Views\Shared\_rootHomeTimKiem.cshtml" />
     <Content Include="Views\Home\TimMoLietSi.cshtml" />
     <Content Include="Views\Home\DangTinTimMo.cshtml" />
+    <Content Include="Views\ThanhVien\DangNhap.cshtml" />
+    <None Include="Views\ThanhVien\DangKi.cshtml" />
+    <Content Include="Views\ThanhVien\QuenMatKhau.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

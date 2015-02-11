@@ -132,14 +132,21 @@ namespace nguoiduado.Controllers
         {
             return View();
         }
-        public ActionResult DangTinTimMo()
+        public ActionResult DangTinTimMo(string thongbao)
         {
+            if(thongbao!=null)
+            {
+                ViewBag.ThongBao = thongbao;
+            }
             return View();
         }
         [HttpPost]
         public ActionResult DangTinTimMo(TBL_DanhSachLietSi DSLietSi)
         {
-            return View();
+            DanhMucBaiVietModel BVModel= new DanhMucBaiVietModel();
+            BVModel.AddNewLietSi(DSLietSi);
+            string thongbao = "Thêm mới thành công.";
+            return RedirectToAction("DangTinTimMo", new { thongbao = thongbao });
         }
         [ValidateInput(false)]
         public ActionResult GridView2Partial()

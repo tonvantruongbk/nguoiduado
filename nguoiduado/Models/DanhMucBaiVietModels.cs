@@ -40,6 +40,19 @@ namespace nguoiduado.Models
             public string Comment { get; set; }
             public int TrangThaiSua { get; set; }
         }
+        public bool AddNewLietSi(TBL_DanhSachLietSi LS)
+        {
+            try
+            {
+                nguoiduadodb.TBL_DanhSachLietSi.Add(LS);
+                nguoiduadodb.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public bool AddNewBaiViet(TBL_NoiDung NoiDung)
         {
             try
