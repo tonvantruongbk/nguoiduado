@@ -1,0 +1,87 @@
+﻿
+<html lang="vi">
+@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
+@using nguoiduado.Models
+@model nguoiduado.Models.TBL_ThanhVien
+
+<head>
+    <title>Nguoiduado.vn</title>
+    <style>
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-sm-8">
+        <div class="category">
+            <h3>ĐĂNG NHẬP</h3>
+            <div class="guide">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">Email đăng nhập:</div>
+                    <div class="col-md-7">
+                        @Html.DevExpress().TextBox(textbox =>
+                                {
+                                    textbox.Name = "EMAIL";
+                                    textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                    textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                    textbox.Properties.MaxLength = 150;
+                                    textbox.Width = 250;
+                                    textbox.Properties.ValidationSettings.RequiredField.ErrorText = "Bạn chưa nhập email đăng nhập";
+                                    textbox.Properties.ClientInstanceName = "EMAIL";
+                                    //textbox.Properties.ClientSideEvents.KeyPress = "DemLuiKiTu";
+                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                                }).Bind(Model.EMAIL).GetHtml()
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">Mật khẩu:</div>
+                    <div class="col-md-7">
+                        @Html.DevExpress().TextBox(textbox =>
+                                {
+                                    textbox.Name = "MATKHAU";
+                                    textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                    textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                    textbox.Properties.MaxLength = 150;
+                                    textbox.Width = 250;
+                                    textbox.Properties.Password = true;
+                                    textbox.Properties.ValidationSettings.RequiredField.ErrorText = "Bạn chưa nhập mật khẩu";
+                                    textbox.Properties.ClientInstanceName = "MATKHAU";
+                                    //textbox.Properties.ClientSideEvents.KeyPress = "DemLuiKiTu";
+                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                                }).Bind(Model.MATKHAU).GetHtml()
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DevExpress().Button(
+                           settings =>
+                           {
+                               settings.Name = "btnDangNhap";
+                               settings.Text = "Đăng nhập";
+                               settings.UseSubmitBehavior = true;
+                               settings.Width = 80;
+                           }).GetHtml()
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-3">
+                       @Html.ActionLink("Quên mật khẩu", "About")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.ActionLink("Đăng kí", "DangKi")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -70,7 +70,7 @@ namespace nguoiduado.Models
         {
 
             var query = (from c in nguoiduadodb.TBL_MenuDanhMuc
-                         orderby c.ThuTu descending
+                         orderby c.ThuTu ascending
                          select c);
             return query.ToList();
         }

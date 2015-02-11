@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using nguoiduado.Models;
 
 namespace nguoiduado.Controllers
 {
@@ -87,6 +88,16 @@ namespace nguoiduado.Controllers
                 }
             }
             return PartialView("_GridViewPartial", model.ToList());
+        }
+        public ActionResult DangNhap()
+        {
+            TBL_ThanhVien ThanhVienDtl = new TBL_ThanhVien();
+            return View(ThanhVienDtl);
+        }
+        public ActionResult DangKi()
+        {
+            TBL_ThanhVien ThanhVienDtl = new TBL_ThanhVien();
+            return View(ThanhVienDtl);
         }
     }
 }

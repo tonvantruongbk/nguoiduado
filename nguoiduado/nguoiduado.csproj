@@ -208,6 +208,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization">
       <Private>True</Private>
     </Reference>
@@ -301,6 +302,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ImageResizer.dll" />
     <Content Include="App_Data\NWind.mdf" />
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
@@ -480,6 +482,9 @@
     <Content Include="Views\Shared\_rootHomeTimKiem.cshtml" />
     <Content Include="Views\Home\TimMoLietSi.cshtml" />
     <Content Include="Views\Home\DangTinTimMo.cshtml" />
+    <Content Include="Views\ThanhVien\DangNhap.cshtml" />
+    <None Include="Views\ThanhVien\DangKi.cshtml" />
+    <Content Include="Views\ThanhVien\QuenMatKhau.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -492,6 +497,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\CacheHelper.cs" />
     <Compile Include="Code\CookiesHelper.cs" />
     <Compile Include="Code\DiffMatchPatch.cs" />
     <Compile Include="Code\PhotoUtils.cs" />
@@ -612,7 +618,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\UploadTemp\" />
     <Folder Include="Content\HtmlEditor\Thumbnails\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

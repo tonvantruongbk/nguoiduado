@@ -5,112 +5,161 @@
 @{
     ViewBag.Title = "Đăng tin tìm mộ";
 }
+<style>
+    .row {
+        margin-top: 10px !important;
+    }
 
-<h2>Đăng tin tìm mộ</h2>
-<div class="col-sm-8">
-    <div class="category">
-        @using (Html.BeginForm())
-        {
+    .col-md-5 {
+        margin-left: 10px;
+    }
+
+    .col-md-9 {
+        margin-left: 10px;
+    }
+
+    
+/* Wine button */
+.wine,
+.wineHottracked,
+.winePressed {
+    background-color:red;
+    border: 0!important;
+    padding: 0!important;
+    width: 90px;
+    height: 30px;
+}
+.wineHottracked {
+    background-position: -92px 0px!important;
+    color: #FAD9E0!important;
+}
+.winePressed {
+    background-position: -184px 0px!important;
+    color: #DCB7C8!important;
+}
+.textboxx
+{
+    width:300px!important;
+}
+</style>
+<script>
+    $(document).ready(function () {
+        if ($('#thongbao').val() != null && $('#thongbao').val() != '')
+            alert($('#thongbao').val());
+    });
+</script>
+@using (Html.BeginForm())
+{ 
+    <input id="thongbao" type="hidden" value="@ViewBag.ThongBao"/>
+    <div class="col-sm-8">
+        <div class="category">
+            <h3>Đăng tin tìm mộ</h3>
+
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true)
-
-
-
                 <div class="row">
-                    <div class="col-md-3">Họ và tên</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">Họ và tên</div>
+                    <div class="col-md-5">Năm sinh</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.HoVaTen)
                         @Html.ValidationMessageFor(model => model.HoVaTen)
                     </div>
-                    <div class="col-md-3">Năm sinh</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.NamSinh)
                         @Html.ValidationMessageFor(model => model.NamSinh)
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">Nguyên quán</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">Nguyên quán</div>
+                    <div class="col-md-5">Chức vụ</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.NguyenQuan)
                         @Html.ValidationMessageFor(model => model.NguyenQuan)
                     </div>
-                    <div class="col-md-3">Chức vụ</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.CapBacChucVu)
                         @Html.ValidationMessageFor(model => model.CapBacChucVu)
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-5">Đơn vị lúc hi sinh</div>
+                    <div class="col-md-5">Ngày hi sinh</div>
+                </div>
 
                 <div class="row">
-                    <div class="col-md-3">Đơn vị lúc hi sinh</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.DonViLucHySinh)
                         @Html.ValidationMessageFor(model => model.DonViLucHySinh)
                     </div>
-                    <div class="col-md-3">Ngày hi sinh</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.NgayHiSinh)
                         @Html.ValidationMessageFor(model => model.NgayHiSinh)
                     </div>
                 </div>
-
-
-                @*<div class="row">
-                    <div class="col-md-3">Đơn vị lúc hi sinh</div>
-                    <div class="col-md-3">
-                        @Html.EditorFor(model => model.DonViLucHySinh)
-                        @Html.ValidationMessageFor(model => model.DonViLucHySinh)
-                    </div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-
-                    </div>
-                </div>*@
-
                 <div class="row">
-                    <div class="col-md-3">Họ và tên thân nhân</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">Họ và tên thân nhân</div>
+                    <div class="col-md-5">Địa chỉ thân nhân</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.HoVaTenThanNhan)
                         @Html.ValidationMessageFor(model => model.HoVaTenThanNhan)
                     </div>
-                    <div class="col-md-3">Địa chỉ thân nhân</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.DiaChiThanNhan)
                         @Html.ValidationMessageFor(model => model.DiaChiThanNhan)
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-3">Điện thoại thân nhân</div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">Điện thoại thân nhân</div>
+                    <div class="col-md-5">Email thân nhân</div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.DienThoaiThanNhan)
                         @Html.ValidationMessageFor(model => model.DienThoaiThanNhan)
                     </div>
-                    <div class="col-md-3">Email thân nhân</div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.EmailThanNhan)
                         @Html.ValidationMessageFor(model => model.EmailThanNhan)
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">Mô tả thêm</div>
-                    <div class="col-md-3">
-                        @Html.EditorFor(model => model.MoTaThem)
-                        @Html.ValidationMessageFor(model => model.MoTaThem)
-                    </div>
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                       
-                    </div>
-                </div>
-           
-
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
+                    <div class="col-md-9">Mô tả thêm</div>
                 </div>
             </div>
-        }
+                <div class="row">
+                    <div class="col-md-9">
+                    @Html.EditorFor(model => model.MoTaThem)
+                    @Html.ValidationMessageFor(model => model.MoTaThem)
+                  </div>
+               </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                </div>
+            <div class="col-md-6">
+                @Html.DevExpress().Button(
+            settings =>
+            {
+                settings.Name = "btnWine";
+                settings.EnableTheming = false;
+                settings.Text = "Submit";
+                settings.AllowFocus = false;
+                settings.UseSubmitBehavior = true;
+                settings.ControlStyle.CssClass = "wine";
+                settings.Styles.Style.HoverStyle.CssClass = "wineHottracked";
+                settings.Styles.Style.PressedStyle.CssClass = "winePressed";
+            }).GetHtml()
+            </div>
+            </div>
+        </div>
+}
