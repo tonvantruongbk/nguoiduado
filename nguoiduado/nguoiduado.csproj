@@ -208,6 +208,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization">
       <Private>True</Private>
     </Reference>
@@ -489,6 +490,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\CacheHelper.cs" />
     <Compile Include="Code\CookiesHelper.cs" />
     <Compile Include="Code\DiffMatchPatch.cs" />
     <Compile Include="Code\PhotoUtils.cs" />
