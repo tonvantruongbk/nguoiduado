@@ -137,6 +137,8 @@ namespace nguoiduado.Controllers
                 else
                 {
                     mess = "Thêm mới thành công";
+                    CacheHelper _cacheHelper = new CacheHelper();
+                    _cacheHelper.ClearCaches();
                     return RedirectToAction("AddNewBaiViet", new { thongbao = mess });
                 }
 

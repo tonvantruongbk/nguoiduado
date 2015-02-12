@@ -25,7 +25,7 @@ namespace nguoiduado.Code
 
         public void ClearCaches()
         {
-            _cache.Remove("MenuDanhMuc");
+           
             _cache.Remove("LienKetWeb");
             _cache.Remove("LstNDTop5Menu1");
             _cache.Remove("LstNDTop5Menu2");
@@ -41,7 +41,7 @@ namespace nguoiduado.Code
                 }
              
             }
-          
+            _cache.Remove("MenuDanhMuc");
 
         }
         public void ClearCacheViDeo()

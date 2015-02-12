@@ -122,7 +122,7 @@ namespace nguoiduado.Controllers
                 ViewData["LstNDTop5Menu1"] = CacheHelper._cache["LstNDTop5Menu1"];
             }
 
-            if (CacheHelper._cache["LstNDTop5Menu1"] != null)
+            if (CacheHelper._cache["LstNDTop5Menu2"] != null)
             {
                 LstNDTop5Menu2 = (List<TBL_NoiDung>)CacheHelper._cache["LstNDTop5Menu2"];
                 ViewData["LstNDTop5Menu2"] = CacheHelper._cache["LstNDTop5Menu2"];
@@ -130,7 +130,7 @@ namespace nguoiduado.Controllers
             else
             {
                 LstNDTop5Menu2 = bvmodel.GetTop5BaiViet(LstAllMenu[1].MenuID);
-                CacheHelper._cache["LstNDTop5Menu1"] = LstNDTop5Menu2;
+                CacheHelper._cache["LstNDTop5Menu2"] = LstNDTop5Menu2;
                 ViewData["LstNDTop5Menu2"] = CacheHelper._cache["LstNDTop5Menu2"];
             }
 
