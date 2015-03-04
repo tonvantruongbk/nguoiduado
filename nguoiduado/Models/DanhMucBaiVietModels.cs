@@ -188,10 +188,10 @@ namespace nguoiduado.Models
         public List<TBL_NoiDung> GetTop10BaiViet(decimal MaMenu)
         {
 
-            var query = (from c in nguoiduadodb.TBL_NoiDung.Take(10)
+            var query = (from c in nguoiduadodb.TBL_NoiDung
                          where c.MenuID == MaMenu
                          orderby c.NgayCapNhat, c.NgayNhap, c.TieuDe descending
-                         select c);
+                         select c).Take(10);
             return query.ToList();
         }
         public List<TBL_NoiDung> GetBaiVietPhanTrang(decimal menuID, int pageNumber, int pageSize)

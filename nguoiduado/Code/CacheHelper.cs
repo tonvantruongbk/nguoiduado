@@ -33,7 +33,7 @@ namespace nguoiduado.Code
             List<TBL_MenuDanhMuc> Menu = new List<TBL_MenuDanhMuc>();
             Menu = (List<TBL_MenuDanhMuc>)_cache["MenuDanhMuc"];
             
-            for (int i = 0; i>Menu.Count;i++)
+            for (int i = 0; i<Menu.Count;i++)
             {
                 if (i != 0 && i != 1)
                 {
