@@ -221,9 +221,10 @@ namespace nguoiduado.Controllers
                 else
                 {
                     mess = "Cập nhật thành công";
-                    return RedirectToAction("EditBaiViet", new { MaNoiDung = noiDung.MaNoiDung, thongbao = mess });
                     CacheHelper _cacheHelper = new CacheHelper();
                     _cacheHelper.ClearCaches();
+                    return RedirectToAction("EditBaiViet", new { MaNoiDung = noiDung.MaNoiDung, thongbao = mess });
+                 
                 }
 
             }
