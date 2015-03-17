@@ -6,7 +6,7 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridView1";
-        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridView1Partial" };
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridView1Partial", MenuID = Request.Params["MenuID"] };
         settings.KeyFieldName = "MaNoiDung";
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = false;

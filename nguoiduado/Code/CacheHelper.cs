@@ -25,13 +25,13 @@ namespace nguoiduado.Code
 
         public void ClearCaches()
         {
-           
+            _cache.Remove("10BaiVietMoiNhat");
             _cache.Remove("LienKetWeb");
             _cache.Remove("LstNDTop5Menu1");
             _cache.Remove("LstNDTop5Menu2");
-
+            nguoiduado_dbEntities db = new nguoiduado_dbEntities();
             List<TBL_MenuDanhMuc> Menu = new List<TBL_MenuDanhMuc>();
-            Menu = (List<TBL_MenuDanhMuc>)_cache["MenuDanhMuc"];
+            Menu = db.TBL_MenuDanhMuc.ToList();
             
             for (int i = 0; i<Menu.Count;i++)
             {

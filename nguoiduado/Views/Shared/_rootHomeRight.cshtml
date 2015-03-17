@@ -2,12 +2,12 @@
     nguoiduado.Models.TBL_NoiDung TinNoiBat = (nguoiduado.Models.TBL_NoiDung)ViewData["BaiVietNoiBat"];
     nguoiduado.Models.PictureModel PicModel = new nguoiduado.Models.PictureModel();
     string LinkAnh = PicModel.GetPictureUrl(TinNoiBat.PictureId);
-   List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu1= new List<nguoiduado.Models.TBL_NoiDung>();
-   List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu2= new List<nguoiduado.Models.TBL_NoiDung>();
-   List<nguoiduado.Models.TBL_MenuDanhMuc> LstAllMenu = new List<nguoiduado.Models.TBL_MenuDanhMuc>();
-   LstNDTop5Menu1 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu1"];
-   LstNDTop5Menu2 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu2"];
-   LstAllMenu = (List<nguoiduado.Models.TBL_MenuDanhMuc>)ViewData["LstAllDanhMuc"];
+    List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu1 = new List<nguoiduado.Models.TBL_NoiDung>();
+    List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu2 = new List<nguoiduado.Models.TBL_NoiDung>();
+    List<nguoiduado.Models.TBL_MenuDanhMuc> LstAllMenu = new List<nguoiduado.Models.TBL_MenuDanhMuc>();
+    LstNDTop5Menu1 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu1"];
+    LstNDTop5Menu2 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu2"];
+    LstAllMenu = (List<nguoiduado.Models.TBL_MenuDanhMuc>)ViewData["LstAllDanhMuc"];
 }
 <div class="col-md-12">
     <div class="col-md-8 hotnews">
@@ -198,60 +198,60 @@
 <div class="col-md-12">
     <div class="col-md-8">
         <!--Begin nhật ký tìm mộ-->
-      @*@if(!LstNDTop5Menu1.())
-      {*@ 
-          @if(LstNDTop5Menu1.Count>0)
-          { 
-        <div class="col-md-12 cate">
-            <h3><a href="">Nhật ký tìm mộ</a><a href="" class="rss"></a></h3>
-            <div class="feature_cate">
-                <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">@LstNDTop5Menu1[0].TieuDe</a>
-                <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu1[0].PictureId)"></span>
-                <span class="txt">
-                    <p>@LstNDTop5Menu1[0].TrichDan</p>
-                    <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">Xem chi tiết..</a></p>
-                </span>
+        @*@if(!LstNDTop5Menu1.())
+            {*@
+        @if (LstNDTop5Menu1.Count > 0)
+        {
+            <div class="col-md-12 cate">
+                <h3><a href="../Home/ListItemBaiViet?MenuId=@LstAllMenu[0].MenuID">@LstAllMenu[0].TenMenu</a><a href="" class="rss"></a></h3>
+                <div class="feature_cate">
+                    <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">@LstNDTop5Menu1[0].TieuDe</a>
+                    <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu1[0].PictureId)"></span>
+                    <span class="txt">
+                        <p>@LstNDTop5Menu1[0].TrichDan</p>
+                        <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu1[0].MaNoiDung">Xem chi tiết..</a></p>
+                    </span>
+                </div>
+                <ul class="list_cate">
+                    @foreach (var itemin5 in LstNDTop5Menu1)
+                    {
+                        <li>
+                            <a href="">
+                                <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
+                                <strong>@itemin5.TieuDe</strong>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
             </div>
-            <ul class="list_cate">
-                @foreach (var itemin5 in LstNDTop5Menu1)
-                { 
-                <li>
-                    <a href="">
-                        <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
-                        <strong>@itemin5.TieuDe</strong>
-                    </a>
-                </li>
-                }
-              
-            </ul>
-        </div>
-      }
+        }
         <!--End nhật ký tìm mộ-->
         <!--Begin những điều trông thấy-->
-        @if(LstNDTop5Menu2.Count!=0)
-        { 
-        <div class="col-md-12 cate">
-            <h3><a href="">Những điều trông thấy</a><a href="" class="rss"></a></h3>
-            <div class="feature_cate">
-                <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">@LstNDTop5Menu2[0].TieuDe</a>
-                <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu2[0].PictureId)"></span>
-                <span class="txt">
-                    <p>@LstNDTop5Menu2[0].TrichDan</p>
-                    <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">Xem chi tiết..</a></p>
-                </span>
+        @if (LstNDTop5Menu2.Count != 0)
+        {
+            <div class="col-md-12 cate">
+                <h3><a href="../Home/ListItemBaiViet?MenuId=@LstAllMenu[1].MenuID">@LstAllMenu[1].TenMenu</a><a href="" class="rss"></a></h3>
+                <div class="feature_cate">
+                    <a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">@LstNDTop5Menu2[0].TieuDe</a>
+                    <span class="img"><img src="@PicModel.GetPictureUrl(LstNDTop5Menu2[0].PictureId)"></span>
+                    <span class="txt">
+                        <p>@LstNDTop5Menu2[0].TrichDan</p>
+                        <p><a href="../Home/Detail?MaNoiDung=@LstNDTop5Menu2[0].MaNoiDung">Xem chi tiết..</a></p>
+                    </span>
+                </div>
+                <ul class="list_cate">
+                    @foreach (var itemin5 in LstNDTop5Menu2)
+                    {
+                        <li>
+                            <a href="../Home/Detail?MaNoiDung=@itemin5.MaNoiDung">
+                                <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
+                                <strong>@itemin5.TieuDe</strong>
+                            </a>
+                        </li>
+                    }
+                </ul>
             </div>
-            <ul class="list_cate">
-                @foreach (var itemin5 in LstNDTop5Menu2)
-                {
-                    <li>
-                        <a href="../Home/Detail?MaNoiDung=@itemin5.MaNoiDung">
-                            <span><img src="@PicModel.GetPictureUrl(itemin5.PictureId)"></span>
-                            <strong>@itemin5.TieuDe</strong>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </div>
         }
         <!--End những điều trông thấy-->
     </div>
@@ -321,20 +321,54 @@
     <div class="col-md-8">
         @for (int j = 0; j < LstAllMenu.Count; j++)
         {
+            @*if (j >= 2)
+                {
+                    <div class="col-sm-12 information">
+                        <h3><span>@LstAllMenu[j].TenMenu</span></h3>
+                        <ul>
+                          @foreach (var itemm in (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j])
+                           {
+                            <li><a href="../Home/Detail?MaNoiDung=@itemm.MaNoiDung">@itemm.TieuDe</a></li>
+                           }
+
+                        </ul>
+                    </div>
+                }*@
             if (j >= 2)
             {
-                <div class="col-sm-12 information">
-                    <h3><span>@LstAllMenu[j].TenMenu</span></h3>
-                    <ul>
-                      @foreach (var itemm in (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j])
-                       {
-                        <li><a href="../Home/Detail?MaNoiDung=@itemm.MaNoiDung">@itemm.TieuDe</a></li>
-                       }
-                        
-                    </ul>
+                <div class="col-md-12 cate">
+                    <h3><a href="../Home/ListItemBaiViet?MenuId=@LstAllMenu[j].MenuID">@LstAllMenu[j].TenMenu</a><a href="" class="rss"></a></h3>
+                    @{
+                List<nguoiduado.Models.TBL_NoiDung> ListND = new List<nguoiduado.Models.TBL_NoiDung>();
+                if (ViewData["LstNDTop10Menu" + j] != null)
+                {
+                    ListND = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j];
+                }
+                    }
+                    @if (ListND.Count!=0)
+                    {
+                        <div class="feature_cate">
+                            <a href="../Home/Detail?MaNoiDung=@ListND[0].MaNoiDung">@ListND[0].TieuDe</a>
+                            <span class="img"><img src="@PicModel.GetPictureUrl(ListND[0].PictureId)"></span>
+                            <span class="txt">
+                                <p>@ListND[0].TrichDan</p>
+                                <p><a href="../Home/Detail?MaNoiDung=@ListND[0].MaNoiDung">Xem chi tiết..</a></p>
+                            </span>
+                        </div>
+                        <ul class="list_cate">
+                            @foreach (var itemm in (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j])
+                            {
+                                <li>
+                                    <a href="../Home/Detail?MaNoiDung=@itemm.MaNoiDung">
+                                        <span><img src="@PicModel.GetPictureUrl(itemm.PictureId)"></span>
+                                        <strong>@itemm.TieuDe</strong>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
                 </div>
             }
-        
         }
 
     </div>

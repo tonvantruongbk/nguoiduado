@@ -191,7 +191,12 @@ namespace nguoiduado.Controllers
                 model = db.TBL_NoiDung.ToList();
             }
             else
-            { model = db.TBL_NoiDung.Where(c => c.MenuID == MenuID).ToList(); }
+            {
+                model = (from c in db.TBL_NoiDung
+                         where c.MenuID == MenuID
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
+                         select c).ToList();
+            }
 
             return PartialView("_GridView1Partial", model);
         }

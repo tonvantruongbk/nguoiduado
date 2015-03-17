@@ -161,9 +161,9 @@ namespace nguoiduado.Models
         public List<TBL_NoiDung> GetTop10BaiViet()
         {
 
-            var query = (from c in nguoiduadodb.TBL_NoiDung.Take(10)
-                         orderby c.NgayCapNhat, c.NgayNhap, c.TieuDe descending
-                         select c);
+            var query = (from c in nguoiduadodb.TBL_NoiDung
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
+                         select c).Take(10);
             return query.ToList();
         }
         public List<TBL_NoiDung> GetBaiVietByMenu(decimal MaMenu)
@@ -171,17 +171,17 @@ namespace nguoiduado.Models
 
             var query = (from c in nguoiduadodb.TBL_NoiDung
                          where c.MenuID == MaMenu
-                         orderby c.NgayCapNhat, c.NgayNhap, c.TieuDe descending
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
                          select c);
             return query.ToList();
         }
         public List<TBL_NoiDung> GetTop5BaiViet(decimal MaMenu)
         {
 
-            var query = (from c in nguoiduadodb.TBL_NoiDung.Take(5)
+            var query = (from c in nguoiduadodb.TBL_NoiDung
                          where c.MenuID == MaMenu
-                         orderby c.NgayCapNhat, c.NgayNhap, c.TieuDe descending
-                         select c);
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
+                         select c).Take(5);
             return query.ToList();
         }
 
@@ -190,16 +190,16 @@ namespace nguoiduado.Models
 
             var query = (from c in nguoiduadodb.TBL_NoiDung
                          where c.MenuID == MaMenu
-                         orderby c.NgayCapNhat, c.NgayNhap, c.TieuDe descending
-                         select c).Take(10);
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
+                         select c).Take(5);
             return query.ToList();
         }
         public List<TBL_NoiDung> GetBaiVietPhanTrang(decimal menuID, int pageNumber, int pageSize)
         {
                 var ND = (from c in nguoiduadodb.TBL_NoiDung
                           where menuID==c.MenuID
-                         
-                                  orderby c.NgayCapNhat descending, c.NgayNhap descending
+
+                          orderby c.NgayCapNhat descending, c.NgayNhap descending
                                   select c)
 
                          .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();        
