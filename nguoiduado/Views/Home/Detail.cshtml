@@ -9,14 +9,129 @@
     <title>Nguoiduado.vn</title>
 </head>
 <body>
-<div class="col-sm-8">
-    <div class="category">
-        <h3>@ViewBag.TieuDe</h3>
-        <div class="guide">
-           @Html.Raw(Model.NoiDung)
+    <div class="col-sm-8">
+        <div class="category">
+            <h3>@ViewBag.TieuDe</h3>
+            <div class="guide">
+                @Html.Raw(Model.NoiDung)
+            </div>
         </div>
     </div>
-</div>
-   
+    <div class="col-sm-8">
+        <div class="category">
+            <h3><span>Ý kiến độc giả</span></h3>
+            <br />
+        </div>
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" id="idBaiViet" name="idBaiViet" value="@ViewData["MaNoiDung"]" />
+
+            <div class="category">
+
+                <table>
+                    <tr>
+
+                        <td>
+                            @Html.DevExpress().TextBox(textbox =>
+                               {
+                                   textbox.Name = "TenNguoiDang";
+                                   textbox.Properties.MaxLength = 50;
+                                   textbox.Width = 195;
+                                   textbox.Properties.NullText = "Họ và tên";
+                                   //textbox.ReadOnly = true;
+                                   textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                   textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+
+                                   textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                               }).Bind(ViewBag.HoVaTen).GetHtml()
+                        </td>
+                        <td style="width: 10px"></td>
+
+                        <td>
+                            @Html.DevExpress().TextBox(textbox =>
+                               {
+                                   textbox.Name = "SoDienThoai";
+                                   textbox.Properties.MaxLength = 40;
+                                   textbox.Width = 135;
+                                   textbox.Properties.NullText = "Số điện thoại";
+                                   textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                   textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                   textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                               }).Bind(ViewBag.SoDienThoai).GetHtml()
+
+                        </td>
+
+                        <td style="width: 10px"></td>
+                        <td colspan="4">
+                            @Html.DevExpress().TextBox(textbox =>
+                               {
+                                   textbox.Name = "Email";
+                                   textbox.Properties.MaxLength = 50;
+                                   textbox.Width = 185;
+                                   textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                   textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                   textbox.Properties.NullText = "Email";
+                                   textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                               }).Bind(ViewBag.Email).GetHtml()
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+
+                <textarea id="txtComment" name="txtComment" class="arena" placeholder="Viết ý kiến" style="width:586px;height:150px"></textarea>
+                <table>
+                    <tr class="DistanceRow"></tr>
+                    <tr>
+                        <td>Mã bảo mật</td>
+                        <td>
+                            @Html.Partial("CaptchaPartial")
+                        </td>
+                    </tr>
+
+                    <tr class="DistanceRow"></tr>
+                    <tr>
+                        <td>
+                            @Html.DevExpress().Button(
+                                     settings =>
+                                     {
+                                         settings.Name = "btnBinhLuan";
+                                         settings.Text = "Gửi ý kiến";
+                                         settings.UseSubmitBehavior = true;
+                                     }
+                                     ).GetHtml()
+
+                        </td>
+                        <td></td>
+
+                    </tr>
+                </table>
+
+              <br />
+
+                <h3>
+                    <span>@ViewBag.SoPhanHoi Bình luận</span>
+                </h3>
+                @*@foreach (var item in Model.ListDiplay)
+                    {
+                        <div class="box_comt">
+                            <div class="img_avatar1 fl">
+                                <a href="#">
+                                    <img src="~/Content/images/avatar.png" />
+                                </a>
+                            </div>
+                            <div class="comment_text fl">
+                                <a href="#">@item.TenNguoiDang</a><span class="time_cm">  - @item.NgayDangTin.ToString("dd/MM/yyyy")</span>
+                                <p>@Html.Raw(item.Noidung)</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }*@
+
+            </div>
+        }
+    </div>
+
 </body>
 </html>

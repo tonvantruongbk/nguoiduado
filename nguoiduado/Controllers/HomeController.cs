@@ -17,7 +17,28 @@ namespace nguoiduado.Controllers
 
             return View();
         }
-
+        public class CaptchaDemoOptions
+        {
+            public string CharacterSet { get; set; }
+            public int CodeLength { get; set; }
+            public static CaptchaDemoOptions Default
+            {
+                get
+                {
+                    return new CaptchaDemoOptions()
+                    {
+                        CharacterSet = "abcdefhjklmnpqrstuvxyz23456789",
+                        CodeLength = 4
+                    };
+                }
+            }
+        }
+        public ActionResult CaptchaPartial(CaptchaDemoOptions options)
+        {
+            if (Request.Params["isApplyOptions"] != null && bool.Parse(Request.Params["isApplyOptions"]))
+                Session["CaptchaOptions"] = options;
+            return PartialView("CaptchaPartial");
+        }
         public ActionResult _rootHomeHeader()
         {
             // DXCOMMENT: Pass a data model for GridView in the PartialView method's second parameter
@@ -200,7 +221,7 @@ namespace nguoiduado.Controllers
 
             return PartialView("_GridView1Partial", model);
         }
-
+        [HttpGet]
         public ActionResult Detail(decimal MaNoiDung)
         {
             nguoiduado_dbEntities db = new nguoiduado_dbEntities();
@@ -210,6 +231,20 @@ namespace nguoiduado.Controllers
             ViewBag.TieuDe = ND.TieuDe;
             return View(ND);
         }
+        [HttpPost]
+        public ActionResult Detail(decimal MaNoiDung,FormCollection connection)
+        {
+            var check = Request.Params["isApplyOptions"];
+            //captcha$TB$CVS
+            //connection["captcha$TB"]
+            nguoiduado_dbEntities db = new nguoiduado_dbEntities();
+            DanhMucBaiVietModel DMModel = new DanhMucBaiVietModel();
+            TBL_NoiDung ND = new TBL_NoiDung();
+            ND = DMModel.GetBaiVietByID(MaNoiDung);
+            ViewBag.TieuDe = ND.TieuDe;
+            return RedirectToAction("Detail", new { MaNoiDung = MaNoiDung });
+        }
+
         public ActionResult Intro()
         {
 
