@@ -484,7 +484,8 @@
     <Content Include="Views\Home\DangTinTimMo.cshtml" />
     <Content Include="Views\ThanhVien\DangNhap.cshtml" />
     <Content Include="Views\Home\CaptchaPartial.cshtml" />
-    <Content Include="Views\DanhSachNghiaTrang\Index.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\Index.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\_GridViewPartial.cshtml" />
     <None Include="Views\ThanhVien\DangKi.cshtml" />
     <Content Include="Views\ThanhVien\QuenMatKhau.cshtml" />
     <None Include="Web.Debug.config">
@@ -506,6 +507,7 @@
     <Compile Include="Code\UploadingUtils.cs" />
     <Compile Include="Code\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DanhMucNghiaTrangController.cs" />
     <Compile Include="Controllers\LienKetWebController.cs" />
     <Compile Include="Controllers\Login6688Controller.cs" />
     <Compile Include="Controllers\PictureController.cs" />

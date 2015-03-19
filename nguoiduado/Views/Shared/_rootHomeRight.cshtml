@@ -44,7 +44,10 @@
         <!--End search-->
         <!--Begin video-->
         <div class="video">
+            @if (Lst5Video!=null)
+            { 
             <h3><a href="../Home/Detail?MaNoiDung=@Lst5Video[0].MaNoiDung"><img src="@PicModel.GetPictureUrl(@Lst5Video[0].PictureId)"></a></h3>
+            }
             <ul>
                 @foreach (var itemvideo in Lst5Video)
                 {

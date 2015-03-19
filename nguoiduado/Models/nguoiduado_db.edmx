@@ -85,7 +85,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaDiaPhuong" Type="decimal" Precision="15" Scale="0" />
           <Property Name="TenNghiaTrang" Type="nvarchar" MaxLength="200" />
-          <Property Name="NoiDungMoTa" Type="nchar" MaxLength="10" />
+          <Property Name="TrichDan" Type="nvarchar" MaxLength="500" />
+          <Property Name="NoiDungMoTa" Type="ntext" />
           <Property Name="PictureId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TBL_DanhSachLietSi">
@@ -572,7 +573,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaDiaPhuong" Type="Decimal" Precision="15" Scale="0" />
           <Property Name="TenNghiaTrang" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDungMoTa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TrichDan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungMoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PictureId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TBL_DanhSachLietSi">
@@ -1065,6 +1067,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MaDiaPhuong" ColumnName="MaDiaPhuong" />
                 <ScalarProperty Name="TenNghiaTrang" ColumnName="TenNghiaTrang" />
+                <ScalarProperty Name="TrichDan" ColumnName="TrichDan" />
                 <ScalarProperty Name="NoiDungMoTa" ColumnName="NoiDungMoTa" />
                 <ScalarProperty Name="PictureId" ColumnName="PictureId" />
               </MappingFragment>

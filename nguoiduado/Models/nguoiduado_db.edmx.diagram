@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d199b22f016f4ea9a5c5d16d6d3b7465" Name="Diagram1">
+      <Diagram DiagramId="2af05e02f10c49759a62788ed1ba30f1" Name="Diagram1">
         <EntityTypeShape EntityType="nguoiduado_dbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_Menu" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_VaiTro" Width="1.5" PointX="7.75" PointY="6.375" IsExpanded="true" />

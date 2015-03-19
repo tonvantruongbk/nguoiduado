@@ -17,6 +17,7 @@ namespace nguoiduado.Models
         public int ID { get; set; }
         public Nullable<decimal> MaDiaPhuong { get; set; }
         public string TenNghiaTrang { get; set; }
+        public string TrichDan { get; set; }
         public string NoiDungMoTa { get; set; }
         public int PictureId { get; set; }
     }
