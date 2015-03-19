@@ -31,6 +31,7 @@ namespace nguoiduado.Models
         public virtual DbSet<TBL_AD_VaiTro_Menu> TBL_AD_VaiTro_Menu { get; set; }
         public virtual DbSet<TBL_AD_VaiTro_NguoiDung> TBL_AD_VaiTro_NguoiDung { get; set; }
         public virtual DbSet<TBL_Counter> TBL_Counter { get; set; }
+        public virtual DbSet<TBL_DanhMucNghiaTrang> TBL_DanhMucNghiaTrang { get; set; }
         public virtual DbSet<TBL_DanhSachLietSi> TBL_DanhSachLietSi { get; set; }
         public virtual DbSet<TBL_DiaPhuong> TBL_DiaPhuong { get; set; }
         public virtual DbSet<TBL_LichSu> TBL_LichSu { get; set; }

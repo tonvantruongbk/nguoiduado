@@ -78,6 +78,16 @@
           <Property Name="MaCounter" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Counter" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TBL_DanhMucNghiaTrang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDiaPhuong" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="TenNghiaTrang" Type="nvarchar" MaxLength="200" />
+          <Property Name="NoiDungMoTa" Type="nchar" MaxLength="10" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TBL_DanhSachLietSi">
           <Key>
             <PropertyRef Name="LietSiID" />
@@ -153,7 +163,7 @@
           <Property Name="MaNoiDung" Type="decimal" Precision="15" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaSo" Type="nvarchar(max)" />
           <Property Name="MenuID" Type="decimal" Precision="15" Scale="0" />
-          <Property Name="TieuDe" Type="ntext" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="200" />
           <Property Name="LinkAnh" Type="nvarchar" MaxLength="512" />
           <Property Name="NoiDung" Type="ntext" />
           <Property Name="TrichDan" Type="ntext" />
@@ -176,6 +186,7 @@
           <Property Name="Tag" Type="nvarchar" MaxLength="20" />
           <Property Name="TuKhoaTag" Type="ntext" />
           <Property Name="TrangThaiSua" Type="int" />
+          <Property Name="ExistVideo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TBL_NoiDung_lienQuan">
           <Key>
@@ -419,6 +430,7 @@
           <EntitySet Name="TBL_AD_VaiTro_Menu" EntityType="Self.TBL_AD_VaiTro_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_AD_VaiTro_NguoiDung" EntityType="Self.TBL_AD_VaiTro_NguoiDung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_Counter" EntityType="Self.TBL_Counter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DanhMucNghiaTrang" EntityType="Self.TBL_DanhMucNghiaTrang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DanhSachLietSi" EntityType="Self.TBL_DanhSachLietSi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DiaPhuong" EntityType="Self.TBL_DiaPhuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_LichSu" EntityType="Self.TBL_LichSu" Schema="dbo" store:Type="Tables" />
@@ -553,6 +565,16 @@
           <Property Name="MaCounter" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Counter" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="TBL_DanhMucNghiaTrang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDiaPhuong" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="TenNghiaTrang" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungMoTa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="TBL_DanhSachLietSi">
           <Key>
             <PropertyRef Name="LietSiID" />
@@ -629,7 +651,7 @@
           <Property Name="MaNoiDung" Type="Decimal" Precision="15" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaSo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MenuID" Type="Decimal" Precision="15" Scale="0" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="LinkAnh" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrichDan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -652,6 +674,7 @@
           <Property Name="Tag" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="TuKhoaTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrangThaiSua" Type="Int32" />
+          <Property Name="ExistVideo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TBL_MenuDanhMuc" Relationship="Self.FK_TBL_NoiDung_TBL_Menu" FromRole="TBL_NoiDung" ToRole="TBL_MenuDanhMuc" />
           <NavigationProperty Name="TBL_NoiDung_lienQuan" Relationship="Self.FK_TBL_NoiDung_lienQuan_TBL_NoiDung" FromRole="TBL_NoiDung" ToRole="TBL_NoiDung_lienQuan" />
           <NavigationProperty Name="TBL_PhanHoi" Relationship="Self.FK_TBL_PhanHoi_TBL_NoiDung" FromRole="TBL_NoiDung" ToRole="TBL_PhanHoi" />
@@ -902,6 +925,7 @@
           <EntitySet Name="TBL_AD_VaiTro_Menu" EntityType="Self.TBL_AD_VaiTro_Menu" />
           <EntitySet Name="TBL_AD_VaiTro_NguoiDung" EntityType="Self.TBL_AD_VaiTro_NguoiDung" />
           <EntitySet Name="TBL_Counter" EntityType="Self.TBL_Counter" />
+          <EntitySet Name="TBL_DanhMucNghiaTrang" EntityType="Self.TBL_DanhMucNghiaTrang" />
           <EntitySet Name="TBL_DanhSachLietSi" EntityType="Self.TBL_DanhSachLietSi" />
           <EntitySet Name="TBL_DiaPhuong" EntityType="Self.TBL_DiaPhuong" />
           <EntitySet Name="TBL_LichSu" EntityType="Self.TBL_LichSu" />
@@ -1035,6 +1059,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DanhMucNghiaTrang">
+            <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_DanhMucNghiaTrang">
+              <MappingFragment StoreEntitySet="TBL_DanhMucNghiaTrang">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaDiaPhuong" ColumnName="MaDiaPhuong" />
+                <ScalarProperty Name="TenNghiaTrang" ColumnName="TenNghiaTrang" />
+                <ScalarProperty Name="NoiDungMoTa" ColumnName="NoiDungMoTa" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TBL_DanhSachLietSi">
             <EntityTypeMapping TypeName="nguoiduado_dbModel.TBL_DanhSachLietSi">
               <MappingFragment StoreEntitySet="TBL_DanhSachLietSi">
@@ -1137,6 +1172,7 @@
                 <ScalarProperty Name="Tag" ColumnName="Tag" />
                 <ScalarProperty Name="TuKhoaTag" ColumnName="TuKhoaTag" />
                 <ScalarProperty Name="TrangThaiSua" ColumnName="TrangThaiSua" />
+                <ScalarProperty Name="ExistVideo" ColumnName="ExistVideo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

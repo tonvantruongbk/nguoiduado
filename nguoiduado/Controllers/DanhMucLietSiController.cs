@@ -15,7 +15,7 @@ namespace nguoiduado.Controllers
             // DXCOMMENT: Pass a data model for GridView
             return View();
         }
-////         INSERT INTO nguoiduado_db.dbo.TBL_DanhSachLietSi(HoVaTen, NamSinh,NguyenQuan,DonViLucHySinh,NgayHiSinh,CapBacChucVu)
+//// INSERT INTO nguoiduado_db.dbo.TBL_DanhSachLietSi(HoVaTen, NamSinh,NguyenQuan,DonViLucHySinh,NgayHiSinh,CapBacChucVu)
 ////SELECT HoTen, NamSinh, QueQuan, DonVi, NgayHS,CBCV FROM NGUOIDUADOVN.dbo.LGS_LietSy
         nguoiduado.Models.nguoiduado_dbEntities db = new nguoiduado.Models.nguoiduado_dbEntities();
 

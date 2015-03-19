@@ -5,9 +5,11 @@
     List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu1 = new List<nguoiduado.Models.TBL_NoiDung>();
     List<nguoiduado.Models.TBL_NoiDung> LstNDTop5Menu2 = new List<nguoiduado.Models.TBL_NoiDung>();
     List<nguoiduado.Models.TBL_MenuDanhMuc> LstAllMenu = new List<nguoiduado.Models.TBL_MenuDanhMuc>();
+    List<nguoiduado.Models.TBL_NoiDung> Lst5Video = new List<nguoiduado.Models.TBL_NoiDung>();
     LstNDTop5Menu1 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu1"];
     LstNDTop5Menu2 = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop5Menu2"];
     LstAllMenu = (List<nguoiduado.Models.TBL_MenuDanhMuc>)ViewData["LstAllDanhMuc"];
+    Lst5Video=(List<nguoiduado.Models.TBL_NoiDung>)ViewData["5BaiVietVideo"];
 }
 <div class="col-md-12">
     <div class="col-md-8 hotnews">
@@ -42,26 +44,17 @@
         <!--End search-->
         <!--Begin video-->
         <div class="video">
-            <h3><a href=""><img src="Content/images/video.png"></a></h3>
+            <h3><a href="../Home/Detail?MaNoiDung=@Lst5Video[0].MaNoiDung"><img src="@PicModel.GetPictureUrl(@Lst5Video[0].PictureId)"></a></h3>
             <ul>
-                <li>
-                    <a href="">
-                        <span><img src="Content/images/img_video1.png"></span>
-                        <span>Video tìm thấy các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng đội năm ấy</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span><img src="Content/images/img_video2.png"></span>
-                        <span>Thủ tục tâm linh trước khi tìm kiếm các hài cốt Liệt sĩ </span>
-                    </a>
-                </li>
-                <li class="nonemax992">
-                    <a href="">
-                        <span><img src="Content/images/img_video3.png"></span>
-                        <span>Các mộ liệt sỹ ở chiến trường năm 1940 và tâm niệm của những đồng </span>
-                    </a>
-                </li>
+                @foreach (var itemvideo in Lst5Video)
+                {
+                    <li>
+                        <a href="../Home/Detail?MaNoiDung=@itemvideo.MaNoiDung">
+                            <span><img src="@PicModel.GetPictureUrl(@itemvideo.PictureId)"></span>
+                            <span>@itemvideo.TieuDe</span>
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
         <!--End video-->
@@ -142,6 +135,7 @@
                 </li>
             </ul>
         </div>
+
         <!--End video-->
         <!--Begin col hỗ trợ, tìm mộ-->
         <ul class="list_sp">
@@ -345,7 +339,7 @@
                     ListND = (List<nguoiduado.Models.TBL_NoiDung>)ViewData["LstNDTop10Menu" + j];
                 }
                     }
-                    @if (ListND.Count!=0)
+                    @if (ListND.Count != 0)
                     {
                         <div class="feature_cate">
                             <a href="../Home/Detail?MaNoiDung=@ListND[0].MaNoiDung">@ListND[0].TieuDe</a>

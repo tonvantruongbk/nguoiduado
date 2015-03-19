@@ -4,28 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a63731d5fd2f4b91b9a6e1d6450d36be" Name="Diagram1">
+      <Diagram DiagramId="d199b22f016f4ea9a5c5d16d6d3b7465" Name="Diagram1">
         <EntityTypeShape EntityType="nguoiduado_dbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_Menu" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_VaiTro" Width="1.5" PointX="7.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_VaiTro_Menu" Width="1.5" PointX="10" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_AD_VaiTro_NguoiDung" Width="1.5" PointX="12.25" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_Counter" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_DanhSachLietSi" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_DiaPhuong" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_LichSu" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_LienKet" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_MenuDanhMuc" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_DanhMucNghiaTrang" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_DanhSachLietSi" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_DiaPhuong" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_LichSu" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_LienKet" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_MenuDanhMuc" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_NoiDung" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_NoiDung_lienQuan" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_PhanHoi" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_Picture" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_QuangCao" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_ThanhVien" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_ThuVienAnh" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_NoiDung_lienQuan" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_PhanHoi" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_Picture" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_QuangCao" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_ThanhVien" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_ThuVienAnh" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_User" Width="1.5" PointX="10" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_VanBan" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_Video" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_VanBan" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nguoiduado_dbModel.TBL_Video" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
         <AssociationConnector Association="nguoiduado_dbModel.FK_TBL_AD_VaiTro_Menu_TBL_AD_Menu" ManuallyRouted="false" />
         <AssociationConnector Association="nguoiduado_dbModel.FK_TBL_AD_VaiTro_Menu_TBL_AD_VaiTro" ManuallyRouted="false" />
         <AssociationConnector Association="nguoiduado_dbModel.FK_TBL_AD_VaiTro_NguoiDung_TBL_AD_VaiTro" ManuallyRouted="false" />

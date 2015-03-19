@@ -46,6 +46,7 @@ namespace nguoiduado.Models
         public string Tag { get; set; }
         public string TuKhoaTag { get; set; }
         public Nullable<int> TrangThaiSua { get; set; }
+        public bool ExistVideo { get; set; }
     
         public virtual TBL_MenuDanhMuc TBL_MenuDanhMuc { get; set; }
         public virtual ICollection<TBL_NoiDung_lienQuan> TBL_NoiDung_lienQuan { get; set; }

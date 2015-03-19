@@ -29,6 +29,7 @@ namespace nguoiduado.Code
             _cache.Remove("LienKetWeb");
             _cache.Remove("LstNDTop5Menu1");
             _cache.Remove("LstNDTop5Menu2");
+            _cache.Remove("5BaiVietVideo");
             nguoiduado_dbEntities db = new nguoiduado_dbEntities();
             List<TBL_MenuDanhMuc> Menu = new List<TBL_MenuDanhMuc>();
             Menu = db.TBL_MenuDanhMuc.ToList();

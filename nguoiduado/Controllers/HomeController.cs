@@ -79,7 +79,7 @@ namespace nguoiduado.Controllers
         {
             DanhMucBaiVietModel bvmodel = new DanhMucBaiVietModel();
             List<TBL_NoiDung> LstNDTop10 = new List<TBL_NoiDung>();
-
+            List<TBL_NoiDung> LstNDVideo5 = new List<TBL_NoiDung>();
             //LstNDTop10 = bvmodel.GetTop10BaiViet();
             //ViewData["10BaiVietMoiNhat"] = LstNDTop10;
             if (CacheHelper._cache["10BaiVietMoiNhat"] != null)
@@ -91,7 +91,19 @@ namespace nguoiduado.Controllers
             {
                 LstNDTop10 = bvmodel.GetTop10BaiViet();
                 CacheHelper._cache["10BaiVietMoiNhat"] = LstNDTop10;
-                ViewData["10BaiVietMoiNhat"] = CacheHelper._cache["10BaiVietMoiNhat"];
+                ViewData["10BaiVietMoiNhat"] = LstNDTop10;
+            }
+
+            if (CacheHelper._cache["4BaiVietVideo"] != null)
+            {
+                LstNDVideo5 = (List<TBL_NoiDung>)CacheHelper._cache["5BaiVietVideo"];
+                ViewData["5BaiVietVideo"] = CacheHelper._cache["5BaiVietVideo"];
+            }
+            else
+            {
+                LstNDVideo5 = bvmodel.GetTop5BaiVietCoVideo();
+                CacheHelper._cache["5BaiVietVideo"] = LstNDVideo5;
+                ViewData["5BaiVietVideo"] = LstNDVideo5;
             }
 
             TBL_NoiDung ItemNoiBat = new TBL_NoiDung();

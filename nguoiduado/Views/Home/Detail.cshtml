@@ -1,38 +1,33 @@
-﻿
-<html lang="vi">
-@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
+﻿@{ Layout = "~/Views/Shared/_rootHome3Col.cshtml"; }
 @using nguoiduado.Models
 @model nguoiduado.Models.TBL_NoiDung
 
 
-<head>
-    <title>Nguoiduado.vn</title>
-</head>
-<body>
-    <div class="col-sm-8">
-        <div class="category">
-            <h3>@ViewBag.TieuDe</h3>
-            <div class="guide">
-                @Html.Raw(Model.NoiDung)
-            </div>
+
+<div class="col-sm-8">
+    <div class="category">
+        <h3>@ViewBag.TieuDe</h3>
+        <div class="guide">
+            @Html.Raw(Model.NoiDung)
         </div>
     </div>
-    <div class="col-sm-8">
+
+
+    <div class="category">
+        <h3><span>Ý kiến độc giả</span></h3>
+        <br />
+    </div>
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" id="idBaiViet" name="idBaiViet" value="@ViewData["MaNoiDung"]" />
+
         <div class="category">
-            <h3><span>Ý kiến độc giả</span></h3>
-            <br />
-        </div>
-        @using (Html.BeginForm())
-        {
-            <input type="hidden" id="idBaiViet" name="idBaiViet" value="@ViewData["MaNoiDung"]" />
 
-            <div class="category">
+            <table>
+                <tr>
 
-                <table>
-                    <tr>
-
-                        <td>
-                            @Html.DevExpress().TextBox(textbox =>
+                    <td>
+                        @Html.DevExpress().TextBox(textbox =>
                                {
                                    textbox.Name = "TenNguoiDang";
                                    textbox.Properties.MaxLength = 50;
@@ -44,11 +39,11 @@
 
                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                                }).Bind(ViewBag.HoVaTen).GetHtml()
-                        </td>
-                        <td style="width: 10px"></td>
+                    </td>
+                    <td style="width: 10px"></td>
 
-                        <td>
-                            @Html.DevExpress().TextBox(textbox =>
+                    <td>
+                        @Html.DevExpress().TextBox(textbox =>
                                {
                                    textbox.Name = "SoDienThoai";
                                    textbox.Properties.MaxLength = 40;
@@ -59,11 +54,11 @@
                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                                }).Bind(ViewBag.SoDienThoai).GetHtml()
 
-                        </td>
+                    </td>
 
-                        <td style="width: 10px"></td>
-                        <td colspan="4">
-                            @Html.DevExpress().TextBox(textbox =>
+                    <td style="width: 10px"></td>
+                    <td colspan="4">
+                        @Html.DevExpress().TextBox(textbox =>
                                {
                                    textbox.Name = "Email";
                                    textbox.Properties.MaxLength = 50;
@@ -73,27 +68,27 @@
                                    textbox.Properties.NullText = "Email";
                                    textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
                                }).Bind(ViewBag.Email).GetHtml()
-                        </td>
-                    </tr>
-                </table>
+                    </td>
+                </tr>
+            </table>
 
-                <br />
+            <br />
 
 
-                <textarea id="txtComment" name="txtComment" class="arena" placeholder="Viết ý kiến" style="width:586px;height:150px"></textarea>
-                <table>
-                    <tr class="DistanceRow"></tr>
-                    <tr>
-                        <td>Mã bảo mật</td>
-                        <td>
-                            @Html.Partial("CaptchaPartial")
-                        </td>
-                    </tr>
+            <textarea id="txtComment" name="txtComment" class="arena" placeholder="Viết ý kiến" style="width:586px;height:150px"></textarea>
+            <table>
+                <tr class="DistanceRow"></tr>
+                <tr>
+                    <td>Mã bảo mật</td>
+                    <td>
+                        @Html.Partial("CaptchaPartial")
+                    </td>
+                </tr>
 
-                    <tr class="DistanceRow"></tr>
-                    <tr>
-                        <td>
-                            @Html.DevExpress().Button(
+                <tr class="DistanceRow"></tr>
+                <tr>
+                    <td>
+                        @Html.DevExpress().Button(
                                      settings =>
                                      {
                                          settings.Name = "btnBinhLuan";
@@ -102,36 +97,34 @@
                                      }
                                      ).GetHtml()
 
-                        </td>
-                        <td></td>
+                    </td>
+                    <td></td>
 
-                    </tr>
-                </table>
+                </tr>
+            </table>
 
-              <br />
+            <br />
 
-                <h3>
-                    <span>@ViewBag.SoPhanHoi Bình luận</span>
-                </h3>
-                @*@foreach (var item in Model.ListDiplay)
-                    {
-                        <div class="box_comt">
-                            <div class="img_avatar1 fl">
-                                <a href="#">
-                                    <img src="~/Content/images/avatar.png" />
-                                </a>
-                            </div>
-                            <div class="comment_text fl">
-                                <a href="#">@item.TenNguoiDang</a><span class="time_cm">  - @item.NgayDangTin.ToString("dd/MM/yyyy")</span>
-                                <p>@Html.Raw(item.Noidung)</p>
-                            </div>
-                            <div class="clear"></div>
+            <h3>
+                <span>@ViewBag.SoPhanHoi Bình luận</span>
+            </h3>
+            @*@foreach (var item in Model.ListDiplay)
+                {
+                    <div class="box_comt">
+                        <div class="img_avatar1 fl">
+                            <a href="#">
+                                <img src="~/Content/images/avatar.png" />
+                            </a>
                         </div>
-                    }*@
+                        <div class="comment_text fl">
+                            <a href="#">@item.TenNguoiDang</a><span class="time_cm">  - @item.NgayDangTin.ToString("dd/MM/yyyy")</span>
+                            <p>@Html.Raw(item.Noidung)</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                }*@
 
-            </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 
-</body>
-</html>

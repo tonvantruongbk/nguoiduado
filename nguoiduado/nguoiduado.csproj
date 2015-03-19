@@ -484,6 +484,7 @@
     <Content Include="Views\Home\DangTinTimMo.cshtml" />
     <Content Include="Views\ThanhVien\DangNhap.cshtml" />
     <Content Include="Views\Home\CaptchaPartial.cshtml" />
+    <Content Include="Views\DanhSachNghiaTrang\Index.cshtml" />
     <None Include="Views\ThanhVien\DangKi.cshtml" />
     <Content Include="Views\ThanhVien\QuenMatKhau.cshtml" />
     <None Include="Web.Debug.config">
@@ -524,8 +525,6 @@
     </Compile>
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ThuVienAnhModels.cs" />
-    <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\nguoiduado_db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -557,6 +556,9 @@
       <DependentUpon>nguoiduado_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TBL_Counter.cs">
+      <DependentUpon>nguoiduado_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_DanhMucNghiaTrang.cs">
       <DependentUpon>nguoiduado_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TBL_DanhSachLietSi.cs">
@@ -604,6 +606,8 @@
     <Compile Include="Models\TBL_Video.cs">
       <DependentUpon>nguoiduado_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ThuVienAnhModels.cs" />
+    <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\VaiTroQuyenHanModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\PictureModels.cs" />

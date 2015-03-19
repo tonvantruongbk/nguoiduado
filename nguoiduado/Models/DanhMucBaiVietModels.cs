@@ -131,6 +131,7 @@ namespace nguoiduado.Models
                 NoiDung.TuKhoaTag = nd.TuKhoaTag;
                 NoiDung.TrangThaiSua = 0;
                 NoiDung.PictureId = nd.PictureId;
+                NoiDung.ExistVideo = nd.ExistVideo;
                 nguoiduadodb.SaveChanges();
 
                 return true;
@@ -164,6 +165,16 @@ namespace nguoiduado.Models
             var query = (from c in nguoiduadodb.TBL_NoiDung
                          orderby c.NgayCapNhat descending, c.NgayNhap descending
                          select c).Take(10);
+            return query.ToList();
+        }
+
+        public List<TBL_NoiDung> GetTop5BaiVietCoVideo()
+        {
+
+            var query = (from c in nguoiduadodb.TBL_NoiDung
+                         where c.ExistVideo==true
+                         orderby c.NgayCapNhat descending, c.NgayNhap descending
+                         select c).Take(5);
             return query.ToList();
         }
         public List<TBL_NoiDung> GetBaiVietByMenu(decimal MaMenu)
