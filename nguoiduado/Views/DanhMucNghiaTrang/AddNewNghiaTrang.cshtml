@@ -1,0 +1,137 @@
+﻿@using System.Globalization
+@model nguoiduado.Models.TBL_DanhMucNghiaTrang
+@{ Layout = "~/Views/Shared/_rootAdmin.cshtml"; }
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div style="padding: 5px" class="bg-shadow">
+        <div class="heading">
+            <div style="margin-top: 6px; position: absolute">
+                <img alt="" src="@Url.Content("~/Content/Images/product.png")" />
+            </div>
+            <div style="margin-left: 30px;">
+                <h1>Thêm mới Nghĩa Trang Liệt Sĩ</h1>
+                &nbsp;
+                <a style="padding: 8px 0 0; font-size: 13px; position: absolute" href="/DanhMucNghiaTrang">(Quay lại danh sách)</a>
+            </div>
+        </div>
+        <div class="content" style="clear: both;">
+            <div class="container" style="overflow: auto!important">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <p>Thuộc địa phương</p>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.Action("ComboBox3Partial")
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            Tên nghĩa trang
+                        </div>
+                        <div class="col-md-9">
+                            @Html.DevExpress().TextBox(textbox =>
+                                                               {
+                                                                   textbox.Name = "TenNghiaTrang";
+                                                                   textbox.Properties.ValidationSettings.SetFocusOnError = true;
+                                                                   textbox.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                                                                   textbox.Properties.MaxLength = 150;
+                                                                   textbox.Width = Unit.Percentage(100);
+                                                                   textbox.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                                                               }).Bind(Model.TenNghiaTrang).GetHtml()
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="distanceRow"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            Ảnh đại diện
+                        </div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.PictureId)
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                </div>
+                <div class="distanceRow"></div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        Nội dung  mô tả
+                    </div>
+                    <div class="col-md-10">
+                        @Html.Partial("FeaturesPartial", Model)
+                    </div>
+                </div>
+                <div class="distanceRow"></div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnSubmitAdd";
+                            settings.Text = "Lưu lại";
+                            settings.UseSubmitBehavior = true;
+                        }
+                         ).GetHtml()
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DevExpress().Button(
+                        settings =>
+                        {
+                            settings.Name = "btnCancel";
+                            settings.Text = "Cancel";
+                        }
+                         ).GetHtml()
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+            <input type="hidden" id="idthongbao" name="idthongbao" value='@ViewBag.success' />
+        </div>
+    </div>
+
+
+}
+
+<script type="text/javascript">
+    //Đóng form
+
+    $('#btnCancel').click(function () {
+        window.parent.eventCloseAddNewFromIframe();
+    });
+
+    if ($('#idthongbao').val() != '') {
+        alert($('#idthongbao').val());
+    }
+
+    function AfterCallback() {
+        window.parent.EndCallback();
+    }
+    function showpopup(param, headertext) {
+        popup.SetContentUrl(param);
+        popup.SetHeaderText(headertext);
+        popup.Show();
+    }
+
+</script>

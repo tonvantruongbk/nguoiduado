@@ -1,32 +1,69 @@
-@{
-	var grid = Html.DevExpress().GridView(settings => {
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
         settings.Name = "GridView";
         settings.CallbackRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "GridViewPartial" };
 
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "GridViewPartialAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "GridViewPartialUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "GridViewPartialDelete" };
+        settings.Width = Unit.Percentage(100);
+
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
-
-		settings.CommandColumn.Visible = true;
-        settings.CommandColumn.ShowNewButton = true;
         settings.CommandColumn.ShowDeleteButton = true;
-        settings.CommandColumn.ShowEditButton = true;
+        settings.CommandColumn.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.KeyFieldName = "ID";
 
-		settings.KeyFieldName = "ID";
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "#";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var id = DataBinder.Eval(c.DataItem, "ID");
 
-		settings.SettingsPager.Visible = true;
-		settings.Settings.ShowGroupPanel = true;
-		settings.Settings.ShowFilterRow = true;
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+                Html.DevExpress().HyperLink(hl =>
+                {
+                   // hl.Name = "hlEdit_" + c.KeyValue.ToString();
+                    hl.NavigateUrl = Url.Action("EditNghiaTrang", "DanhMucNghiaTrang", new { ID = id });
+                    hl.Properties.Text = "Sửa";
+                }).Render();
 
-				settings.Columns.Add("MaDiaPhuong");
-				settings.Columns.Add("TenNghiaTrang");
-				settings.Columns.Add("TrichDan");
-			});
-		if (ViewData["EditError"] != null){
+            });
+            column.SetHeaderTemplateContent(c => Html.DevExpress().HyperLink(hl =>
+            {
+                hl.Name = "hlNew";
+                hl.NavigateUrl = Url.Action("AddNewNghiaTrang", "DanhMucNghiaTrang");
+                hl.Properties.Text = "Thêm mới";
+            }).Render());
+
+        });
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenDiaPhuong";
+            column.Width = Unit.Percentage(30);
+            column.Caption = "Tên địa phương";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenNghiaTrang";
+            column.Width = Unit.Percentage(70);
+            column.Caption = "Tên nghĩa trang";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+
+
+    if (ViewData["EditError"] != null)
+    {
         grid.SetEditErrorText((string)ViewData["EditError"]);
+
     }
 }
 @grid.Bind(Model).GetHtml()

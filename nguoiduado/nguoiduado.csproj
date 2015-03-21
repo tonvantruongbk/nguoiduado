@@ -486,6 +486,10 @@
     <Content Include="Views\Home\CaptchaPartial.cshtml" />
     <Content Include="Views\DanhMucNghiaTrang\Index.cshtml" />
     <Content Include="Views\DanhMucNghiaTrang\_GridViewPartial.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\AddNewNghiaTrang.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\FeaturesPartial.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\_ComboBox3Partial.cshtml" />
+    <Content Include="Views\DanhMucNghiaTrang\EditNghiaTrang.cshtml" />
     <None Include="Views\ThanhVien\DangKi.cshtml" />
     <Content Include="Views\ThanhVien\QuenMatKhau.cshtml" />
     <None Include="Web.Debug.config">
@@ -527,6 +531,7 @@
     </Compile>
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DanhMucNghiaTrang.cs" />
     <Compile Include="Models\nguoiduado_db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

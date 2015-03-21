@@ -243,4 +243,19 @@ namespace nguoiduado.Models
         }
 
     }
+
+    // Class dùng dùng để Validation
+    [MetadataType(typeof(NghiaTrangMetadata))]
+    public partial class TBL_DanhMucNghiaTrang
+    {
+        public class NghiaTrangMetadata
+        {
+            [HiddenInput(DisplayValue = false)]
+            public decimal ID { get; set; }
+
+            [UIHint("Picture")]
+            public int PictureId { get; set; }
+        }
+
+    }
 }

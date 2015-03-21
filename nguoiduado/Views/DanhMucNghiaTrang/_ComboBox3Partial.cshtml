@@ -1,0 +1,27 @@
+@*@Html.DevExpress().ComboBoxFor(
+settings =>
+{
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.CallbackRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "ComboBox3Partial" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MaDiaPhuong";
+    settings.Properties.TextField = "TenDiaPhuong";
+}).BindList(Model).GetHtml()*@
+
+@Html.DevExpress().ComboBox(settings =>
+{
+    settings.Name = "ComboBoxDiaPhuong";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+    settings.Properties.ValidationSettings.RequiredField.IsRequired = true;
+    settings.CallbackRouteValues = new { Controller = "DanhMucNghiaTrang", Action = "ComboBox3Partial" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "MaDiaPhuong";
+    settings.Properties.TextField = "TenDiaPhuong";
+    //if (ViewBag.MenuSelect != null)
+    //{
+    //    settings.SelectedIndex = (int)ViewBag.MenuSelect;
+    //}
+    settings.Width = Unit.Percentage(100);
+}).BindList(Model).GetHtml()

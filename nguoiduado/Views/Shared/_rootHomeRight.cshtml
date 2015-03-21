@@ -44,7 +44,7 @@
         <!--End search-->
         <!--Begin video-->
         <div class="video">
-            @if (Lst5Video!=null)
+            @if (Lst5Video != null && Lst5Video.Count!=0)
             { 
             <h3><a href="../Home/Detail?MaNoiDung=@Lst5Video[0].MaNoiDung"><img src="@PicModel.GetPictureUrl(@Lst5Video[0].PictureId)"></a></h3>
             }
